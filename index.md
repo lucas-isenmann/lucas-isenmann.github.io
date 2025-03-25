@@ -1,7 +1,61 @@
+<style>
+    
+body {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+    background-color: #222;
+    color: #fff;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+h2, h3 {
+    font-weight: bold;
+    color: aquamarine;
+    transition: all 0.3s ease;
+    position: relative;
+    margin: 1.5em 0;
+    padding-bottom: 0.5em;
+}
+
+h2:hover, h3:hover {
+    color: #7fffd4;
+    transform: translateY(-2px);
+    text-shadow: 0 2px 4px rgba(127, 255, 212, 0.3);
+}
+
+h2::after, h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: aquamarine;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+h2:hover::after, h3:hover::after {
+    transform: scaleX(1);
+}
+
+a {
+    color: aquamarine;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #7fffd4;
+}
+</style>
+
 # Lucas Isenmann
 
 
-💼 ATER
+💼 Assistant Professor (ATER in french)
 
 🏫 University of Strasbourg, France
 
@@ -125,8 +179,8 @@ Thèse de doctorat sous la direction de [Daniel Gonçalves](https://www.lirmm.fr
 
 ## Softwares
 
-[Gracoon](gracoon.com) - An online collaborative graph editor.
+[Gracoon](www.gracoon.com) - An online collaborative graph editor.
 
 
-[agreg-maths.fr](agreg-maths.fr) - A website collecting ressources for the agregation of mathematics in France.
+[agreg-maths.fr](www.agreg-maths.fr) - A website collecting ressources for the agregation of mathematics in France.
 
