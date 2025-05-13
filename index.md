@@ -12,7 +12,7 @@ body {
 
 h2, h3 {
     font-weight: bold;
-    color: aquamarine;
+    color: lightblue;
     transition: all 0.3s ease;
     position: relative;
     margin: 1.5em 0;
@@ -51,8 +51,6 @@ a:hover {
     color: #7fffd4;
 }
 </style>
-
-# Lucas Isenmann
 
 
 💼 Assistant Professor (ATER in french)
@@ -173,8 +171,8 @@ a:hover {
 
 
 **From planar graphs to higher dimension**
-2019
-PhD Thesis supervised by [Daniel Gonçalves](https://www.lirmm.fr/~goncalves/pmwiki/)
+PhD Thesis supervised by [Daniel Gonçalves](https://www.lirmm.fr/~goncalves/pmwiki/).
+Defended in 2019.
 [HAL](https://theses.hal.science/tel-02931761/)
 
 
