@@ -1,7 +1,7 @@
 <style>
     
 body {
-    max-width: 600px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     padding: 0 20px;
@@ -70,16 +70,18 @@ a:hover {
 
 ## Publications
 
-### Submitted
+### Submitted Papers
+
+**Correlation Clustering with Overlap: a Heuristic Graph Editing Approach**
+(with Faisal N. Abu-Khzam and Sergio Thoumi)
+Submitted
+[ArXiv Preprint](https://arxiv.org/abs/2412.02704)
 
 
 
 
 
-
-
-
-### Journals
+### Journal Publications
 
 
 
@@ -87,21 +89,21 @@ a:hover {
 (with Daniel Gonçalves)
 *European Journal on Combinatorics*,
 2019
-[Arxiv](https://arxiv.org/abs/1803.09576)
+[ArXiv Preprint](https://arxiv.org/abs/1803.09576)
 
 
 **On the Distance Identifying Set meta-problem and applications to the complexity of identifying problems on graphs**
 (with Florian Barbero and Jocelyn Thiebaut)
 *Algorithmitica*,
 2018
-[Arxiv](https://arxiv.org/abs/1810.03868)
+[ArXiv Preprint](https://arxiv.org/abs/1810.03868)
 
 ### International conferences
 
 **Bicluster Editing with Overlaps: A Vertex Splitting Approach**
 (with Faisal N. Abu-Khzam and Zeina Merchard)
 *IWOCA 2025*,
-[Arxiv](https://arxiv.org/abs/2505.03959)
+[ArXiv Preprint](https://arxiv.org/abs/2505.03959)
 
 
 **On the complexity of 2-club Cluster Editing with Vertex Splitting**
@@ -113,7 +115,7 @@ a:hover {
 (with Faisal N. Abu-Khzam)
 *ITCJS-FAW*,
 2025
-[Arxiv](https://arxiv.org/abs/2408.08418)
+[ArXiv Preprint](https://arxiv.org/abs/2408.08418)
 
 
 
@@ -122,7 +124,7 @@ a:hover {
 (with [Tom Davot](https://www.univ-angers.fr/fr/acces-directs/annuaire-2/d/a/uduser-t-davot-fr.html), Sanjukta Roy and Jocelyn Thiebaut)
 *WG*,
 2023
-[Arxiv](https://arxiv.org/abs/2212.06007)
+[ArXiv Preprint](https://arxiv.org/abs/2212.06007)
 
 
 **Analysis of the Sybil defense of Duniter-based cryptocurrencies**
@@ -149,13 +151,13 @@ a:hover {
 **Discrete Morse theory for the collapsibility of supremum sections**
 (with Balthazar Bauer)
 *ICGT*, 2018
-[Arxiv](https://arxiv.org/abs/1803.09577)
+[ArXiv Preprint](https://arxiv.org/abs/1803.09577)
 
 
 **Planar graphs as L-intersection or L-contact graphs**
 (with Daniel Gonçalves and Claire Pennarun)
 *SODA*, 2018
-[Arxiv](https://arxiv.org/abs/1707.08833)
+[ArXiv Preprint](https://arxiv.org/abs/1707.08833)
 
 
 **Möbius stanchion system**
