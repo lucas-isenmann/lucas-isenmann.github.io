@@ -76,16 +76,7 @@ a:hover {
 
 
 
-**Bicluster Editing with Overlaps: A Vertex Splitting Approach**
-(with Faisal N. Abu-Khzam and Zeina Merchard)
-*Submitted*,
-2025
 
-
-**On the complexity of 2-club Cluster Editing with Vertex Splitting**
-(with Faisal N. Abu-Khzam, [Tom Davot](https://www.univ-angers.fr/fr/acces-directs/annuaire-2/d/a/uduser-t-davot-fr.html) and Sergio Thoumi)
-*Submitted*,
-2024
 
 
 
@@ -108,6 +99,16 @@ a:hover {
 [Arxiv](https://arxiv.org/abs/1810.03868)
 
 ### International conferences
+
+**Bicluster Editing with Overlaps: A Vertex Splitting Approach**
+(with Faisal N. Abu-Khzam and Zeina Merchard)
+*IWOCA 2025*,
+[Arxiv](https://arxiv.org/abs/2505.03959)
+
+
+**On the complexity of 2-club Cluster Editing with Vertex Splitting**
+(with Faisal N. Abu-Khzam, [Tom Davot](https://www.univ-angers.fr/fr/acces-directs/annuaire-2/d/a/uduser-t-davot-fr.html) and Sergio Thoumi)
+*COCOON 2025*,
 
 
 **Domination in Diameter-Two Graphs and the 2-Club Vertex Deletion Parameter**
@@ -173,8 +174,8 @@ a:hover {
 
 **From planar graphs to higher dimension**
 2019
-Thèse de doctorat sous la direction de [Daniel Gonçalves](https://www.lirmm.fr/~goncalves/pmwiki/)
-
+PhD Thesis supervised by [Daniel Gonçalves](https://www.lirmm.fr/~goncalves/pmwiki/)
+[HAL](https://theses.hal.science/tel-02931761/)
 
 
 ## Softwares
@@ -182,5 +183,7 @@ Thèse de doctorat sous la direction de [Daniel Gonçalves](https://www.lirmm.fr
 [Gracoon](www.gracoon.com) - An online collaborative graph editor.
 
 
-[agreg-maths.fr](www.agreg-maths.fr) - A website collecting ressources for the agregation of mathematics in France.
+[Agreg-maths.fr](www.agreg-maths.fr) - A website collecting ressources for the agregation of mathematics in France.
+
+[PACE 2024](https://github.com/lucas-isenmann/pace24-ocm/tree/final) - An exact solver for the PACE 2024 challenge on the One sided Crossing Minimization problem 
 
