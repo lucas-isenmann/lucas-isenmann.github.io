@@ -117,7 +117,7 @@ Submitted
 *ITCJS-FAW*,
 2025
 [ArXiv Preprint](https://arxiv.org/abs/2408.08418)
-
+[Conference Slides](domination_diameter_2_faw_slides.pdf)
 
 
 
