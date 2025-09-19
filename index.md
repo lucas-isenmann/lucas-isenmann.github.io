@@ -104,7 +104,7 @@ Submitted
 (with Faisal N. Abu-Khzam and Zeina Merchard)
 *IWOCA 2025*,
 [ArXiv Preprint](https://arxiv.org/abs/2505.03959)
-
+[Conference Slides](BCEVS_iwoca_slides.pdf)
 
 **On the complexity of 2-club Cluster Editing with Vertex Splitting**
 (with Faisal N. Abu-Khzam, [Tom Davot](https://www.univ-angers.fr/fr/acces-directs/annuaire-2/d/a/uduser-t-davot-fr.html) and Sergio Thoumi)
