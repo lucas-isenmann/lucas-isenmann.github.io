@@ -110,7 +110,7 @@ Submitted
 (with Faisal N. Abu-Khzam, [Tom Davot](https://www.univ-angers.fr/fr/acces-directs/annuaire-2/d/a/uduser-t-davot-fr.html) and Sergio Thoumi)
 *COCOON 2025*,
 [ArXiv Preprint](https://arxiv.org/abs/2411.04846)
-
+[Conference Slides](2CCEDVS_cocoon_slides.pdf)
 
 **Domination in Diameter-Two Graphs and the 2-Club Vertex Deletion Parameter**
 (with Faisal N. Abu-Khzam)
