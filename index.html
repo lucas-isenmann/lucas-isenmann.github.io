@@ -14,6 +14,28 @@
                 cursor: pointer;
                 margin: 20px;
             }
+
+
+            /* Title styling */
+            .article b {
+                display: block;
+                margin-bottom: 5px;
+                padding-bottom: 5px;
+                border-bottom: 2px solid #333;
+                font-size: 1.1em;
+            }
+
+            /* Co-authors styling */
+            .coauthors {
+                display: block;
+                color: #666;
+            }
+
+            /* Journal styling */
+            .journal {
+                display: block;
+                color: #888;
+            }
             
             .description-tooltip {
                 background-color: black;
@@ -105,7 +127,7 @@
     <h1>Lucas Isenmann </h1>
     <br>
 
-<p>💼 Assistant Professor (ATER in french)</p>
+<p>💼 Assistant Professor in Computer Science (ATER in french)</p>
 
 
 <p>🏫 University of Strasbourg, France
@@ -118,11 +140,10 @@
 <h1>Research interests</h1> 
 
 <ul>
-    <li>Planar graphs and intersection graphs</li>
-    <li>Order dimension</li>
-    <li>Clusters in graphs</li>
-    <li>Degreewidth of tournaments</li>
-    <li>Distance identifying problems</li>
+    <li>Graph theory: planar graphs, intersection graphs, tournaments</li>
+    <li>Combinatorics: order (or Dushnik-Miller) dimension and intersection complexes</li>
+    <li>Complexity: clusters in graphs, distance identifying problems</li>
+    <li>Heuristic algorithms: graph clustering and biclustering</li>
 </ul>
 
 
@@ -132,109 +153,95 @@
 <h2>Submitted Papers</h2>
 
 <div class="article">
-
-<b>Correlation Clustering with Overlap: a Heuristic Graph Editing Approach</b>
-
-(with Faisal N. Abu-Khzam and Sergio Thoumi)
-
-<a href="https://arxiv.org/abs/2412.02704">ArXiv Preprint</a>
+    <b>Correlation Clustering with Overlap: a Heuristic Graph Editing Approach</b>
+    <span class="coauthors">with Faisal N. Abu-Khzam and Sergio Thoumi</span>
+    <span class="journal">Submitted</span>
+    <a href="https://arxiv.org/abs/2412.02704">ArXiv Preprint</a>
 </div>
 <div class="description-tooltip">
-
     <img src="img/cluster_vertex_splitting.png">
+    <b>Cluster Editing</b> consists in adding and deleting edges so that the resulting graph is an union of cliques.
+    The problem is that this model does not allow data to be contained in several clusters.
 
-
-<b>Cluster Editing</b> consists in adding and deleting edges so that the resulting graph is an union of cliques.
-The problem is that this model does not allow data to be contained in several clusters.
-
-We address this latter problem by allowing vertex to be split.
-We develop heuristics for this <b>Cluster Vertex Splitting</b> problem and compare them to classical algorithms.
+    We address this latter problem by allowing vertex to be split.
+    We develop heuristics for this <b>Cluster Vertex Splitting</b> problem and compare them to classical algorithms.
 </div>
-
-
-
 
 
 
 <h2>Journal Publications</h2>
 
 <div class="article">
-
-<b>Dushnik-Miller dimension of TD-Delaunay complexes</b>
-(with Daniel Gonçalves)
-European Journal on Combinatorics,
-2019
-<a href="https://arxiv.org/abs/1803.09576">ArXiv Preprint</a>
+    <b>Dushnik-Miller dimension of TD-Delaunay complexes</b>
+    <span class="coauthors">with Daniel Gonçalves</span>
+    <span class="journal">European Journal on Combinatorics,        2019</span>
+    
+    <a href="https://arxiv.org/abs/1803.09576">ArXiv Preprint</a>
 </div>
+<div class="description-tooltip">
+    The <b>Dushnik-Miller dimension</b> (also known as order dimension) of a partial order is the minimum number of linear orders such that the partial order is the intersection of these orders.
+
+    A TD-Delaunay complex is the complex obtained from a set of points in dimension d such that a subset of these points is a face if and only the TD-Delaunay region of this point does not contain any point in its interior.
+    
 </div>
 
 <div class="article">
-
-<b>On the Distance Identifying Set meta-problem and applications to the complexity of identifying problems on graphs</b>
-
-(with Florian Barbero and Jocelyn Thiebaut)
-Algorithmitica,
-2018
-<a href="https://arxiv.org/abs/1810.03868">ArXiv Preprint</a>
+    <b>On the Distance Identifying Set meta-problem and applications to the complexity of identifying problems on graphs</b>
+    <span class="coauthors">with Florian Barbero and Jocelyn Thiebaut</span>
+    <span class="journal">Algorithmitica, 2018</span>
+    <a href="https://arxiv.org/abs/1810.03868">ArXiv Preprint</a>
 </div>
 
 <h2>International conferences</h2>
 
 <div class="article">
-
-<b>Bicluster Editing with Overlaps: A Vertex Splitting Approach</b>
-
-(with Faisal N. Abu-Khzam and Zeina Merchard)
-IWOCA 2025,
-<a href="https://arxiv.org/abs/2505.03959">ArXiv Preprint</a>
-<a href="slides/BCEVS_iwoca_slides.pdf">Conference Slides</a>
+    <b>Bicluster Editing with Overlaps: A Vertex Splitting Approach</b>
+    <span class="coauthors">with Faisal N. Abu-Khzam and Zeina Merchard</span>
+    <span class="journal">IWOCA 2025</span>
+    <a href="https://arxiv.org/abs/2505.03959">ArXiv Preprint</a>
+    <a href="slides/BCEVS_iwoca_slides.pdf">Conference Slides</a>
 </div>
 <div class="description-tooltip">
+    <img src="img/BCEVS.png">
 
-<img src="img/BCEVS.png">
-
-<b>Bicluster Editing with Overlaps</b> consists in splitting the vertices of a bipartite graph and deleting or adding edges so that the graph becomes an union of bicliques.
+    <b>Bicluster Editing with Overlaps</b> consists in splitting the vertices of a bipartite graph and deleting or adding edges so that the graph becomes an union of bicliques.
 </div>
 
 <div class="article">
-
-<b>On the complexity of 2-club Cluster Editing with Vertex Splitting</b>
-(with Faisal N. Abu-Khzam, Tom Davot and Sergio Thoumi)
-COCOON 2025,
-<a href="https://arxiv.org/abs/2411.04846">ArXiv Preprint</a>
-<a href="s/2CCEDVS_COCOON.pdf">Conference Slides</a>
+    <b>On the complexity of 2-club Cluster Editing with Vertex Splitting</b>
+    <span class="coauthors">with Faisal N. Abu-Khzam, Tom Davot and Sergio Thoumi</span>
+    <span class="journal">COCOON 2025</span>
+    <a href="https://arxiv.org/abs/2411.04846">ArXiv Preprint</a>
+    <a href="s/2CCEDVS_COCOON.pdf">Conference Slides</a>
 </div>
 </div>
 <div class="description-tooltip">
-
     <img src="img/2CCEDVS.png">
-
-A 2-club is graph with diameter at most 2 (each pair of vertices are at distance at most 2).
-<b>2-Club Cluster Editing with Vertex Splitting</b> consists in adding and removing edges and split vertices so that the resulting graph is an union of 2-clubs.
+    A 2-club is graph with diameter at most 2 (each pair of vertices are at distance at most 2).
+    <b>2-Club Cluster Editing with Vertex Splitting</b> consists in adding and removing edges and split vertices so that the resulting graph is an union of 2-clubs.
 </div>
 
 <div class="article">
 
 <b>Domination in Diameter-Two Graphs and the 2-Club Vertex Deletion Parameter</b>
-(with Faisal N. Abu-Khzam)
-ITCJS-FAW,
-2025
+<span class="coauthors">with Faisal N. Abu-Khzam</span>
+<span class="journal">ITCJS-FAW 2025</span>
 <a href="https://arxiv.org/abs/2408.08418">ArXiv Preprint</a>
 <a href="slides/domination_diameter_2_faw_slides.pdf">Conference Slides</a>
 </div>
 <div class="description-tooltip">
-
-We prove that 
-- Independent Dominating Set is W2-hard in graphs of diameter at most 2
-- 2CCVD parameterized by solution size is FPT
+    We prove that 
+    <ul>
+        <li>Independent Dominating Set is W2-hard in graphs of diameter at most 2</li>
+        <li>2CCVD parameterized by solution size is FPT</li>
+    </ul>
 </div>
 
 <div class="article">
 
 <b>Degreewidth : a new parameter for solving problems on tournaments</b>
-(with Tom Davot, Sanjukta Roy and Jocelyn Thiebaut)
-WG,
-2023
+<span class="coauthors">with Tom Davot, Sanjukta Roy and Jocelyn Thiebaut</span>
+<span class="journal">WG 2023</span>
 <a href="https://arxiv.org/abs/2212.06007">ArXiv Preprint</a>
 
 </div>
@@ -244,66 +251,63 @@ WG,
 
 The <b>degreewidth</b> of a tournament is the minimum of the maximum number of backward arcs incident to vertices for every order of the vertices.
 We prove
-- it is NP-complete to compute it
-- DS parameterized by DW is FPT
+<ul>
+    <li>it is NP-complete to compute it</li>
+    <li>DS parameterized by DW is FPT</li>
+</ul>
 </div>
 
 <div class="article">
-
-<b>Analysis of the Sybil defense of Duniter-based cryptocurrencies</b>
-FRCSS,
-2021
+    <b>Analysis of the Sybil defense of Duniter-based cryptocurrencies</b>
+    <span class="journal">FRCSS 2021</span>
 </div>
 <div class="description-tooltip">
+    <img src="img/duniter.png">
 
-<img src="img/duniter.png">
-
-Duniter is a cryptocurrency wher each user is generating money on a regular basis.
-To avoid Sybil attacks (i.e. that malicious users create fake accounts and gain more money), some graph theoritical rules.
-We study the limits of these defenses.
+    Duniter is a cryptocurrency wher each user is generating money on a regular basis.
+    To avoid Sybil attacks (i.e. that malicious users create fake accounts and gain more money), some graph theoritical rules.
+    We study the limits of these defenses.
 </div>
 
 <div class="article">
-
-<b>On the approximation hardness of geodetic set and its variants</b>
-(with Tom Davot and Jocelyn Thiebaut)
-COCOON, 2021
-<a href="https://hal.science/lirmm-03328636v2">HAL</a>
+    <b>On the approximation hardness of geodetic set and its variants</b>
+    <span class="coauthors">with Tom Davot and Jocelyn Thiebaut</span>
+    <span class="journal">COCOON 2021</span>
+    <a href="https://hal.science/lirmm-03328636v2">HAL</a>
 </div>
 
 
 <div class="article">
+    <b>Dushnik-Miller dimension of stair contact complexes</b>
+    <span class="coauthors">with Daniel Gonçalves</span>
+    <span class="journal">EuroComb 2019</span>
+</div>
+<div class="description-tooltip">
+    The Dushnik-Miller dimension (also known as order dimension) of a partial order is the minimum number of linear orders such that the partial order is the intersection of these orders.
 
-<b>Dushnik-Miller dimension of stair contact complexes</b>
-(with Daniel Gonçalves)
-EuroComb, 2019
 </div>
 
 
 
 <div class="article">
-
 <b>Discrete Morse theory for the collapsibility of supremum sections</b>
-(with Balthazar Bauer)
-ICGT, 2018
-<a href="https://arxiv.org/abs/1803.09577">ArXiv Preprint</a>
+    <span class="coauthors">Balthazar Bauer</span>
+    <span class="journal">ICGT 2018</span>
 
+    <a href="https://arxiv.org/abs/1803.09577">ArXiv Preprint</a>
 </div>
 
 <div class="article">
-
-<b>Planar graphs as L-intersection or L-contact graphs</b>
-(with Daniel Gonçalves and Claire Pennarun)
-SODA, 2018
-<a href="https://arxiv.org/abs/1707.08833">ArXiv Preprint</a>
-
+    <b>Planar graphs as L-intersection or L-contact graphs</b>
+    <span class="coauthors">with Daniel Gonçalves and Claire Pennarun</span>
+    <span class="journal">SODA 2018</span>
+    <a href="https://arxiv.org/abs/1707.08833">ArXiv Preprint</a>
 </div>
 
 <div class="article">
-
-<b>Möbius stanchion system</b>
-(with Timothée Pecatte)
-LAGOS, 2017
+    <b>Möbius stanchion system</b>
+    <span class="coauthors">with Timothée Pecatte</span>
+    <span class="journal">LAGOS 2017</span>
 </div>
 
 
@@ -313,12 +317,10 @@ LAGOS, 2017
 
 
 <div class="article">
-
-<b>From planar graphs to higher dimension</b>
-PhD Thesis supervised by Daniel Gonçalves.
-Defended in 2019.
-<a href="https://theses.hal.science/tel-02931761/">HAL</a>
-
+    <b>From planar graphs to higher dimension</b>
+    <span class="coauthors">PhD Thesis supervised by Daniel Gonçalves</span>
+    <span class="journal">Defended in 2019</span>
+    <a href="https://theses.hal.science/tel-02931761/">HAL</a>
 </div>
 
 
@@ -337,6 +339,14 @@ Defended in 2019.
 <div class="article">
     <a href="https://github.com/lucas-isenmann/pace24-ocm/tree/final">PACE 2024</a>
 - An exact solver for the PACE 2024 challenge on the One sided Crossing Minimization problem 
+</div>
+
+<h2>Book</h2>
+
+<div class="article">
+    <b>L'oral à l'agrégation de mathématiques : une sélection de développements</b>
+    <span class="coauthors">with Timothée Pecatte</span>
+    <span class="journal">Éditions Ellipses</span>
 </div>
 
     </body>
