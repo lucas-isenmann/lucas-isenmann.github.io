@@ -25,13 +25,11 @@
                 font-size: 1.1em;
             }
 
-            /* Co-authors styling */
             .coauthors {
                 display: block;
                 color: #666;
             }
 
-            /* Journal styling */
             .journal {
                 display: block;
                 color: #888;
@@ -95,7 +93,7 @@
                 text-shadow: 0 2px 4px rgba(127, 255, 212, 0.3);
             }
             
-            h2::after, h3::after {
+            h2::after, h3::after, a::after {
                 content: '';
                 position: absolute;
                 bottom: 0;
@@ -107,7 +105,7 @@
                 transition: transform 0.3s ease;
             }
             
-            h2:hover::after, h3:hover::after {
+            h2:hover::after, h3:hover::after, a:hover::after {
                 transform: scaleX(1);
             }
             
@@ -179,10 +177,12 @@
     <a href="https://arxiv.org/abs/1803.09576">ArXiv Preprint</a>
 </div>
 <div class="description-tooltip">
+    <img src="img/DM.jpg">
+
     The <b>Dushnik-Miller dimension</b> (also known as order dimension) of a partial order is the minimum number of linear orders such that the partial order is the intersection of these orders.
 
-    A TD-Delaunay complex is the complex obtained from a set of points in dimension d such that a subset of these points is a face if and only the TD-Delaunay region of this point does not contain any point in its interior.
-    
+    <img src="img/TDD.jpg">
+    A <b>TD-Delaunay complex</b> is the complex obtained from a set of points in dimension d such that a subset of these points is a face if and only the TD-Delaunay region of this point does not contain any point in its interior.
 </div>
 
 <div class="article">
@@ -190,6 +190,9 @@
     <span class="coauthors">with Florian Barbero and Jocelyn Thiebaut</span>
     <span class="journal">Algorithmitica, 2018</span>
     <a href="https://arxiv.org/abs/1810.03868">ArXiv Preprint</a>
+</div>
+<div class="description-tooltip">
+    The metric dimension of a graph is the minimum size of a subset of vertices such that the distances to these vertices identify all the vertices of the graph.
 </div>
 
 <h2>International conferences</h2>
@@ -199,6 +202,7 @@
     <span class="coauthors">with Faisal N. Abu-Khzam and Zeina Merchard</span>
     <span class="journal">IWOCA 2025</span>
     <a href="https://arxiv.org/abs/2505.03959">ArXiv Preprint</a>
+    <br>
     <a href="slides/BCEVS_iwoca_slides.pdf">Conference Slides</a>
 </div>
 <div class="description-tooltip">
@@ -212,6 +216,7 @@
     <span class="coauthors">with Faisal N. Abu-Khzam, Tom Davot and Sergio Thoumi</span>
     <span class="journal">COCOON 2025</span>
     <a href="https://arxiv.org/abs/2411.04846">ArXiv Preprint</a>
+    <br>
     <a href="s/2CCEDVS_COCOON.pdf">Conference Slides</a>
 </div>
 </div>
@@ -222,14 +227,18 @@
 </div>
 
 <div class="article">
-
-<b>Domination in Diameter-Two Graphs and the 2-Club Vertex Deletion Parameter</b>
-<span class="coauthors">with Faisal N. Abu-Khzam</span>
-<span class="journal">ITCJS-FAW 2025</span>
-<a href="https://arxiv.org/abs/2408.08418">ArXiv Preprint</a>
-<a href="slides/domination_diameter_2_faw_slides.pdf">Conference Slides</a>
+    <b>Domination in Diameter-Two Graphs and the 2-Club Vertex Deletion Parameter</b>
+    <span class="coauthors">with Faisal N. Abu-Khzam</span>
+    <span class="journal">ITCJS-FAW 2025</span>
+    <a href="https://arxiv.org/abs/2408.08418">ArXiv Preprint</a>
+    <br>
+    <a href="slides/domination_diameter_2_faw_slides.pdf">Conference Slides</a>
 </div>
 <div class="description-tooltip">
+    A 2-club is a subset of vertices of a graph such that the induced graph is of diameter at most 2.
+
+    A 2-club Cluster Vertex Deletion set is a set of vertices such that the induced graph of the complement of this set is an union of 2-clubs.
+
     We prove that 
     <ul>
         <li>Independent Dominating Set is W2-hard in graphs of diameter at most 2</li>
@@ -238,23 +247,19 @@
 </div>
 
 <div class="article">
-
-<b>Degreewidth : a new parameter for solving problems on tournaments</b>
-<span class="coauthors">with Tom Davot, Sanjukta Roy and Jocelyn Thiebaut</span>
-<span class="journal">WG 2023</span>
-<a href="https://arxiv.org/abs/2212.06007">ArXiv Preprint</a>
-
+    <b>Degreewidth : a new parameter for solving problems on tournaments</b>
+    <span class="coauthors">with Tom Davot, Sanjukta Roy and Jocelyn Thiebaut</span>
+    <span class="journal">WG 2023</span>
+    <a href="https://arxiv.org/abs/2212.06007">ArXiv Preprint</a>
 </div>
 <div class="description-tooltip">
-
-<img src="img/DW.png">
-
-The <b>degreewidth</b> of a tournament is the minimum of the maximum number of backward arcs incident to vertices for every order of the vertices.
-We prove
-<ul>
-    <li>it is NP-complete to compute it</li>
-    <li>DS parameterized by DW is FPT</li>
-</ul>
+    <img src="img/DW.png">
+    The <b>degreewidth</b> of a tournament is the minimum of the maximum number of backward arcs incident to vertices for every order of the vertices.
+    We prove
+    <ul>
+        <li>it is NP-complete to compute it</li>
+        <li>DS parameterized by DW is FPT</li>
+    </ul>
 </div>
 
 <div class="article">
@@ -275,6 +280,9 @@ We prove
     <span class="journal">COCOON 2021</span>
     <a href="https://hal.science/lirmm-03328636v2">HAL</a>
 </div>
+<div class="description-tooltip">
+    A geodetic set is a set of vertices of a graph such that all vertices of the graph lies on a shortest path (or geodesic) between two vertices of this set.
+</div>
 
 
 <div class="article">
@@ -284,7 +292,6 @@ We prove
 </div>
 <div class="description-tooltip">
     The Dushnik-Miller dimension (also known as order dimension) of a partial order is the minimum number of linear orders such that the partial order is the intersection of these orders.
-
 </div>
 
 
@@ -296,6 +303,11 @@ We prove
 
     <a href="https://arxiv.org/abs/1803.09577">ArXiv Preprint</a>
 </div>
+<div class="description-tooltip">
+    A <b>supremum section</b> is the abstract simplicial complex of a representation (a finite set of linear orders on an universe V).
+</div>
+    
+
 
 <div class="article">
     <b>Planar graphs as L-intersection or L-contact graphs</b>
@@ -303,13 +315,23 @@ We prove
     <span class="journal">SODA 2018</span>
     <a href="https://arxiv.org/abs/1707.08833">ArXiv Preprint</a>
 </div>
+<div class="description-tooltip">
+    An L intersection graph is the intersection of L in the plane.
+</div>
+
+
+
 
 <div class="article">
     <b>Möbius stanchion system</b>
     <span class="coauthors">with Timothée Pecatte</span>
     <span class="journal">LAGOS 2017</span>
 </div>
-
+<div class="description-tooltip">
+    <img src="img/stanchion.jpg">
+    Given a plane graph, we "twist" some edges and then we compute the cycles around the edges.
+    When there is only one cycle, we say that it is a Möbius stantchion system.
+</div>
 
 
 
