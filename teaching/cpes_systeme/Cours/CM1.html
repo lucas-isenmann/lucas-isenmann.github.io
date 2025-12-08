@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>                            <html>                                <head>                                    <meta charset="UTF-8">                                    <title>CM1</title>                                    <link rel="stylesheet" href="./style/style.css">                                    <link rel="stylesheet" href="./style/kimbie.dark.css">                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">                                    <style>*,body{margin:0;padding:0}.markdown-content,*{font-family:Vazir}*{box-sizing:border-box}html{font-size:14px}.markdown-content p,.rtl ol li,.rtl ul li{font-size:1.1rem}body{direction:rtl;color:#24292e}.ltr{direction:ltr!important}.rtl{direction:rtl!important}@media screen and (max-width:600px){body{padding:10px}}@media screen and (min-width:601px){body{padding:50px}}@font-face{font-family:Vazir;src:url(fonts/Vazir.woff)}@font-face{font-family:DejaVuSansMono;src:url(fonts/DejaVuSansMono.ttf)}.markdown-content{width:100%;outline-offset:-22px;padding:15px;line-height:3rem}code,code span,pre code span,ul li pre code{font-family:DejaVuSansMono,Menlo,'Liberation Mono',Consolas,'DejaVu Sans Mono','Ubuntu Mono','Courier New','andale mono','lucida console',monospace!important}.markdown-content p{text-align:justify;padding:.5rem}.markdown-content img{margin:0 auto;display:block;max-width:90%}.rtl ul li{margin-right:3rem!important}.rtl ol li{margin-right:3rem}.ltr ol li,.ltr ul li{font-size:1.1rem;margin-left:3rem}.markdown-content h1,.markdown-content h2,.markdown-content h3{padding:12px;text-shadow:none}.markdown-content h1{padding-top:60px;color:rgba(22,19,19,.8);font-weight:900;font-size:2.1rem}.markdown-content h2{font-weight:500;color:rgba(22,19,19,.6);font-size:1.8rem}.markdown-content h3{font-weight:300;color:rgba(22,19,19,.4);font-size:1.5rem}.markdown-content h4,.markdown-content h5{font-weight:200;color:rgba(22,19,19,.4)}.markdown-content h4{font-size:1.3rem}.markdown-content h5{font-size:1.2rem}@media screen and (min-width:48rem){#list{width:20%}#content{width:100%}}@media screen and (min-width:80rem){#list.none{display:inline-block}#content{width:80%}}@media print{#list{display:none}#content{display:block;width:100%;margin:0 auto}#content li,#content p{font-size:1rem}}.manual-anchor{top:45px}.markdown-container{max-width:1448px;margin:0 auto}.manual-link-icon{color:#8f8f8f}.manual-link-icon:hover{color:#000}code,ul li pre code{white-space:pre;word-wrap:normal;padding:3px 7px;color:#24292e;background-color:rgba(27,31,35,.05);border-radius:3px;font-size:1rem}.markdown-content ul li pre,.manual ul li pre,pre{margin:0;direction:ltr!important}.markdown-content ul li pre code,.manual ul li pre code,pre code{direction:ltr!important;line-height:1.45;padding:1em 0 .5em 3em;position:relative;display:block;overflow-x:auto;overflow-y:auto}a{text-decoration:none}.title{float:left;color:#ccc}.markdown-container{padding-top:60px}.elements{padding:12px;position:fixed;top:0;right:0;left:0;background-color:#444;height:50px;z-index:1}.input{color:#fff}#savebutton,input{font-size:15px}#savebutton{padding:0 7px!important}#rtl-checkbox-container{margin:3px 15px!important;color:#fff}.button{background-color:#fff;color:#444;font-size:1.6rem;display:inline-block;text-align:center;line-height:2.1rem;border-radius:2px}.button:hover{cursor:pointer;background-color:#eee}#refresh-button{width:2.2rem;vertical-align:middle}@media print{.no-print,.no-print *{display:none!important}}.hljs-comment,.hljs-quote{color:#99ac5b}.hljs-meta,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#dc3958}.hljs-built_in,.hljs-builtin-name,.hljs-deletion,.hljs-link,.hljs-literal,.hljs-number,.hljs-params,.hljs-type{color:#f79a32}.hljs-attribute,.hljs-section,.hljs-title{color:#f06431}.hljs-addition,.hljs-bullet,.hljs-string,.hljs-symbol{color:#9c9}.hljs-function,.hljs-keyword,.hljs-selector-tag{color:#98676a}.hljs{display:block;overflow-x:auto;background:#221a0f;color:#d3af86}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}</style>                                </head>                                <body><div class="markdown-container ltr"><div class="markdown-content"><h1 id="cm-1-arborescence-console-et-commandes">CM 1 : Arborescence, console et commandes</h1>
+<hr>
+<h2 id="arborescence">Arborescence</h2>
+<h3 id="chemins-absolus">Chemins absolus</h3>
+<p>C'est la suite des dossiers qui permettent d'identifier l'emplacement d'un fichier ou d'un dossier.
+Le dossier de départ s'appelle le dossier <em>racine</em> (ou <em>root</em>) en anglais, son chemin est simplement "/".</p>
+<p>Attention ! Ne pas utiliser les antislashs \ qui sont utilisés sur Windows.</p>
+<p>Exemples:</p>
+<pre><code class=" hljs ">/lib/apt/methods/
+/lib/apt/methods/<span class="hljs-keyword">file</span>
+/var/<span class="hljs-built_in">log</span>/auth.<span class="hljs-built_in">log</span>
+</code></pre><p>Les URL d'un site web reprennent la même notation : les chemins peuvent indiquer l'arborescence interne du site.</p>
+<pre><code class=" hljs "><span class="hljs-symbol">https:</span>/<span class="hljs-regexp">/www.umontpellier.fr/formation</span><span class="hljs-regexp">/admission-et-inscription/</span>
+</code></pre><h3 id="chemins-relatifs">Chemins relatifs</h3>
+<p>Le dossier où l'on est :</p>
+<pre><code class=" hljs ">.
+</code></pre><p>Le dossier parent :</p>
+<pre><code class=" hljs ">..
+</code></pre><p>Le dossier personnel :</p>
+<pre><code class=" hljs ">~ 
+</code></pre><p>Exemples :</p>
+<pre><code class=" hljs ">./dossier/test/fichier.txt
+dossier/test/fichier.txt
+../rep/<span class="hljs-built_in">exp</span>/<span class="hljs-keyword">file</span>.txt
+~/ici/test.txt
+</code></pre><hr>
+<h2 id="cli-et-commandes">CLI et commandes</h2>
+<p>Interface : ce qui fait l'intermédiaire entre l'utilisateur et la machine.</p>
+<p>Deux types : interface graphique et en ligne de commande</p>
+<p>GUI = Graphical User Interface</p>
+<p>CLI = Command Line Interface</p>
+<p>en français on parle de <em>console</em> ou de <em>terminal</em></p>
+<h3 id="avantage-d-savantage">Avantage/Désavantage</h3>
+<p>GUI</p>
+<ul>
+<li>plus intuitif</li>
+<li>plus synthétique</li>
+<li>quand ça ne marche pas on ne voit pas ce qu'il se passe</li>
+</ul>
+<p>CLI</p>
+<ul>
+<li>plus technique</li>
+<li>davantage de controle sur ce que l'on fait</li>
+</ul>
+<p>En général tout ce que l'on peut faire avec un GUI peut être fait avec en CLI mais souvent c'est d'abord la partie CLI qui est implémenté car faire une interface graphique est un art à part entière.</p>
+<hr>
+<h2 id="commande">Commande</h2>
+<p>Une commande est une suite de mots séparés par des espaces avec des options précédées de tirets du 6.</p>
+<p>Exemple :</p>
+<pre><code class=" hljs "><span class="hljs-keyword">ls</span> -<span class="hljs-keyword">lh</span>
+</code></pre><p>Une fois qu'on appuye sur Entrée la console affiche :</p>
+<pre><code class=" hljs ">moi@moi<span class="hljs-symbol">:~/TP1</span>$ ls -lh
+total <span class="hljs-number">12</span>K
+drwxrwxr-x <span class="hljs-number">2</span> moi moi <span class="hljs-number">4</span>,0K sept.  <span class="hljs-number">7</span> <span class="hljs-number">15</span><span class="hljs-symbol">:</span><span class="hljs-number">58</span> dossier
+-rw-rw-r-- <span class="hljs-number">1</span> moi moi    <span class="hljs-number">7</span> sept.  <span class="hljs-number">6</span> <span class="hljs-number">15</span><span class="hljs-symbol">:</span><span class="hljs-number">40</span> fichier1.txt
+-rw-rw-r-- <span class="hljs-number">1</span> moi moi   <span class="hljs-number">42</span> sept.  <span class="hljs-number">6</span> <span class="hljs-number">15</span><span class="hljs-symbol">:</span><span class="hljs-number">44</span> fichier2.txt
+</code></pre><p>Le nom de la commande est souvent une abréviation anglaise.
+Par exemple ls vient du verbe LiSt pour lister les fichiers dans un dossier.</p>
+<p>Il y a beaucoup de commande déjà disponibles dans Linux mais on peut en télécharger d'autres ou fabriquer les siennes pour son utilisation (par exemple pour automatiser une tache répétitive).</p>
+<h3 id="manuel">Manuel</h3>
+<p>toutes les commandes ont une documentation qu'on appelle "manuel" ou "man" en anglais.</p>
+<p>Exemple : </p>
+<pre><code class=" hljs ">man <span class="hljs-keyword">ls</span>
+</code></pre><p>Utilisation :</p>
+<ul>
+<li>flèches haut et bas pour parcourir la doc</li>
+<li>"q" pour quitter</li>
+</ul>
+<hr>
+<h2 id="astuces-d-utilisation-du-terminal">Astuces d'utilisation du terminal</h2>
+<p>Dans la documentation quand on voit ^C : le ^ est pour la touche Ctrl.</p>
+<ul>
+<li><p>Copier dans la console : le ^C, ^V ne marche pas dans la console. Il faut utiliser ^MajC et ^Maj V</p>
+</li>
+<li><p>stopper la commande en cours d'éxecution si elle prend trop de temps (par exemple <em>find /</em>) :
+  ^C</p>
+</li>
+<li><p>noms de fichiers avec espace : mettre des "..." autour. Par exemple "Fichier fini.txt". Mieux vaut utiliser des tirets du bas (ou <em>underscore</em> en anglais) : Fichier_fini.txt.</p>
+</li>
+<li><p>utiliser Tabulation pour compléter automatiquement un chemin</p>
+</li>
+<li><p>flèches haut et bas pour naviguer dans l'historique des commandes lancées</p>
+</li>
+</ul>
+<hr>
+<h2 id="commandes-classiques">Commandes classiques</h2>
+<pre><code class=" hljs "><span class="hljs-keyword">ls</span> : (LiSt) lister les fichier et dossiers du dossier courant
+<span class="hljs-keyword">cd</span> : (Change Directory) aller dans <span class="hljs-keyword">le</span> dossier <span class="hljs-keyword">sp</span>écifié
+<span class="hljs-built_in">mkdir</span> : (MaKe DIRectory) <span class="hljs-keyword">cr</span>éer un nouveau dossier
+rm : (ReMove) supprimer <span class="hljs-keyword">le</span> fichier <span class="hljs-keyword">sp</span>écifié
+mv : (MoVe) déplacer un fichier <span class="hljs-keyword">ou</span> un dossier, sert aussi à renommer
+<span class="hljs-keyword">cp</span> : (CoPy) copier un fichier <span class="hljs-keyword">ou</span> un dossier
+touch : <span class="hljs-keyword">cr</span>éer un nouveau fichier
+<span class="hljs-keyword">cat</span> : afficher <span class="hljs-keyword">le</span> contenu du fichier dans <span class="hljs-keyword">la</span> console
+<span class="hljs-keyword">pwd</span> : (<span class="hljs-keyword">Print</span> Working Directory) affiche <span class="hljs-keyword">le</span> chemin absolu du dossier courant 
+nano : éditer un fichier
+clear : effacer <span class="hljs-keyword">le</span> terminal
+</code></pre><h3 id="exemples-d-utilisation">Exemples d'utilisation</h3>
+<p>Copier le fichier <em>fichier.txt</em> dans le dossier <em>dossier/</em> qui se situe dans le même dossier où l'on se trouve.</p>
+<pre><code class=" hljs "><span class="hljs-keyword">cp</span> fichier.txt dossier/
+</code></pre><p>On peut copier plusieurs fichiers en même temps en faisant</p>
+<pre><code class=" hljs "><span class="hljs-keyword">cp</span> fichier1.txt fichier2.txt dossier/
+</code></pre><p>On peut copier tous les fichiers d'une même extension en même temps en faisant</p>
+<pre><code class=" hljs "><span class="hljs-attribute">cp</span> <span class="hljs-regexp">*.txt</span> dossier/
+</code></pre><p>l'étoile signifie "n'importe quel chaine de caractères".</p>
+</div></div></body>                            </html>

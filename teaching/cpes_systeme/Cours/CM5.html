@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>                            <html>                                <head>                                    <meta charset="UTF-8">                                    <title>CM5</title>                                    <link rel="stylesheet" href="./style/style.css">                                    <link rel="stylesheet" href="./style/kimbie.dark.css">                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">                                    <style>*,body{margin:0;padding:0}.markdown-content,*{font-family:Vazir}*{box-sizing:border-box}html{font-size:14px}.markdown-content p,.rtl ol li,.rtl ul li{font-size:1.1rem}body{direction:rtl;color:#24292e}.ltr{direction:ltr!important}.rtl{direction:rtl!important}@media screen and (max-width:600px){body{padding:10px}}@media screen and (min-width:601px){body{padding:50px}}@font-face{font-family:Vazir;src:url(fonts/Vazir.woff)}@font-face{font-family:DejaVuSansMono;src:url(fonts/DejaVuSansMono.ttf)}.markdown-content{width:100%;outline-offset:-22px;padding:15px;line-height:3rem}code,code span,pre code span,ul li pre code{font-family:DejaVuSansMono,Menlo,'Liberation Mono',Consolas,'DejaVu Sans Mono','Ubuntu Mono','Courier New','andale mono','lucida console',monospace!important}.markdown-content p{text-align:justify;padding:.5rem}.markdown-content img{margin:0 auto;display:block;max-width:90%}.rtl ul li{margin-right:3rem!important}.rtl ol li{margin-right:3rem}.ltr ol li,.ltr ul li{font-size:1.1rem;margin-left:3rem}.markdown-content h1,.markdown-content h2,.markdown-content h3{padding:12px;text-shadow:none}.markdown-content h1{padding-top:60px;color:rgba(22,19,19,.8);font-weight:900;font-size:2.1rem}.markdown-content h2{font-weight:500;color:rgba(22,19,19,.6);font-size:1.8rem}.markdown-content h3{font-weight:300;color:rgba(22,19,19,.4);font-size:1.5rem}.markdown-content h4,.markdown-content h5{font-weight:200;color:rgba(22,19,19,.4)}.markdown-content h4{font-size:1.3rem}.markdown-content h5{font-size:1.2rem}@media screen and (min-width:48rem){#list{width:20%}#content{width:100%}}@media screen and (min-width:80rem){#list.none{display:inline-block}#content{width:80%}}@media print{#list{display:none}#content{display:block;width:100%;margin:0 auto}#content li,#content p{font-size:1rem}}.manual-anchor{top:45px}.markdown-container{max-width:1448px;margin:0 auto}.manual-link-icon{color:#8f8f8f}.manual-link-icon:hover{color:#000}code,ul li pre code{white-space:pre;word-wrap:normal;padding:3px 7px;color:#24292e;background-color:rgba(27,31,35,.05);border-radius:3px;font-size:1rem}.markdown-content ul li pre,.manual ul li pre,pre{margin:0;direction:ltr!important}.markdown-content ul li pre code,.manual ul li pre code,pre code{direction:ltr!important;line-height:1.45;padding:1em 0 .5em 3em;position:relative;display:block;overflow-x:auto;overflow-y:auto}a{text-decoration:none}.title{float:left;color:#ccc}.markdown-container{padding-top:60px}.elements{padding:12px;position:fixed;top:0;right:0;left:0;background-color:#444;height:50px;z-index:1}.input{color:#fff}#savebutton,input{font-size:15px}#savebutton{padding:0 7px!important}#rtl-checkbox-container{margin:3px 15px!important;color:#fff}.button{background-color:#fff;color:#444;font-size:1.6rem;display:inline-block;text-align:center;line-height:2.1rem;border-radius:2px}.button:hover{cursor:pointer;background-color:#eee}#refresh-button{width:2.2rem;vertical-align:middle}@media print{.no-print,.no-print *{display:none!important}}.hljs-comment,.hljs-quote{color:#99ac5b}.hljs-meta,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#dc3958}.hljs-built_in,.hljs-builtin-name,.hljs-deletion,.hljs-link,.hljs-literal,.hljs-number,.hljs-params,.hljs-type{color:#f79a32}.hljs-attribute,.hljs-section,.hljs-title{color:#f06431}.hljs-addition,.hljs-bullet,.hljs-string,.hljs-symbol{color:#9c9}.hljs-function,.hljs-keyword,.hljs-selector-tag{color:#98676a}.hljs{display:block;overflow-x:auto;background:#221a0f;color:#d3af86}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}</style>                                </head>                                <body><div class="markdown-container ltr"><div class="markdown-content"><h1 id="cm5-script-bash">CM5 : Script Bash</h1>
+<p>Langage orienté chaines de caractères très pratique pour faire des petites manipulations sur les fichiers et dossiers car on peut utiliser facilement toutes les commandes vus précédemment et les instructions classiques d'un langage de programmation.</p>
+<pre><code class=" hljs "><span class="hljs-built_in">echo</span> <span class="hljs-variable">$1</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">$2</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">$#</span>
+</code></pre><h2 id="exercice-1">Exercice 1</h2>
+<p>Ecrire un script qui efface la console puis qui affiche le contenu en liste du répértoire courant avec les fichiers cachés et avec les inodes.</p>
+<h2 id="exercice-2">Exercice 2</h2>
+<p>Ecrire un script qui à partir du premier paramètre qu'on note <code>param</code>, affiche "Bonjour param".</p>
+<h2 id="exercice-3">Exercice 3</h2>
+<p>Ecrire un script qui à partir du premier paramètre qu'on note <code>param</code>, crée un fichier param.txt contenant le texte "param".</p>
+<h2 id="exercice-4">Exercice 4</h2>
+<p>Ecrire un script qui à partir du premier paramètre qu'on note <code>nom</code>, crée un fichier vide 'nom.sh' auquel on rajoute le droit d'éxecution.</p>
+<h1 id="if-then-else">IF THEN ELSE</h1>
+<pre><code class=" hljs "><span class="hljs-keyword">if</span> (( condition ))
+<span class="hljs-keyword">then</span>
+
+<span class="hljs-keyword">else</span>
+
+<span class="hljs-keyword">fi</span>
+</code></pre><h2 id="exercice-5">Exercice 5</h2>
+<p>Ecrire un script qui à partir du premier paramètre qu'on note <code>age</code>, affiche "majeur" si l'age est supérieur ou égal à 18 et "mineur" sinon.</p>
+<h2 id="exercice-6">Exercice 6</h2>
+<p>Ecrire un script qui à partir du premier paramètre qu'on note <code>note</code>, affiche "valide" si la note est comprise entre 0 et 19, affiche "bravo" si la note vaut 20 et "invalide" sinon.</p>
+<h1 id="variables">VARIABLES</h1>
+<pre><code class=" hljs ">i=4
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span>
+</code></pre><p>Pour définir une variable, on n'utilise pas du caractère $.
+Pour l'utiliser on la précède du caractère $.</p>
+<p>Pour stocker des calculs :</p>
+<pre><code class=" hljs ">i=$((4+34))
+</code></pre><h2 id="exercice-7">Exercice 7</h2>
+<p>Ecrire un script qui à partir des deux paramètres notés <code>x</code> et <code>y</code>, calcule x+y dans une nouvelle variable puis l'affiche.</p>
+<h2 id="exercice-8">Exercice 8</h2>
+<p>Ecrire un script qui à partir des deux paramètres notés <code>x</code> et <code>y</code>, calcule x+y dans une nouvelle variable puis l'affiche.</p>
+<h2 id="exercice-9">Exercice 9</h2>
+<p>Ecrire un script qui à partir du premiere paramètre noté <code>x</code> affiche les valeurs suivantes : x+10, x modulo 10, x*10</p>
+<h1 id="for">FOR</h1>
+<pre><code class=" hljs "><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..10}
+<span class="hljs-keyword">do</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span>
+<span class="hljs-keyword">done</span>
+</code></pre><h2 id="exercice-10">Exercice 10</h2>
+<p>Ecrire un script qui étant donné le premier paramètre noté <code>n</code> affiche les n premiers entiers carrés.</p>
+<h2 id="exercice-11">Exercice 11</h2>
+<p>Ecrire un script qui étant donné le premier paramètre noté <code>n</code> crée n fichiers textes notés de 1 à n, contenant le numéro du fichier. </p>
+<h2 id="exercice-12">Exercice 12</h2>
+<p>Ecrire un script qui calcule la moyenne des notes passées en paramètres.</p>
+<h1 id="while">WHILE</h1>
+<pre><code class=" hljs ">j=4
+<span class="hljs-keyword">while</span> (( <span class="hljs-variable">$j</span> &lt; 10 ))
+<span class="hljs-keyword">do</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$j</span>
+    j=$((<span class="hljs-variable">$j</span>+1))
+<span class="hljs-keyword">done</span>
+</code></pre><p>Pour demander à ce que l'utilisateur rentre un nombre ou une chaine de caractères :</p>
+<pre><code class=" hljs "><span class="hljs-keyword">read</span> <span class="hljs-keyword">var</span>
+</code></pre><h2 id="exercice-13">Exercice 13</h2>
+<p>Ecrire un script qui étant donné le premier paramètre noté <code>n</code> crée un fichier "data.csv" contenant n lignes telles que chaque ligne contienne un couple x;y d'entiers au hasard entre 0 et 100.</p>
+<p>Lancer le script avec 100 lignes de données et l'ouvrir avec LibreOffice Calc pour créer un diagramme XY à partir des deux premières colonnes.</p>
+<p>Faire pareil en prenant x au hasard entre 0 et 100 et y valant x + un entier entre 0 et 10. </p>
+<h2 id="exercice">Exercice</h2>
+<p>Ecrire le jeu du plus ou moins.</p>
+</div></div></body>                            </html>

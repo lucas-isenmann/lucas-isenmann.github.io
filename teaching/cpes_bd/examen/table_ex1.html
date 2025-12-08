@@ -1,0 +1,352 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+<link rel="stylesheet" href="file:////home/ales/.vscode/extensions/goessner.mdmath-2.7.4/themes/default/style.css">
+
+</head>
+<body class="markdown-body">
+<div
+            class="github-markdown-body"
+            data-color-mode="auto"
+            data-light-theme="light"
+            data-dark-theme="dark"
+        >
+            <div class="github-markdown-content"><span id="markdown-mermaid" aria-hidden="true"
+                    data-dark-mode-theme="dark"
+                    data-light-mode-theme="default"></span>
+                <h1 id="tables-exercice-1">Tables Exercice 1</h1>
+<p>Rappel : si NOT NULL n'est pas spécifié, l'attribut peut être NULL.
+<br>
+Les clefs étrangères devront toutes utiliser la contrainte ON RESTRICT pour les  suppressions et les modifications.</p>
+<h2 id="table-musees">Table <strong>Musees</strong></h2>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Type</th>
+<th>Clef</th>
+<th>Spécifités</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>entier</td>
+<td>Clef primaire</td>
+<td>NOT NULL</td>
+</tr>
+<tr>
+<td>Nom</td>
+<td>texte</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ville</td>
+<td>texte</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Taille</td>
+<td>entier</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<br>
+<table>
+<thead>
+<tr>
+<th><u>Id</u></th>
+<th>Nom</th>
+<th>Ville</th>
+<th>Taille</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Musée des Beaux-Arts</td>
+<td>Rouen</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Musée des Antiquités</td>
+<td>Rouen</td>
+<td>300</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Musée de la Marine</td>
+<td>Brest</td>
+<td>4000</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Musée des Beaux-Arts</td>
+<td>Brest</td>
+<td>1500</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="table-peintres">Table <strong>Peintres</strong></h2>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Type</th>
+<th>Clef</th>
+<th>Spécifités</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>entier</td>
+<td>Clef primaire</td>
+<td>NOT NULL</td>
+</tr>
+<tr>
+<td>Nom</td>
+<td>texte</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<br>
+<table>
+<thead>
+<tr>
+<th><u>Id</u></th>
+<th>Nom</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>De Vinci</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Velasquez</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Vigée Le Brun</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="table-tableaux">Table <strong>Tableaux</strong></h2>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Type</th>
+<th>Clef</th>
+<th>Spécifités</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>entier</td>
+<td>Clef primaire</td>
+<td>NOT NULL</td>
+</tr>
+<tr>
+<td>Titre</td>
+<td>texte</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Annee</td>
+<td>entier</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>IdPeintre</td>
+<td>entier</td>
+<td>Clef étrangère réf. Peintres(Id)</td>
+<td>NOT NULL</td>
+</tr>
+</tbody>
+</table>
+<br>
+<table>
+<thead>
+<tr>
+<th><u>Id</u></th>
+<th>Titre</th>
+<th>Annee</th>
+<th>IdPeintre</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>La Joconde</td>
+<td>1503</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>La Cène</td>
+<td>1495</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>La Tunique de Joseph</td>
+<td>1630</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Les Fileuses</td>
+<td>1657</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Portrait de l'impératrice</td>
+<td>1799</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Caroline Murat</td>
+<td>1807</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="table-appartenances">Table <strong>Appartenances</strong></h2>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Type</th>
+<th>Clef</th>
+<th>Spécifités</th>
+<th>Commentaires</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id</td>
+<td>entier</td>
+<td>Clef primaire</td>
+<td>NOT NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>IdMusee</td>
+<td>entier</td>
+<td>Clef étrangère réf. Musees(Id)</td>
+<td>NOT NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>IdTableau</td>
+<td>entier</td>
+<td>Clef étrangère réf. Tableaux(Id)</td>
+<td>NOT NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Debut</td>
+<td>entier</td>
+<td></td>
+<td>NOT NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Fin</td>
+<td>entier</td>
+<td></td>
+<td></td>
+<td>Si NULL cela veut dire que le tableau y est actuellement.</td>
+</tr>
+</tbody>
+</table>
+<br>
+<table>
+<thead>
+<tr>
+<th><u>Id</u></th>
+<th>IdMusee</th>
+<th>IdTableau</th>
+<th>Debut</th>
+<th>Fin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2000</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>1900</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>1900</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1900</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>4</td>
+<td>3</td>
+<td>4</td>
+<td>1900</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>5</td>
+<td>4</td>
+<td>4</td>
+<td>1800</td>
+<td>1900</td>
+</tr>
+<tr>
+<td>6</td>
+<td>4</td>
+<td>2</td>
+<td>1800</td>
+<td>1900</td>
+</tr>
+</tbody>
+</table>
+</div>
+        </div>
+</body>
+</html>

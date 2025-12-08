@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>                            <html>                                <head>                                    <meta charset="UTF-8">                                    <title>CM6</title>                                    <link rel="stylesheet" href="./style/style.css">                                    <link rel="stylesheet" href="./style/kimbie.dark.css">                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">                                    <style>*,body{margin:0;padding:0}.markdown-content,*{font-family:Vazir}*{box-sizing:border-box}html{font-size:14px}.markdown-content p,.rtl ol li,.rtl ul li{font-size:1.1rem}body{direction:rtl;color:#24292e}.ltr{direction:ltr!important}.rtl{direction:rtl!important}@media screen and (max-width:600px){body{padding:10px}}@media screen and (min-width:601px){body{padding:50px}}@font-face{font-family:Vazir;src:url(fonts/Vazir.woff)}@font-face{font-family:DejaVuSansMono;src:url(fonts/DejaVuSansMono.ttf)}.markdown-content{width:100%;outline-offset:-22px;padding:15px;line-height:3rem}code,code span,pre code span,ul li pre code{font-family:DejaVuSansMono,Menlo,'Liberation Mono',Consolas,'DejaVu Sans Mono','Ubuntu Mono','Courier New','andale mono','lucida console',monospace!important}.markdown-content p{text-align:justify;padding:.5rem}.markdown-content img{margin:0 auto;display:block;max-width:90%}.rtl ul li{margin-right:3rem!important}.rtl ol li{margin-right:3rem}.ltr ol li,.ltr ul li{font-size:1.1rem;margin-left:3rem}.markdown-content h1,.markdown-content h2,.markdown-content h3{padding:12px;text-shadow:none}.markdown-content h1{padding-top:60px;color:rgba(22,19,19,.8);font-weight:900;font-size:2.1rem}.markdown-content h2{font-weight:500;color:rgba(22,19,19,.6);font-size:1.8rem}.markdown-content h3{font-weight:300;color:rgba(22,19,19,.4);font-size:1.5rem}.markdown-content h4,.markdown-content h5{font-weight:200;color:rgba(22,19,19,.4)}.markdown-content h4{font-size:1.3rem}.markdown-content h5{font-size:1.2rem}@media screen and (min-width:48rem){#list{width:20%}#content{width:100%}}@media screen and (min-width:80rem){#list.none{display:inline-block}#content{width:80%}}@media print{#list{display:none}#content{display:block;width:100%;margin:0 auto}#content li,#content p{font-size:1rem}}.manual-anchor{top:45px}.markdown-container{max-width:1448px;margin:0 auto}.manual-link-icon{color:#8f8f8f}.manual-link-icon:hover{color:#000}code,ul li pre code{white-space:pre;word-wrap:normal;padding:3px 7px;color:#24292e;background-color:rgba(27,31,35,.05);border-radius:3px;font-size:1rem}.markdown-content ul li pre,.manual ul li pre,pre{margin:0;direction:ltr!important}.markdown-content ul li pre code,.manual ul li pre code,pre code{direction:ltr!important;line-height:1.45;padding:1em 0 .5em 3em;position:relative;display:block;overflow-x:auto;overflow-y:auto}a{text-decoration:none}.title{float:left;color:#ccc}.markdown-container{padding-top:60px}.elements{padding:12px;position:fixed;top:0;right:0;left:0;background-color:#444;height:50px;z-index:1}.input{color:#fff}#savebutton,input{font-size:15px}#savebutton{padding:0 7px!important}#rtl-checkbox-container{margin:3px 15px!important;color:#fff}.button{background-color:#fff;color:#444;font-size:1.6rem;display:inline-block;text-align:center;line-height:2.1rem;border-radius:2px}.button:hover{cursor:pointer;background-color:#eee}#refresh-button{width:2.2rem;vertical-align:middle}@media print{.no-print,.no-print *{display:none!important}}.hljs-comment,.hljs-quote{color:#99ac5b}.hljs-meta,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#dc3958}.hljs-built_in,.hljs-builtin-name,.hljs-deletion,.hljs-link,.hljs-literal,.hljs-number,.hljs-params,.hljs-type{color:#f79a32}.hljs-attribute,.hljs-section,.hljs-title{color:#f06431}.hljs-addition,.hljs-bullet,.hljs-string,.hljs-symbol{color:#9c9}.hljs-function,.hljs-keyword,.hljs-selector-tag{color:#98676a}.hljs{display:block;overflow-x:auto;background:#221a0f;color:#d3af86}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}</style>                                </head>                                <body><div class="markdown-container ltr"><div class="markdown-content"><h1 id="cm6">CM6</h1>
+<p>Parcourir toutes les entrées (c'est-à-dire les fichiers et dossiers) d'un dossier <code>dir</code> :</p>
+<pre><code class=" hljs "><span class="hljs-keyword">for</span> entree <span class="hljs-keyword">in</span> <span class="hljs-variable">$dir</span>/*
+<span class="hljs-keyword">do</span>
+    <span class="hljs-comment"># faire quelque chose</span>
+<span class="hljs-keyword">done</span>
+</code></pre><p>Pour tester si une entrée est un dossier on peut utiliser la condition suivante :</p>
+<pre><code class=" hljs "><span class="hljs-keyword">if</span> [[ -d <span class="hljs-variable">$entree</span> ]] <span class="hljs-comment"># d pour directory</span>
+<span class="hljs-keyword">then</span> 
+    <span class="hljs-comment"># ...</span>
+<span class="hljs-keyword">fi</span>
+</code></pre><p>Pour tester si une entrée est un fichier on peut utiliser la condition suivante :</p>
+<pre><code class=" hljs "><span class="hljs-keyword">if</span> [[ -f $entree ]] <span class="hljs-comment"># f pour file</span>
+</code></pre><p>Pour utiliser des commandes dans les tests : on a pas besoin des (( )) ni des [[ ]], on utilise juste le retour 0 ou 1 de la commande.</p>
+<pre><code class=" hljs "><span class="hljs-keyword">if</span> <span class="hljs-keyword">grep</span> salut fichier.txt
+</code></pre><p>Pour sauvegarder dans une variable le résultat d'une commande :</p>
+<pre><code class=" hljs ">a=$( grep // fichier.txt )
+</code></pre><h2 id="exercice-1">Exercice 1</h2>
+<p>Ecrire un script qui copie tous les fichiers d'un dossier fourni en paramètre, le nom de la copie doit finir par <code>.save</code>.</p>
+<h2 id="solutions">Solutions</h2>
+<pre><code class=" hljs ">dir=<span class="hljs-variable">$1</span>
+<span class="hljs-keyword">for</span> entree <span class="hljs-keyword">in</span> <span class="hljs-variable">$dir</span>/*
+<span class="hljs-keyword">do</span>
+    <span class="hljs-keyword">if</span> [[ -f entree ]]
+    <span class="hljs-keyword">then</span>
+        cp <span class="hljs-variable">$fichier</span> <span class="hljs-variable">$fichier</span>.save
+    <span class="hljs-keyword">fi</span>
+<span class="hljs-keyword">done</span>
+</code></pre><h2 id="exercice-2">Exercice 2</h2>
+<p>Ecrire un script qui supprime tous les fichiers dont l'extension finit par <code>.save</code> du dossier en paramètre.</p>
+<h2 id="solutions">Solutions</h2>
+<pre><code class=" hljs ">dir=<span class="hljs-variable">$1</span>
+<span class="hljs-keyword">for</span> entree <span class="hljs-keyword">in</span> <span class="hljs-variable">$dir</span>/*
+<span class="hljs-keyword">do</span>
+    <span class="hljs-keyword">if</span> [[ <span class="hljs-variable">$entree</span> == *.save ]]
+    <span class="hljs-keyword">then</span>
+        rm <span class="hljs-variable">$entree</span>
+    <span class="hljs-keyword">fi</span>
+<span class="hljs-keyword">done</span>
+</code></pre><h2 id="exercice-3">Exercice 3</h2>
+<p>Réécrire l'exercice précédent en vérifiant qu'un paramètre a bien été fourni. Si aucun paramètre n'a été fourni, afficher "Pas de dossier spécifié" et quitter le script avec la commande <code>exit</code>.</p>
+<h2 id="exercice-4">Exercice 4</h2>
+<p>Réécrire l'exercice précédent de sorte que si aucun paramètre n'a été fourni, on utilise le dossier courant à la place.</p>
+<h2 id="exercice-5">Exercice 5</h2>
+<p>Ecrire un script qui supprime tous les fichiers du dossier en paramètre qui contienne <code>//</code>.</p>
+<p>Réécrire ce script avec un second paramètre qui sera la chaine de caractères à chercher.</p>
+<h2 id="solutions">Solutions</h2>
+<pre><code class=" hljs "><span class="hljs-keyword">for</span> entree <span class="hljs-keyword">in</span> <span class="hljs-variable">$1</span>/*
+<span class="hljs-keyword">do</span>
+    <span class="hljs-keyword">if</span> grep -q // <span class="hljs-variable">$entree</span>
+    <span class="hljs-keyword">then</span>
+        rm <span class="hljs-variable">$entree</span>
+    <span class="hljs-keyword">fi</span>
+<span class="hljs-keyword">done</span>
+</code></pre><h2 id="exercice-6">Exercice 6</h2>
+<p>Afficher le nom de tous les fichiers qui ont été modifiés il y a moins d'une heure dans le dossier en paramètre.</p>
+<p>Indication : utiliser les commandes suivantes </p>
+<pre><code class=" hljs ">date +%s # affiche <span class="hljs-keyword">le</span> timestamp actuel
+date +%s -r fichier.txt # affiche <span class="hljs-keyword">le</span> timestamp <span class="hljs-keyword">en</span> secondes de <span class="hljs-keyword">la</span> dernière modification
+</code></pre><h2 id="solutions">Solutions</h2>
+<pre><code class=" hljs "><span class="hljs-keyword">for</span> entree <span class="hljs-keyword">in</span> <span class="hljs-variable">$1</span>/*
+<span class="hljs-keyword">do</span>
+    <span class="hljs-keyword">if</span> [[ -f <span class="hljs-variable">$entree</span> ]]
+    <span class="hljs-keyword">then</span>
+        t_actuel=$(date +%s)
+        t_fichier=$(date +%s -r <span class="hljs-variable">$entree</span>)
+        diff=$(( <span class="hljs-variable">$t_actuel</span> - <span class="hljs-variable">$t_fichier</span> ))
+        <span class="hljs-keyword">if</span> (( <span class="hljs-variable">$diff</span> &lt;= 3600 ))
+        <span class="hljs-keyword">then</span> 
+            <span class="hljs-built_in">echo</span> <span class="hljs-variable">$entree</span>
+        <span class="hljs-keyword">fi</span>
+    <span class="hljs-keyword">fi</span>
+<span class="hljs-keyword">done</span>
+</code></pre><h2 id="exercice-7">Exercice 7</h2>
+<p>Ecrire un script qui pour chaque fichier du dossier en paramètre, supprime les lignes du fichier qui contienne <code>//</code>.
+Indication : utiliser l'option <code>-v</code> de grep.</p>
+<h2 id="solutions">Solutions</h2>
+<pre><code class=" hljs "><span class="hljs-keyword">for</span> entree <span class="hljs-keyword">in</span> <span class="hljs-variable">$1</span>/*
+<span class="hljs-keyword">do</span>
+    <span class="hljs-keyword">if</span> [[ -f <span class="hljs-variable">$entree</span> ]]
+    <span class="hljs-keyword">then</span>
+        grep -v // <span class="hljs-variable">$entree</span> &gt; tmpfile 
+        mv tmpfile <span class="hljs-variable">$entree</span>
+    <span class="hljs-keyword">fi</span>
+<span class="hljs-keyword">done</span>
+</code></pre><h2 id="exercice-8">Exercice 8</h2>
+<p>Ecrire un script qui affiche le nombre de fichiers du dossier en paramètre qui contienne plus de 10 caractères.</p>
+<h2 id="solutions">Solutions</h2>
+<pre><code class=" hljs ">c=0
+<span class="hljs-keyword">for</span> entree <span class="hljs-keyword">in</span> <span class="hljs-variable">$1</span>/*
+<span class="hljs-keyword">do</span>
+    <span class="hljs-keyword">if</span> [[ -f <span class="hljs-variable">$entree</span> ]]
+    <span class="hljs-keyword">then</span>
+        a=$(wc -c &lt; <span class="hljs-variable">$entree</span>)
+        <span class="hljs-keyword">if</span> (( <span class="hljs-variable">$a</span> &gt;= 10 ))
+        <span class="hljs-keyword">then</span> 
+            c=$(( <span class="hljs-variable">$c</span> + 1))
+        <span class="hljs-keyword">fi</span>
+    <span class="hljs-keyword">fi</span>
+<span class="hljs-keyword">done</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">$c</span>
+</code></pre></div></div></body>                            </html>

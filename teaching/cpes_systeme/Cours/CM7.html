@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>                            <html>                                <head>                                    <meta charset="UTF-8">                                    <title>CM7enonce</title>                                    <link rel="stylesheet" href="./style/style.css">                                    <link rel="stylesheet" href="./style/kimbie.dark.css">                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">                                    <style>*,body{margin:0;padding:0}.markdown-content,*{font-family:Vazir}*{box-sizing:border-box}html{font-size:14px}.markdown-content p,.rtl ol li,.rtl ul li{font-size:1.1rem}body{direction:rtl;color:#24292e}.ltr{direction:ltr!important}.rtl{direction:rtl!important}@media screen and (max-width:600px){body{padding:10px}}@media screen and (min-width:601px){body{padding:50px}}@font-face{font-family:Vazir;src:url(fonts/Vazir.woff)}@font-face{font-family:DejaVuSansMono;src:url(fonts/DejaVuSansMono.ttf)}.markdown-content{width:100%;outline-offset:-22px;padding:15px;line-height:3rem}code,code span,pre code span,ul li pre code{font-family:DejaVuSansMono,Menlo,'Liberation Mono',Consolas,'DejaVu Sans Mono','Ubuntu Mono','Courier New','andale mono','lucida console',monospace!important}.markdown-content p{text-align:justify;padding:.5rem}.markdown-content img{margin:0 auto;display:block;max-width:90%}.rtl ul li{margin-right:3rem!important}.rtl ol li{margin-right:3rem}.ltr ol li,.ltr ul li{font-size:1.1rem;margin-left:3rem}.markdown-content h1,.markdown-content h2,.markdown-content h3{padding:12px;text-shadow:none}.markdown-content h1{padding-top:60px;color:rgba(22,19,19,.8);font-weight:900;font-size:2.1rem}.markdown-content h2{font-weight:500;color:rgba(22,19,19,.6);font-size:1.8rem}.markdown-content h3{font-weight:300;color:rgba(22,19,19,.4);font-size:1.5rem}.markdown-content h4,.markdown-content h5{font-weight:200;color:rgba(22,19,19,.4)}.markdown-content h4{font-size:1.3rem}.markdown-content h5{font-size:1.2rem}@media screen and (min-width:48rem){#list{width:20%}#content{width:100%}}@media screen and (min-width:80rem){#list.none{display:inline-block}#content{width:80%}}@media print{#list{display:none}#content{display:block;width:100%;margin:0 auto}#content li,#content p{font-size:1rem}}.manual-anchor{top:45px}.markdown-container{max-width:1448px;margin:0 auto}.manual-link-icon{color:#8f8f8f}.manual-link-icon:hover{color:#000}code,ul li pre code{white-space:pre;word-wrap:normal;padding:3px 7px;color:#24292e;background-color:rgba(27,31,35,.05);border-radius:3px;font-size:1rem}.markdown-content ul li pre,.manual ul li pre,pre{margin:0;direction:ltr!important}.markdown-content ul li pre code,.manual ul li pre code,pre code{direction:ltr!important;line-height:1.45;padding:1em 0 .5em 3em;position:relative;display:block;overflow-x:auto;overflow-y:auto}a{text-decoration:none}.title{float:left;color:#ccc}.markdown-container{padding-top:60px}.elements{padding:12px;position:fixed;top:0;right:0;left:0;background-color:#444;height:50px;z-index:1}.input{color:#fff}#savebutton,input{font-size:15px}#savebutton{padding:0 7px!important}#rtl-checkbox-container{margin:3px 15px!important;color:#fff}.button{background-color:#fff;color:#444;font-size:1.6rem;display:inline-block;text-align:center;line-height:2.1rem;border-radius:2px}.button:hover{cursor:pointer;background-color:#eee}#refresh-button{width:2.2rem;vertical-align:middle}@media print{.no-print,.no-print *{display:none!important}}.hljs-comment,.hljs-quote{color:#99ac5b}.hljs-meta,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#dc3958}.hljs-built_in,.hljs-builtin-name,.hljs-deletion,.hljs-link,.hljs-literal,.hljs-number,.hljs-params,.hljs-type{color:#f79a32}.hljs-attribute,.hljs-section,.hljs-title{color:#f06431}.hljs-addition,.hljs-bullet,.hljs-string,.hljs-symbol{color:#9c9}.hljs-function,.hljs-keyword,.hljs-selector-tag{color:#98676a}.hljs{display:block;overflow-x:auto;background:#221a0f;color:#d3af86}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}</style>                                </head>                                <body><div class="markdown-container ltr"><div class="markdown-content"><h2 id="exercice-1">Exercice 1</h2>
+<p>Ecrire un script qui pour toutes les extensions présentes dans le dossier, crée un dossier par extension et déplace tous les fichiers ayant cette extension dans ce dossier.</p>
+<h1 id="dictionnary">DICTIONNARY</h1>
+<p>Un dictionnaire ou tableau associatif est un ensemble de clefs associées à des valeurs.
+Les clefs et les valeurs peuvent être des entiers ou des chaines de caractères. 
+Il s'utilise en commençant par le déclarer :</p>
+<pre><code class=" hljs ">declare -A <span class="hljs-keyword">tab</span>
+</code></pre><p>Pour définir une valeur :</p>
+<pre><code class=" hljs "><span class="hljs-keyword">tab</span>[clef]=valeur
+n=<span class="hljs-number">4</span>
+<span class="hljs-keyword">tab</span>[$n]=bonjour
+<span class="hljs-keyword">tab</span>[<span class="hljs-number">0</span>]=$(( <span class="hljs-number">4</span> + <span class="hljs-number">5</span> ))
+</code></pre><p>Pour lire une valeur :</p>
+<pre><code class=" hljs "><span class="hljs-keyword">echo</span> ${<span class="hljs-keyword">tab</span>[txt]}
+<span class="hljs-keyword">echo</span> $(( <span class="hljs-keyword">tab</span>[txt] ))
+</code></pre><p>Pour parcourir toutes les clefs :</p>
+<pre><code class=" hljs "><span class="hljs-keyword">for</span> clef <span class="hljs-keyword">in</span> <span class="hljs-variable">${!tab[@]}</span>
+<span class="hljs-keyword">do</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$clef</span>
+<span class="hljs-keyword">done</span>
+</code></pre><h2 id="exercice-2">Exercice 2</h2>
+<p>Ecrire un script qui crée un dictionnaire où l'entrée de la clef <code>a</code> vaut <code>2</code> et qui affiche la valeur de l'entrée a.</p>
+<h2 id="exercice-3">Exercice 3</h2>
+<p>Ecrire un script qui crée un dictionnaire sur les clefs de 1 à 10 avec des nombres au hasard entre 0 et 100 et qui génère un fichier <code>.csv</code> contenant les entrées de ce dictionnaire sous la forme <code>clef,valeur</code> par ligne.</p>
+<h2 id="exercice-4">Exercice 4</h2>
+<p>Ecrire un script qui compte le nombre de fichiers du dossier en paramètre dont le nom contient un a et le nombre de fichiers dont le nom contient un b à l'aide d'un dictionnaire.</p>
+<h2 id="exercice-5">Exercice 5</h2>
+<p>Ecrire un script qui pour toutes les extensions présentes dans le dossier en paramètre, compte le nombre de fois qu'elles apparaissent.</p>
+<h1 id="function">FUNCTION</h1>
+<p>On introduit une nouvelle fonction ainsi :</p>
+<pre><code class=" hljs "><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ma_fonction</span> {</span>
+    # ses paramètres sont $<span class="hljs-number">1</span> $<span class="hljs-number">2</span> ...
+    # (qui sont différents des paramètres du script)
+    # <span class="hljs-keyword">au</span> lieu de <span class="hljs-keyword">return</span> <span class="hljs-keyword">on</span> fait <span class="hljs-keyword">echo</span>
+}
+</code></pre><h2 id="exercice-6">Exercice 6</h2>
+<p>Ecrire un script qui calcule le carré d'un nombre fourni en paramètre en définissant une fonction.</p>
+<h2 id="exercice-7">Exercice 7</h2>
+<p>Ecrire un script qui calcule la factorielle d'un nombre fourni en paramètre en définissant une fonction récursive.</p>
+<h2 id="exercice-8">Exercice 8</h2>
+<p>Ecrire un script qui compte le nombre de fichiers contenus dans le dossier en paramètres et dans ses sous-dossiers.</p>
+<h1 id="parcourir-un-texte">PARCOURIR UN TEXTE</h1>
+<p>Si le résultat d'une commande est un texte avec des retours à la ligne, on peut parcourir toutes les lignes à l'aide d'un <code>for</code>.</p>
+<pre><code class=" hljs ">file=$(cat test.txt)
+
+<span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> <span class="hljs-string">"<span class="hljs-variable">$file</span>"</span>
+<span class="hljs-keyword">do</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">$line</span>"</span>
+<span class="hljs-keyword">done</span>
+</code></pre><h2 id="exercice-9">Exercice 9</h2>
+<p>Ecrire un script qui à partir d'un fichier en paramètre, crée un nouveau fichier où les lignes entre les balises <code>&lt;hide&gt;</code> et <code>&lt;/hide&gt;</code> sont supprimées.</p>
+<p>Tester le script sur le fichier <code>test.txt</code> contenant le texte suivant :</p>
+<pre><code class=" hljs ">salut ç<span class="hljs-keyword">a</span> va ?
+blabla
+
+<span class="hljs-symbol">&lt;hide&gt;</span>
+blablablabla
+&lt;/<span class="hljs-keyword">hide</span>&gt;
+
+blablablabla
+jkjk
+blablablabla
+
+<span class="hljs-symbol">&lt;hide&gt;</span>
+blablablabla
+&lt;/<span class="hljs-keyword">hide</span>&gt;
+
+fsdfsd
+</code></pre></div></div></body>                            </html>

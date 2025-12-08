@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TD5.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #0a19c0; /* Change the old color so it seems less like an error */
+	/* font-weight: bold; */
+	background-color: #efefef;
+	border-radius: 2px;
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="td5--r%C3%A9visions">TD5 : Révisions</h1>
+<h2 id="exercice-1--mod%C3%A9lisation">Exercice 1 : Modélisation</h2>
+<p>Modéliser la situation suivante en décrivant les tables et les clés primaires et étrangères.
+Des licences à l'université sont formés de groupes d'étudiants.
+On doit pouvoir répondre aux questions suivantes :</p>
+<ul>
+<li>quels sont les noms des étudiants ?</li>
+<li>quels sont les noms des groupes ?</li>
+<li>quels sont les noms des licences ?</li>
+<li>dans quel groupe appartient un étudiant ?</li>
+<li>dans quel licence appartient un groupe ?</li>
+</ul>
+<h3 id="solution">Solution</h3>
+<table>
+<thead>
+<tr>
+<th>Etudiants</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>entier (clef primaire)</td>
+</tr>
+<tr>
+<td>nom</td>
+<td>texte</td>
+</tr>
+<tr>
+<td>idGroupe</td>
+<td>entier (clef étrangère vers id de Groupe)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Groupes</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>entier (clef primaire)</td>
+</tr>
+<tr>
+<td>nom</td>
+<td>texte</td>
+</tr>
+<tr>
+<td>idLicence</td>
+<td>entier (clef étrangère vers id de Licence)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Licences</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>entier (clef primaire)</td>
+</tr>
+<tr>
+<td>nom</td>
+<td>texte</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercice-2--mod%C3%A9lisation">Exercice 2 : Modélisation</h2>
+<p>Modéliser la situation suivante en décrivant les tables et les clés primaires et étrangères.
+Des astronautes vont dans des stations spatiales.
+On doit pouvoir répondre aux questions suivantes :</p>
+<ul>
+<li>quels sont les noms des astronautes ?</li>
+<li>quels sont les noms des stations ?</li>
+<li>combien de stations a visitées tel astronaute ?</li>
+<li>combien d'astronautes sont venus visité telle station ?</li>
+</ul>
+<h3 id="solution">Solution</h3>
+<table>
+<thead>
+<tr>
+<th>Stations</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>entier (clef primaire)</td>
+</tr>
+<tr>
+<td>nom</td>
+<td>texte</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Astronautes</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>entier (clef primaire)</td>
+</tr>
+<tr>
+<td>nom</td>
+<td>texte</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Visites</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>idAstronaute</td>
+<td>entier (clef étrangère vers id de Astronautes)</td>
+</tr>
+<tr>
+<td>idStation</td>
+<td>entier (clef étrangère vers id de Stations)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercice-3--bibliotheques">Exercice 3 : Bibliotheques</h2>
+<p>La base de données <code>bibliotheques.odb</code> possède les tables suivantes :</p>
+<table>
+<thead>
+<tr>
+<th>Refs</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>entier (clef primaire)</td>
+</tr>
+<tr>
+<td>titre</td>
+<td>texte</td>
+</tr>
+<tr>
+<td>restriction</td>
+<td>entier</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Abonnes</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>entier (clef primaire)</td>
+</tr>
+<tr>
+<td>nom</td>
+<td>texte</td>
+</tr>
+<tr>
+<td>age</td>
+<td>entier</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Bibliotheques</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>entier (clef primaire)</td>
+</tr>
+<tr>
+<td>nom</td>
+<td>texte</td>
+</tr>
+<tr>
+<td>ville</td>
+<td>texte</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Abonnements</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>entier (clef primaire)</td>
+</tr>
+<tr>
+<td>idBibli</td>
+<td>entier (clef étrangère vers id de Bibliotheques)</td>
+</tr>
+<tr>
+<td>idAbonne</td>
+<td>entier (clef étrangère vers id de Abonnes)</td>
+</tr>
+<tr>
+<td>annee</td>
+<td>entier</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Exemplaires</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>entier (clef primaire)</td>
+</tr>
+<tr>
+<td>idRef</td>
+<td>entier (clef étrangère vers id de Refs)</td>
+</tr>
+<tr>
+<td>idBibli</td>
+<td>entier (clef étrangère vers id de Bibliotheques)</td>
+</tr>
+<tr>
+<td>idAbonne</td>
+<td>entier (clef étrangère vers id de Abonnes)</td>
+</tr>
+<tr>
+<td>etat</td>
+<td>texte</td>
+</tr>
+</tbody>
+</table>
+<p>quelles requêtes permettent de répondre aux questions suivantes :</p>
+<ol>
+<li>Combien y a t-il de bibliothèques dans la base de données ?</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> Bibliotheques
+</div></code></pre>
+<ol start="2">
+<li>Combien y a t-il de bibliothèques à Montpellier ?</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> Bibliotheques
+<span class="hljs-keyword">WHERE</span> ville = <span class="hljs-string">'Montpellier'</span>
+</div></code></pre>
+<ol start="3">
+<li>Combien y a t-il d'abonnées dans la base de données ?</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> Abonnes
+</div></code></pre>
+<ol start="4">
+<li>Combien y a t-il d'abonnées de moins de 12 ans ?</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> Abonnes
+<span class="hljs-keyword">WHERE</span> age &lt; <span class="hljs-number">12</span>
+</div></code></pre>
+<ol start="5">
+<li>Afficher la liste des livres triée par ordre alphabétique par rapport au nom.</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> Refs
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> titre
+</div></code></pre>
+<ol start="6">
+<li>Combien y a t-il d'exemplaires pour la référence 2 ?</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> Exemplaires
+<span class="hljs-keyword">WHERE</span> idRef = <span class="hljs-number">2</span>
+</div></code></pre>
+<ol start="7">
+<li>Quels sont les identifiants des références qui sont à la biliothèques 4 et qui ne sont pas empruntés ? On pourra utiliser <code>IS NULL</code> pour savoir si l'attribut <code>idAbonne</code> est nul (au lieu de faire <code>= NULL</code>).</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> idRef <span class="hljs-keyword">FROM</span> Exemplaires
+<span class="hljs-keyword">WHERE</span> idBibli = <span class="hljs-number">4</span> <span class="hljs-keyword">AND</span> idAbonne <span class="hljs-keyword">IS</span> <span class="hljs-literal">NULL</span>
+</div></code></pre>
+<ol start="8">
+<li>Quels sont les identifiants des références qui ont au moins 1 exemplaire emprunté ?</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> idRef <span class="hljs-keyword">FROM</span> Exemplaires <span class="hljs-keyword">WHERE</span> isAbonne <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> idRef <span class="hljs-keyword">FROM</span> Exemplaires
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> idRef
+<span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">COUNT</span>(idAbonne) &gt; <span class="hljs-number">0</span>
+</div></code></pre>
+<ol start="9">
+<li>Afficher les identifiants des bibliothèques avec le nombre d'exemplaires dans chacune.</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> idBibli,<span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> Exemplaires
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> idBibli
+</div></code></pre>
+<ol start="10">
+<li>Quelle est la bibliothèque qui a le plus d'exemplaires ?</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> idBibli <span class="hljs-keyword">FROM</span>
+( 
+<span class="hljs-keyword">SELECT</span> idBibli,<span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">AS</span> nbExemplaires <span class="hljs-keyword">FROM</span> Exemplaires
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> idBibli
+) 
+<span class="hljs-keyword">WHERE</span> nbExemplaires = (
+    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MAX</span>(nbExemplaires) <span class="hljs-keyword">FROM</span> 
+    (<span class="hljs-keyword">SELECT</span> idBibli,<span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">AS</span> nbExemplaires <span class="hljs-keyword">FROM</span> Exemplaires
+    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> idBibli)
+)
+</div></code></pre>
+<ol>
+<li>Quels sont les noms des abonnés qui ont emprunté un exemplaire de la référence ayant pour identifiant 9 ?</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> nom <span class="hljs-keyword">FROM</span> Exemplaires 
+<span class="hljs-keyword">JOIN</span> Abonnes 
+<span class="hljs-keyword">ON</span> Exemplaires.idAbonne = Abonnes.id
+<span class="hljs-keyword">WHERE</span> idRef = <span class="hljs-number">9</span>
+</div></code></pre>
+<ol start="12">
+<li>Quels sont les abonnements qui sont de l'année avant 2023 ?</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> Abonnements
+<span class="hljs-keyword">WHERE</span> annee &lt; <span class="hljs-number">2023</span>
+</div></code></pre>
+<ol start="13">
+<li>Quels sont les identifiants des bibliothèques auxquelles l'abonné 4 a il était abonné ?</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> idBibli <span class="hljs-keyword">FROM</span> Abonnements
+<span class="hljs-keyword">WHERE</span> idAbonne = <span class="hljs-number">4</span>
+</div></code></pre>
+<ol start="14">
+<li>Quels sont les noms des bibliothèques auxquelles l'abonné 'Dubois' a il été abonné ?</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> Bibliotheques.nom <span class="hljs-keyword">FROM</span> Abonnements 
+<span class="hljs-keyword">JOIN</span> Bibliotheques 
+<span class="hljs-keyword">ON</span> Abonnements.idBibli = Bibliotheques.id
+<span class="hljs-keyword">JOIN</span> Abonnes
+<span class="hljs-keyword">ON</span> Abonnements.idAbonne = Abonnes.id
+<span class="hljs-keyword">WHERE</span> Abonnes.nom = <span class="hljs-string">'Dubois'</span>
+</div></code></pre>
+<ol start="15">
+<li>Quels sont les noms des abonnés qui ont au moins 1 emprunt en cours ?</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> nom <span class="hljs-keyword">FROM</span> Abonnes
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">EXISTS</span> (
+<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> Exemplaires
+<span class="hljs-keyword">WHERE</span> Exemplaires.idAbonne = Abonnes.id
+)
+</div></code></pre>
+<ol start="16">
+<li>Afficher les identifiants des bibliothèques qui ont 2 abonnés ou moins en 2023.</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> idBibli 
+<span class="hljs-keyword">FROM</span> Abonnements
+<span class="hljs-keyword">WHERE</span> annee = <span class="hljs-number">2023</span>
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> idBibli
+<span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">COUNT</span>(*) &lt;= <span class="hljs-number">2</span>
+</div></code></pre>
+<ol start="17">
+<li>Combien chaque bibliothèque a d'exemplaires en bon état ? (Afficher l'identifiant de la bibliothèque)</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> idBibli,<span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> Exemplaires
+<span class="hljs-keyword">WHERE</span> etat = <span class="hljs-string">'bon'</span>
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> idBibli
+</div></code></pre>
+<ol start="18">
+<li>Combien y a t-il d'emprunts qui ne respectent pas les restrictions d'age qu'un abonné de moins de 12 ne peut pas normalement emprunter un livre restreint ?</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> Exemplaires
+<span class="hljs-keyword">JOIN</span> Refs
+<span class="hljs-keyword">ON</span> Refs.id = Exemplaires.idRef
+<span class="hljs-keyword">JOIN</span> Abonnes
+<span class="hljs-keyword">ON</span> Abonnes.id = Exemplaires.idAbonne
+<span class="hljs-keyword">WHERE</span> age &lt; <span class="hljs-number">12</span> <span class="hljs-keyword">AND</span> restriction = <span class="hljs-number">1</span>
+</div></code></pre>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>                            <html>                                <head>                                    <meta charset="UTF-8">                                    <title>CM3</title>                                    <link rel="stylesheet" href="./style/style.css">                                    <link rel="stylesheet" href="./style/kimbie.dark.css">                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">                                    <style>*,body{margin:0;padding:0}.markdown-content,*{font-family:Vazir}*{box-sizing:border-box}html{font-size:14px}.markdown-content p,.rtl ol li,.rtl ul li{font-size:1.1rem}body{direction:rtl;color:#24292e}.ltr{direction:ltr!important}.rtl{direction:rtl!important}@media screen and (max-width:600px){body{padding:10px}}@media screen and (min-width:601px){body{padding:50px}}@font-face{font-family:Vazir;src:url(fonts/Vazir.woff)}@font-face{font-family:DejaVuSansMono;src:url(fonts/DejaVuSansMono.ttf)}.markdown-content{width:100%;outline-offset:-22px;padding:15px;line-height:3rem}code,code span,pre code span,ul li pre code{font-family:DejaVuSansMono,Menlo,'Liberation Mono',Consolas,'DejaVu Sans Mono','Ubuntu Mono','Courier New','andale mono','lucida console',monospace!important}.markdown-content p{text-align:justify;padding:.5rem}.markdown-content img{margin:0 auto;display:block;max-width:90%}.rtl ul li{margin-right:3rem!important}.rtl ol li{margin-right:3rem}.ltr ol li,.ltr ul li{font-size:1.1rem;margin-left:3rem}.markdown-content h1,.markdown-content h2,.markdown-content h3{padding:12px;text-shadow:none}.markdown-content h1{padding-top:60px;color:rgba(22,19,19,.8);font-weight:900;font-size:2.1rem}.markdown-content h2{font-weight:500;color:rgba(22,19,19,.6);font-size:1.8rem}.markdown-content h3{font-weight:300;color:rgba(22,19,19,.4);font-size:1.5rem}.markdown-content h4,.markdown-content h5{font-weight:200;color:rgba(22,19,19,.4)}.markdown-content h4{font-size:1.3rem}.markdown-content h5{font-size:1.2rem}@media screen and (min-width:48rem){#list{width:20%}#content{width:100%}}@media screen and (min-width:80rem){#list.none{display:inline-block}#content{width:80%}}@media print{#list{display:none}#content{display:block;width:100%;margin:0 auto}#content li,#content p{font-size:1rem}}.manual-anchor{top:45px}.markdown-container{max-width:1448px;margin:0 auto}.manual-link-icon{color:#8f8f8f}.manual-link-icon:hover{color:#000}code,ul li pre code{white-space:pre;word-wrap:normal;padding:3px 7px;color:#24292e;background-color:rgba(27,31,35,.05);border-radius:3px;font-size:1rem}.markdown-content ul li pre,.manual ul li pre,pre{margin:0;direction:ltr!important}.markdown-content ul li pre code,.manual ul li pre code,pre code{direction:ltr!important;line-height:1.45;padding:1em 0 .5em 3em;position:relative;display:block;overflow-x:auto;overflow-y:auto}a{text-decoration:none}.title{float:left;color:#ccc}.markdown-container{padding-top:60px}.elements{padding:12px;position:fixed;top:0;right:0;left:0;background-color:#444;height:50px;z-index:1}.input{color:#fff}#savebutton,input{font-size:15px}#savebutton{padding:0 7px!important}#rtl-checkbox-container{margin:3px 15px!important;color:#fff}.button{background-color:#fff;color:#444;font-size:1.6rem;display:inline-block;text-align:center;line-height:2.1rem;border-radius:2px}.button:hover{cursor:pointer;background-color:#eee}#refresh-button{width:2.2rem;vertical-align:middle}@media print{.no-print,.no-print *{display:none!important}}.hljs-comment,.hljs-quote{color:#99ac5b}.hljs-meta,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#dc3958}.hljs-built_in,.hljs-builtin-name,.hljs-deletion,.hljs-link,.hljs-literal,.hljs-number,.hljs-params,.hljs-type{color:#f79a32}.hljs-attribute,.hljs-section,.hljs-title{color:#f06431}.hljs-addition,.hljs-bullet,.hljs-string,.hljs-symbol{color:#9c9}.hljs-function,.hljs-keyword,.hljs-selector-tag{color:#98676a}.hljs{display:block;overflow-x:auto;background:#221a0f;color:#d3af86}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}</style>                                </head>                                <body><div class="markdown-container ltr"><div class="markdown-content"><h1 id="cm3">CM3</h1>
+<h2 id="redirections">Redirections</h2>
+<p>Redirection de la sortie :</p>
+<pre><code class=" hljs ">&gt;
+</code></pre><p>Redirection de l'entrée :</p>
+<pre><code class=" hljs ">&lt;
+</code></pre><p>Pipe :</p>
+<pre><code class=" hljs ">|
+</code></pre><p>La commande</p>
+<pre><code class=" hljs "><span class="hljs-string">cut</span> <span class="hljs-attr">-d:</span> <span class="hljs-bullet">-f1</span> <span class="hljs-string">fichier</span>
+
+<span class="hljs-string">more</span>
+
+<span class="hljs-string">sort</span>
+</code></pre><p>La commande wc affiche le nombre de lignes, de mots et la taille en octets d'un fichier passé par l'entrée.</p>
+<h3 id="exercice">Exercice</h3>
+<p>Dans le dossier TP3, créer un fichier qui contient "salut" avec la commande echo.</p>
+<p>Avec la commande cat, créer une copie de ce fichier.</p>
+<p>Créer un fichier contenant la liste de tous les fichiers avec la commande ls.</p>
+<p>Utiliser wc pour avoir des informations sur le fichier lorem.txt. Combien y a t-il de mots dedans ?</p>
+<h3 id="exercice">Exercice</h3>
+<p>On souhaite lister le contenu de 2 dossiers de la machine dans un fichier files.txt :</p>
+<pre><code class=" hljs ">/etc/network/ (qui devrait exister)
+
+/<span class="hljs-keyword">var</span>/lib/apt (qui devrait exister)
+</code></pre><p>Le fichier files.txt devra contenir uniquement la liste des fichiers.</p>
+<h3 id="exercice">Exercice</h3>
+<p>Enchaînez en utilisant le mécanisme de tube : ls, sort, pr, more, avec les bons arguments et les options appropriées pour chaque commande, de façon à obtenir en une seule commande : la liste des fichiers de /dev (ls) dans l’ordre inverse des noms (sort) mise en page par pr sur 3 colonnes avec une largeur de ligne de 60 caractères, 40 lignes par page et un titre "jolie impression" affichés sur l’écran page par page
+grâce à more.</p>
+<p>Afficher le nom des fichiers de "type texte" de votre répertoire d’accueil. Idée : la commande file
+fichier ... détermine le "type" de l’argument en examinant le début du contenu de l’argument. Es-
+sayez : file <em> et file /usr/bin/a</em>.</p>
+<p>De la même façon, affichez le nom des répertoires de votre répertoire d’accueil.</p>
+<h2 id="grep-et-expressions-r-guli-res">GREP et expressions régulières</h2>
+<pre><code class=" hljs "><span class="hljs-keyword">grep</span> <span class="hljs-string">"a"</span> fichier
+</code></pre><h3 id="exercice">Exercice</h3>
+<p>Créer un fichier contenant la liste de tous les fichiers du TP1 contenant "txt".</p>
+<h3 id="exercice">Exercice</h3>
+<p>A l'aide du fichier /usr/share/dict/french qui est une liste de mots français, créer un fichier contenant une liste de mots français contenant la lettre w.</p>
+<h2 id="processus">Processus</h2>
+<p>Lister tous les processus en cours :</p>
+<pre><code class=" hljs "><span class="hljs-attribute">top</span>
+</code></pre><p>Arrêter un processus dont l'identifiant est <code>pid</code> :</p>
+<pre><code class=" hljs "><span class="hljs-built_in">kill</span> pid
+</code></pre><h3 id="exercice">Exercice</h3>
+<p>Lancer la commande suivante dans un terminal :</p>
+<pre><code class=" hljs "><span class="hljs-keyword">ls</span> -R /
+</code></pre><p>L'arrêter à l'aide d'un autre terminal (en identifiant son PID avec top et en l'arretant avec kill).</p>
+<p>Lancer Firefox et l'arreter avec un terminal.</p>
+<h2 id="inodes">Inodes</h2>
+<p>Pour créer un lien (en créant un nouveau fichier2)</p>
+<pre><code class=" hljs "><span class="hljs-keyword">ln</span> fichier1 fichier2
+</code></pre><p>Lister les inodes des fichiers et dossiers :</p>
+<pre><code class=" hljs "><span class="hljs-keyword">ls</span> -li
+</code></pre><h3 id="exercice">Exercice</h3>
+<p>Dans le dossier TP3, trouver les fichiers qui ont des clones.</p>
+<p>Modifier le contenu d'un de ces fichiers et vérifier que le contenu de l'autre fichier a été modifié.</p>
+<h3 id="exercice">Exercice</h3>
+<p>Créer un nouveau dossier 'exo_inode'.
+Dedans créer une arborescence en créant 4 dossiers A, B, C, D tels que le dossier exo_inode ait 4 liens, A en ait 3, B en ait 2, C en ait 3, D en ait 2.</p>
+</div></div></body>                            </html>

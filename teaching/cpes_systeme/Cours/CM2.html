@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>                            <html>                                <head>                                    <meta charset="UTF-8">                                    <title>CM2</title>                                    <link rel="stylesheet" href="./style/style.css">                                    <link rel="stylesheet" href="./style/kimbie.dark.css">                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">                                    <style>*,body{margin:0;padding:0}.markdown-content,*{font-family:Vazir}*{box-sizing:border-box}html{font-size:14px}.markdown-content p,.rtl ol li,.rtl ul li{font-size:1.1rem}body{direction:rtl;color:#24292e}.ltr{direction:ltr!important}.rtl{direction:rtl!important}@media screen and (max-width:600px){body{padding:10px}}@media screen and (min-width:601px){body{padding:50px}}@font-face{font-family:Vazir;src:url(fonts/Vazir.woff)}@font-face{font-family:DejaVuSansMono;src:url(fonts/DejaVuSansMono.ttf)}.markdown-content{width:100%;outline-offset:-22px;padding:15px;line-height:3rem}code,code span,pre code span,ul li pre code{font-family:DejaVuSansMono,Menlo,'Liberation Mono',Consolas,'DejaVu Sans Mono','Ubuntu Mono','Courier New','andale mono','lucida console',monospace!important}.markdown-content p{text-align:justify;padding:.5rem}.markdown-content img{margin:0 auto;display:block;max-width:90%}.rtl ul li{margin-right:3rem!important}.rtl ol li{margin-right:3rem}.ltr ol li,.ltr ul li{font-size:1.1rem;margin-left:3rem}.markdown-content h1,.markdown-content h2,.markdown-content h3{padding:12px;text-shadow:none}.markdown-content h1{padding-top:60px;color:rgba(22,19,19,.8);font-weight:900;font-size:2.1rem}.markdown-content h2{font-weight:500;color:rgba(22,19,19,.6);font-size:1.8rem}.markdown-content h3{font-weight:300;color:rgba(22,19,19,.4);font-size:1.5rem}.markdown-content h4,.markdown-content h5{font-weight:200;color:rgba(22,19,19,.4)}.markdown-content h4{font-size:1.3rem}.markdown-content h5{font-size:1.2rem}@media screen and (min-width:48rem){#list{width:20%}#content{width:100%}}@media screen and (min-width:80rem){#list.none{display:inline-block}#content{width:80%}}@media print{#list{display:none}#content{display:block;width:100%;margin:0 auto}#content li,#content p{font-size:1rem}}.manual-anchor{top:45px}.markdown-container{max-width:1448px;margin:0 auto}.manual-link-icon{color:#8f8f8f}.manual-link-icon:hover{color:#000}code,ul li pre code{white-space:pre;word-wrap:normal;padding:3px 7px;color:#24292e;background-color:rgba(27,31,35,.05);border-radius:3px;font-size:1rem}.markdown-content ul li pre,.manual ul li pre,pre{margin:0;direction:ltr!important}.markdown-content ul li pre code,.manual ul li pre code,pre code{direction:ltr!important;line-height:1.45;padding:1em 0 .5em 3em;position:relative;display:block;overflow-x:auto;overflow-y:auto}a{text-decoration:none}.title{float:left;color:#ccc}.markdown-container{padding-top:60px}.elements{padding:12px;position:fixed;top:0;right:0;left:0;background-color:#444;height:50px;z-index:1}.input{color:#fff}#savebutton,input{font-size:15px}#savebutton{padding:0 7px!important}#rtl-checkbox-container{margin:3px 15px!important;color:#fff}.button{background-color:#fff;color:#444;font-size:1.6rem;display:inline-block;text-align:center;line-height:2.1rem;border-radius:2px}.button:hover{cursor:pointer;background-color:#eee}#refresh-button{width:2.2rem;vertical-align:middle}@media print{.no-print,.no-print *{display:none!important}}.hljs-comment,.hljs-quote{color:#99ac5b}.hljs-meta,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#dc3958}.hljs-built_in,.hljs-builtin-name,.hljs-deletion,.hljs-link,.hljs-literal,.hljs-number,.hljs-params,.hljs-type{color:#f79a32}.hljs-attribute,.hljs-section,.hljs-title{color:#f06431}.hljs-addition,.hljs-bullet,.hljs-string,.hljs-symbol{color:#9c9}.hljs-function,.hljs-keyword,.hljs-selector-tag{color:#98676a}.hljs{display:block;overflow-x:auto;background:#221a0f;color:#d3af86}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}</style>                                </head>                                <body><div class="markdown-container ltr"><div class="markdown-content"><h1 id="cm-2-taille-et-droits">CM 2 : Taille et droits</h1>
+<hr>
+<h2 id="-diter-un-texte-en-console-avec-nano">Éditer un texte en console avec nano</h2>
+<p>La commande suivante lance un éditeur en console du fichier spécifié :</p>
+<pre><code class=" hljs "><span class="hljs-attribute">nano</span> fichier.txt
+</code></pre><p>Si le fichier existe, il l'ouvre. S'il n'existe pas il en crée un nouveau.
+Les modifications à l'intérieur se font de la même manière qu'un éditeur de texte normal sauf que ce n'est pas faire pour utiliser la souris.</p>
+<p>Pour sauvegarder il faut faire ^O (Control + 0) puis Entrée pour valider le nom du fichier.
+Pour quitter il faut faire ^X.</p>
+<h2 id="stocker-des-informations">Stocker des informations</h2>
+<p>Avant l'informatique : on stockait par exemple des informations sur des morceaux de papiers avec des lettres.
+Les disques vinyle (ou microsillon) permettait aussi de stocker du son avant l'avénement informatique : les ondes sonores sont directement gravés sur une sorte de plastique.</p>
+<p>Avec l'informatique, on utilise une représentation "binaire" de l'information : par un 0 ou un 1.
+Les CDs, à la différence des disques vinyles, utilisent cette représentation de l'information : des creux et tas microscopiques sont gravés sur leur surface et représente un 0 ou un 1.</p>
+<p>Après avoir inventé cette représentation binaire, il fallait faire un choix arbitraire pour coder les lettres classiques et d'autres instructions classiques à l'aide de bits : 0 ou 1.
+Il a ainsi été décidé de tout encoder avec des blocs de 8 bits qu'on appelle octet (byte en anglais) et de choisir la correspondance suivante :</p>
+<pre><code class=" hljs ">A = 01000001
+B = 01000010
+C = 01000011
+...
+</code></pre><p>Ainsi que des caractères spéciaux :</p>
+<pre><code class=" hljs ">espace = 00100000
+! = 00100001
+retour à la ligne = 00001101
+</code></pre><p>Pour compacter cette écriture binaire, on peut la convertir en écriture décimale (la lecture normale des nombres) en utilisant la règle suivante : en allant de droite à gauche, pour chaque 1 rencontré on ajoute 2^k au nombre final où k est la position du bit en partant de la droite (et k commence à 0).
+Pour bien différencier l'écriture binaire de l'écriture décimale l'écriture binaire sera entouré de parenthèses et d'un _2 : (1000)_2 ne veut pas dire 1000 (mille).</p>
+<p>Exemples :</p>
+<pre><code class=" hljs ">(01000001)_2 = 2^6 + 2^0 = 64 + 1 = 65
+(01000010)_2 = 2^6 + 2^1 = 64 + 2 = 66
+(01000011)_2 = 2^6 + 2^1 + 2^0 = 64 + 2 + 1 = 67
+</code></pre><p>Ainsi les codes précédents en écriture décimale sont :</p>
+<pre><code class=" hljs ">A = (01000001)_2 = 65
+B = (01000010)_2 = 66
+C = (01000011)_2 = 67
+espace = (00100000)_2 = 32
+! = (00100001)_2 = 33
+retour à la ligne = (00001010)_2 = 10
+</code></pre><p>Pour obtenir l'écriture binaire à partir de l'écriture décimale d'un nombre "n" on cherche la plus grande puissance de 2 inférieur au nombre "n", on met un 1 dans l'écriture binaire à la position de l'exposant de la puissance précédente et on recommence en retirant la puissance de 2 à n. On s'arrête quand on arrive à 0.</p>
+<p>Exemple :</p>
+<pre><code class=" hljs "><span class="hljs-number">67</span>
+<span class="hljs-number">2</span>^<span class="hljs-number">6</span> = <span class="hljs-number">64</span> est la plus grande puissance de <span class="hljs-number">2</span> inférieur à <span class="hljs-number">67</span>
+<span class="hljs-keyword">on</span> retire <span class="hljs-number">64</span> à <span class="hljs-number">67</span> :
+<span class="hljs-number">67</span> - <span class="hljs-number">64</span> = <span class="hljs-number">3</span>
+<span class="hljs-keyword">on</span> recommence avec <span class="hljs-number">3</span> :
+<span class="hljs-number">2</span>^<span class="hljs-number">1</span> = <span class="hljs-number">2</span> est la plus grande puissance de <span class="hljs-number">2</span> inférieur à <span class="hljs-number">3</span>
+<span class="hljs-keyword">on</span> retire <span class="hljs-number">2</span> à <span class="hljs-number">3</span> :
+<span class="hljs-number">3</span> - <span class="hljs-number">2</span> = <span class="hljs-number">1</span>
+<span class="hljs-keyword">on</span> recommence avec <span class="hljs-number">1</span> :
+<span class="hljs-number">2</span>^<span class="hljs-number">0</span> est la plus grande puissance de <span class="hljs-number">2</span> inférieur à <span class="hljs-number">1</span>
+<span class="hljs-keyword">on</span> retire <span class="hljs-number">1</span> à <span class="hljs-number">1</span> :
+<span class="hljs-number">1</span> - <span class="hljs-number">1</span> = <span class="hljs-number">0</span>
+<span class="hljs-keyword">On</span> s'arrête quand <span class="hljs-keyword">on</span> arrive à <span class="hljs-number">0</span>.
+<span class="hljs-keyword">On</span> forme l'écriture binaire de <span class="hljs-number">67</span> :
+(<span class="hljs-number">01000011</span>)_2
+</code></pre><h2 id="fichiers-textes-et-binaires">Fichiers textes et binaires</h2>
+<p>Un fichier <em>texte</em> est un fichier humainement compréhensible (même compliqué il doit avoir un manuel de décodage).
+Un fichier <em>binaire</em> est un fichier qui n'est pas humainement compréhensible. Seul la machine sait le décoder (quand on a installé les logiciels adéquats).</p>
+<p>Exemples de fichiers textes :</p>
+<ul>
+<li>.txt</li>
+<li>les fichiers de configuration</li>
+<li>les codes sources</li>
+</ul>
+<p>Exemples de fichiers binaires :</p>
+<ul>
+<li>les images .jpg .png</li>
+<li>les vidéos .mp4</li>
+<li>les musiques .mp3 .wav .ogg</li>
+<li>les éxecutables (.exe sur Windows) (les éxecutables sur linux n'ont pas d'extension)</li>
+</ul>
+<p>Les fichiers textes peuvent être lu avec la commande 'cat'.
+Les fichiers binaires peuvent être "lu" avec la commande 'xxd' ou 'hexdump'.</p>
+<h3 id="avatanges-inconv-nients-">Avatanges/Inconvénients :</h3>
+<p>En général les avantages et inconvénients de ces deux types de fichiers sont les suivants :</p>
+<p>Fichier texte</p>
+<ul>
+<li>facilement débogable</li>
+<li>plus volumineux</li>
+<li>plus lent à être utilisé par la machine</li>
+</ul>
+<p>Fichier binaire</p>
+<ul>
+<li>quasi impossible à déboger</li>
+<li>plus léger </li>
+<li>plus rapide</li>
+</ul>
+<h2 id="droits-ou-permissions-d-un-fichier">Droits (ou permissions) d'un fichier</h2>
+<h3 id="types-de-fichier">Types de fichier</h3>
+<p>Pour connaitre le type d'un fichier on fait</p>
+<pre><code class=" hljs "><span class="hljs-keyword">ls</span> -<span class="hljs-keyword">l</span>
+</code></pre><p>Le premier caractère indique le type du fichier :</p>
+<pre><code class=" hljs "><span class="hljs-bullet">- </span>est un fichier régulier
+d est un dossier
+l est un lien
+</code></pre><p>Il y a d'autres types plus compliqués.</p>
+<h3 id="droits-et-types-d-utilisateurs">Droits et types d'utilisateurs</h3>
+<ul>
+<li>r = read = droit en lecture</li>
+<li>w = write = droit en écriture</li>
+<li>x = execute = droit en execution</li>
+</ul>
+<p>Trois types d'utilisateurs :</p>
+<ul>
+<li>u = user = l'utilisateur</li>
+<li>g = group = groupe d'utilisateur</li>
+<li>o = others = les autres</li>
+</ul>
+<p>Exemple pour un fichier :</p>
+<pre><code class=" hljs "><span class="hljs-attribute">rwx</span> r-x -w-
+</code></pre><p>l'utilisateur peut : lire, modifier et éxecuter le fichier
+Le groupe peut : lire et éxecuter le fichier
+Les autres utilisateurs : uniquement modifier le fichier</p>
+<p>Pour un dossier, les droits veulent dire autre chose.</p>
+<ul>
+<li>r veut dire qu'on peut lire le contenu du dossier (c'est à dire faire ls dedans).</li>
+<li>w veut dire qu'on peut créer des fichiers dedans</li>
+<li>x veut dire qu'on peut traverser le dossier à l'aide de cd</li>
+</ul>
+<h3 id="changer-les-droits">Changer les droits</h3>
+<p>On utilise la commande</p>
+<pre><code class=" hljs ">chmod
+</code></pre><p>suivie des droits que l'on modifie et du fichier considéré.</p>
+<p>Exemples :</p>
+<pre><code class=" hljs "><span class="hljs-selector-tag">chmod</span> <span class="hljs-selector-tag">u</span>+<span class="hljs-selector-tag">x</span> <span class="hljs-selector-tag">fichier</span><span class="hljs-selector-class">.txt</span>
+<span class="hljs-selector-tag">chmod</span> +<span class="hljs-selector-tag">r</span> <span class="hljs-selector-tag">fichier</span><span class="hljs-selector-class">.txt</span>
+<span class="hljs-selector-tag">chmod</span> <span class="hljs-selector-tag">o-w</span>
+</code></pre><p>Le premier rajoute le droit d'éxecution à l'utilisateur.
+Le second rajoute le droit de lecture à tout le monde.
+Le troisième enlève le droit d'écriture aux autres.</p>
+</div></div></body>                            </html>

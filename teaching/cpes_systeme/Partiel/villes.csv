@@ -1,0 +1,1010 @@
+Tokyo;Japan;primary;39105000
+Jakarta;Indonesia;primary;35362000
+Delhi;India;admin;31870000
+Manila;Philippines;primary;23971000
+Sao Paulo;Brazil;admin;22495000
+Seoul;South Korea;primary;22394000
+Mumbai;India;admin;22186000
+Shanghai;China;admin;22118000
+Mexico City;Mexico;primary;21505000
+Guangzhou;China;admin;21489000
+Cairo;Egypt;primary;19787000
+Beijing;China;primary;19437000
+New York;United States;;18713220
+Kolkata;India;admin;18698000
+Moscow;Russia;primary;17693000
+Bangkok;Thailand;primary;17573000
+Dhaka;Bangladesh;primary;16839000
+Buenos Aires;Argentina;primary;16216000
+Osaka;Japan;admin;15490000
+Lagos;Nigeria;minor;15487000
+Istanbul;Turkey;admin;15311000
+Karachi;Pakistan;admin;15292000
+Kinshasa;Congo (Kinshasa);primary;15056000
+Shenzhen;China;minor;14678000
+Bangalore;India;admin;13999000
+Ho Chi Minh City;Vietnam;admin;13954000
+Tehran;Iran;primary;13819000
+Los Angeles;United States;;12750807
+Rio de Janeiro;Brazil;admin;12486000
+Chengdu;China;admin;11920000
+Baoding;China;;11860000
+Chennai;India;admin;11564000
+Lahore;Pakistan;admin;11148000
+London;United Kingdom;primary;11120000
+Paris;France;primary;11027000
+Tianjin;China;admin;10932000
+Linyi;China;;10820000
+Shijiazhuang;China;admin;10784600
+Zhengzhou;China;admin;10136000
+Nanyang;China;;10013600
+Hyderabad;India;admin;9840000
+Wuhan;China;admin;9729000
+Handan;China;minor;9549700
+Nagoya;Japan;admin;9522000
+Weifang;China;;9373000
+Lima;Peru;primary;8992000
+Zhoukou;China;minor;8953172
+Luanda;Angola;primary;8883000
+Ganzhou;China;minor;8677600
+Tongshan;China;minor;8669000
+Kuala Lumpur;Malaysia;primary;8639000
+Chicago;United States;;8604203
+Heze;China;minor;8287693
+Chongqing;China;admin;8261000
+Hanoi;Vietnam;primary;8246600
+Fuyang;China;;8200264
+Changsha;China;admin;8154700
+Dongguan;China;minor;8142000
+Jining;China;;8081905
+Jinan;China;admin;7967400
+Pune;India;;7948000
+Foshan;China;minor;7905700
+Bogota;Colombia;primary;7743955
+Ahmedabad;India;minor;7717000
+Nanjing;China;admin;7729000
+Changchun;China;admin;7674439
+Tangshan;China;;7577289
+Cangzhou;China;;7544300
+Dar es Salaam;Tanzania;primary;7461000
+Hefei;China;admin;7457027
+Hong Kong;Hong Kong;primary;7398000
+Shaoyang;China;;7370500
+Zhanjiang;China;minor;7332000
+Shangqiu;China;;7325300
+Nantong;China;minor;7283622
+Yancheng;China;minor;7260240
+Nanning;China;admin;7254100
+Hengyang;China;;7243400
+Zhumadian;China;;7231234
+Shenyang;China;admin;7208000
+Xingtai;China;;7104103
+Xi'an;China;admin;7090000
+Santiago;Chile;primary;7026000
+Yantai;China;;6968202
+Riyadh;Saudi Arabia;primary;6889000
+Luoyang;China;;6888500
+Kunming;China;admin;6850000
+Shangrao;China;minor;6810700
+Hangzhou;China;admin;6713000
+Bijie;China;;6686100
+Quanzhou;China;minor;6480000
+Miami;United States;;6445545
+Wuxi;China;minor;6372624
+Huanggang;China;minor;6333000
+Maoming;China;minor;6313200
+Nanchong;China;minor;6278614
+Zunyi;China;;6270700
+Qujing;China;;6155400
+Baghdad;Iraq;primary;6107000
+Xinyang;China;;6109106
+Jieyang;China;minor;6089400
+Khartoum;Sudan;primary;6017000
+Madrid;Spain;primary;6006000
+Allahabad;India;;5954391
+Yulin;China;minor;5849700
+Changde;China;minor;5827200
+Liaocheng;China;minor;5789863
+Qingdao;China;minor;5775000
+Dallas;United States;;5743938
+Nangandao;China;minor;5708191
+Xiangyang;China;minor;5680000
+Philadelphia;United States;;5649300
+Giza;Egypt;admin;5598402
+Lu'an;China;minor;5611701
+Zhaotong;China;;5591000
+Yichun;China;minor;5573200
+Dezhou;China;minor;5568235
+Nairobi;Kenya;primary;5545000
+Nanchang;China;admin;5545500
+Tai'an;China;;5494207
+Dazhou;China;minor;5468097
+Houston;United States;;5464251
+Guadalajara;Mexico;admin;5437000
+Yongzhou;China;;5452100
+Atlanta;United States;admin;5449398
+Rangoon;Myanmar;primary;5430000
+Toronto;Canada;admin;5429524
+Suihua;China;minor;5418153
+Saint Petersburg;Russia;admin;5384342
+Washington;United States;primary;5379184
+Qiqihar;China;minor;5367003
+Suzhou;China;;5352924
+Shantou;China;minor;5319028
+Weinan;China;minor;5286077
+Changzhou;China;minor;5278121
+Singapore;Singapore;primary;5271000
+Fuzhou;China;admin;5245000
+Pudong;China;minor;5187200
+Belo Horizonte;Brazil;admin;5159000
+Zhangzhou;China;minor;5140000
+Yuncheng;China;;5134779
+Suzhou;China;minor;5103000
+Xianyang;China;minor;5096001
+Guilin;China;minor;5085500
+Taizhou;China;minor;5031000
+Abidjan;Côte d'Ivoire;primary;4980000
+Huaihua;China;;4979600
+Ji'an;China;minor;4956600
+Xiaoganzhan;China;;4921000
+Pingdingshan;China;;4904701
+Jiujiang;China;minor;4896800
+Surat;India;;4875000
+Guiyang;China;admin;4881900
+Alexandria;Egypt;admin;4870000
+Bozhou;China;;4850657
+Sydney;Australia;admin;4840600
+Huizhou;China;minor;4830000
+Huai'an;China;;4799889
+Chenzhou;China;minor;4744500
+Barcelona;Spain;admin;4735000
+Anqing;China;minor;4723000
+Suqian;China;;4719178
+Boston;United States;admin;4688346
+Jiangmen;China;minor;4630300
+Mianyang;China;minor;4613862
+Harbin;China;admin;4583000
+Huanglongsi;China;;4564900
+Melbourne;Australia;admin;4529500
+Zibo;China;;4530597
+Dalian;China;;4480000
+Hengshui;China;;4472000
+Yibin;China;minor;4471896
+Yangzhou;China;;4459760
+Timbio;Colombia;minor;4444444
+Johannesburg;South Africa;admin;4434827
+Yiyang;China;;4413800
+Guigang;China;minor;4409200
+Xinpu;China;minor;4393482
+Meizhou;China;minor;4378800
+Casablanca;Morocco;admin;4370000
+Langfang;China;;4358839
+Zhangjiakou;China;;4345485
+Chifeng;China;minor;4341245
+Linfen;China;;4316610
+Jiangguanchi;China;minor;4307488
+Kabul;Afghanistan;primary;4273156
+Phoenix;United States;admin;4219697
+Luzhou;China;minor;4218427
+Taiyuan;China;admin;4201592
+Zhaoqing;China;minor;4151700
+Xiaoxita;China;minor;4137900
+Xiamen;China;minor;4110000
+Fuzhou;China;;4047200
+Liuzhou;China;minor;4041700
+Zhuzhou;China;minor;4020800
+Amman;Jordan;primary;4007526
+Jeddah;Saudi Arabia;;3976000
+Chuzhou;China;;3937868
+Loudi;China;;3931800
+Deyang;China;minor;3877000
+Qingyuan;China;minor;3874000
+Kano;Nigeria;admin;3848885
+Wuhu;China;minor;3842100
+Seattle;United States;;3789215
+Yokohama;Japan;admin;3757630
+Binzhou;China;;3748474
+Baojishi;China;;3738700
+Zaozhuang;China;;3729140
+Neijiang;China;minor;3702847
+Baicheng;China;minor;3669400
+Berlin;Germany;primary;3664088
+Anshan;China;;3645884
+Lanzhou;China;admin;3616163
+Puyang;China;minor;3598740
+San Francisco;United States;;3592294
+Jiaozuo;China;;3590700
+Hechi;China;minor;3545700
+Montreal;Canada;;3519595
+Detroit;United States;;3506126
+Chengde;China;;3473201
+Busan;South Korea;admin;3453198
+Algiers;Algeria;primary;3415811
+Hanzhong;China;;3416196
+Shiyan;China;minor;3398000
+Lucknow;India;admin;3382000
+Siping;China;;3385156
+Yulinshi;China;;3351436
+Changzhi;China;minor;3334565
+Qinzhou;China;minor;3304400
+Bazhou;China;minor;3283148
+Qincheng;China;minor;3262549
+Zhongshan;China;minor;3260000
+Suining;China;minor;3252619
+Leshan;China;;3235759
+San Diego;United States;;3220118
+Faisalabad;Pakistan;minor;3203846
+Guang'an;China;minor;3205476
+Tongren;China;;3168800
+Bengbu;China;;3164467
+Santa Cruz;Bolivia;admin;3151676
+Qinhuangdao;China;;3146300
+Tongliao;China;minor;3139153
+Jinzhou;China;;3126463
+Zhenjiang;China;minor;3113384
+Urumqi;China;admin;3112559
+Heyuan;China;minor;3093900
+Jaipur;India;admin;3073350
+Xinzhou;China;minor;3067501
+Wuzhou;China;minor;3061100
+Addis Ababa;Ethiopia;primary;3041002
+Chaoyang;China;;3044641
+Brasilia;Brazil;primary;3015268
+Mashhad;Iran;admin;3001184
+Shaoguan;China;minor;2997600
+Kuwait City;Kuwait;primary;2989000
+Shanwei;China;minor;2993600
+Quezon City;Philippines;admin;2960048
+Minneapolis;United States;;2977172
+Kyiv;Ukraine;primary;2963199
+Sanaa;Yemen;primary;2957000
+Meishan;China;;2950545
+Guatemala City;Guatemala;primary;2934841
+Incheon;South Korea;admin;2913024
+Ningde;China;minor;2910000
+Tampa;United States;;2908063
+Daqing;China;;2904532
+Putian;China;minor;2900000
+Bandung;Indonesia;admin;2875673
+Surabaya;Indonesia;admin;2885555
+Salvador;Brazil;admin;2886698
+Denver;United States;admin;2876625
+Rome;Italy;primary;2872800
+La Paz;Bolivia;primary;2867504
+Hohhot;China;admin;2866615
+Xiangtan;China;;2864800
+Pyongyang;North Korea;primary;2863000
+Taichung;Taiwan;admin;2803894
+Weihai;China;minor;2804771
+Rizhao;China;minor;2801013
+Mudanjiang;China;minor;2798723
+Kaohsiung;Taiwan;admin;2773533
+Guayaquil;Ecuador;admin;2723665
+Tieling;China;;2717732
+Cawnpore;India;;2701324
+Dingxi;China;minor;2698624
+Taipei;Taiwan;;2684567
+Nanping;China;minor;2690000
+Zigong;China;;2678899
+Chaozhou;China;minor;2656600
+Baotou;China;;2650364
+Gulou;China;minor;2606000
+Longyan;China;minor;2640000
+Ankang;China;;2629906
+Baoshan;China;;2627000
+Huludao;China;minor;2623541
+Antananarivo;Madagascar;primary;2610000
+Yanjiang;China;minor;2593843
+Chattogram;Bangladesh;admin;2581643
+Santo Domingo;Dominican Republic;primary;2581827
+Sanming;China;minor;2580000
+Longba;China;;2567718
+Brooklyn;United States;;2559903
+Yangjiang;China;minor;2555600
+Jiamusi;China;minor;2552097
+Ibadan;Nigeria;admin;2550593
+Luohe;China;minor;2544266
+Lincang;China;;2536000
+Medellin;Colombia;admin;2529403
+Xuanzhou;China;;2532938
+Yunfu;China;minor;2526900
+Dubai;United Arab Emirates;admin;2502715
+Mirzapur;India;;2496970
+Tashkent;Uzbekistan;primary;2497900
+Guangyuan;China;;2484122
+Cali;Colombia;admin;2471474
+Huangshi;China;minor;2471700
+Ouagadougou;Burkina Faso;primary;2453496
+Daegu;South Korea;admin;2461002
+Fortaleza;Brazil;admin;2452185
+Yaounde;Cameroon;primary;2440462
+Douala;Cameroon;admin;2446945
+Jilin;China;;2396000
+Dandong;China;;2444697
+Lianshan;China;minor;2426000
+Yingkou;China;minor;2428534
+Nagpur;India;;2405665
+Omdurman;Sudan;;2395159
+Bekasi;Indonesia;;2381053
+Ghaziabad;India;;2375820
+Yuxi;China;minor;2386000
+Brisbane;Australia;admin;2360241
+Anshun;China;;2353100
+Depok;Indonesia;;2330333
+Shangzhou;China;;2341742
+Huainan;China;;2333896
+Kuaidamao;China;minor;2324439
+Accra;Ghana;primary;2291352
+Fukuoka;Japan;admin;2280000
+Jincheng;China;minor;2279146
+Vancouver;Canada;;2264823
+Tangerang;Indonesia;;2237006
+Sanmenxia;China;;2234018
+Laibin;China;minor;2233900
+Queens;United States;;2230722
+Qinbaling;China;;2211191
+Xining;China;admin;2208708
+Ma'anshan;China;minor;2202899
+Yan'an;China;;2187009
+Baku;Azerbaijan;primary;2181800
+Gaoping;China;minor;2174000
+Harare;Zimbabwe;primary;2150000
+Havana;Cuba;primary;2141652
+Phnom Penh;Cambodia;primary;2129371
+Ningbo;China;minor;2125500
+Mogadishu;Somalia;primary;2120000
+Puning;China;;2118200
+Medan;Indonesia;admin;2109330
+Huaibei;China;;2114276
+Qingyang;China;minor;2111000
+Riverside;United States;;2107852
+Baltimore;United States;;2106068
+Haiphong;Vietnam;admin;2103500
+Las Vegas;United States;;2104198
+Chongzuo;China;minor;2099400
+Rawalpindi;Pakistan;minor;2098231
+Kumasi;Ghana;admin;2069350
+Portland;United States;;2074775
+Vadodara;India;;2065771
+Hezhou;China;minor;2072600
+Pingliang;China;minor;2068033
+San Antonio;United States;;2049293
+Perth;Australia;admin;2039200
+Vishakhapatnam;India;;2035922
+Shengli;China;minor;2035338
+Gujranwala;Pakistan;minor;2027001
+Baicheng;China;minor;2032356
+Fushun;China;;2024000
+St. Louis;United States;;2024074
+Bamako;Mali;primary;2009109
+Quito;Ecuador;primary;2011388
+Minsk;Belarus;primary;2009786
+Indore;India;;1994397
+Yinchuan;China;admin;1993088
+Kananga;Congo (Kinshasa);admin;1971704
+Peshawar;Pakistan;admin;1970042
+Sapporo;Japan;admin;1961690
+Esfahan;Iran;admin;1961260
+Caracas;Venezuela;primary;1943901
+Pingxiang;China;minor;1933200
+Aleppo;Syria;admin;1916781
+Tijuana;Mexico;minor;1922523
+Almaty;Kazakhstan;admin;1916822
+Vienna;Austria;primary;1911191
+Thane;India;;1886941
+Sacramento;United States;admin;1898019
+Blantyre;Malawi;admin;1895973
+Tainan;Taiwan;admin;1883831
+Zhuhai;China;minor;1891100
+Bucharest;Romania;primary;1883425
+Curitiba;Brazil;admin;1879355
+Multan;Pakistan;minor;1871843
+Xiping;China;minor;1873000
+Ecatepec;Mexico;minor;1857188
+Jixi;China;minor;1862165
+Saidu Sharif;Pakistan;minor;1860310
+Liaoyang;China;;1858768
+Hamburg;Germany;admin;1852478
+Meru;Kenya;admin;1833000
+Brazzaville;Congo (Brazzaville);primary;1827000
+Orlando;United States;;1822394
+Fuxin;China;;1819339
+Wuwei;China;minor;1815059
+Manaus;Brazil;admin;1802014
+Bhopal;India;admin;1798218
+San Jose;United States;;1798103
+Warsaw;Poland;primary;1790658
+Lubumbashi;Congo (Kinshasa);admin;1786397
+Davao;Philippines;admin;1776949
+Haikou;China;admin;1776141
+Damascus;Syria;primary;1754000
+Shuyangzha;China;;1770000
+Brussels;Belgium;primary;1743000
+Lusaka;Zambia;primary;1742979
+Hyderabad City;Pakistan;minor;1732693
+Budapest;Hungary;primary;1723836
+Shuozhou;China;minor;1714857
+Cleveland;United States;;1710093
+Benxi;China;;1709538
+Baiyin;China;minor;1708751
+Pittsburgh;United States;;1703266
+Patna;India;admin;1684222
+Mosul;Iraq;admin;1694000
+Caloocan City;Philippines;admin;1661584
+Austin;United States;admin;1687311
+Sanzhou;China;;1680000
+Beihai;China;minor;1680000
+Mecca;Saudi Arabia;admin;1675368
+Heihe;China;minor;1673899
+Jingdezhen;China;minor;1673200
+Conakry;Guinea;primary;1667864
+Kampala;Uganda;primary;1659600
+Cincinnati;United States;;1662691
+Recife;Brazil;admin;1653461
+Yushan;China;minor;1651200
+Zhongli;Taiwan;;1632616
+Kansas City;United States;;1636715
+Manhattan;United States;;1628706
+Bilaspur;India;;1625502
+Semarang;Indonesia;admin;1621384
+Ludhiana;India;;1618879
+Novosibirsk;Russia;admin;1602915
+Chengtangcun;China;;1603659
+Agra;India;;1592000
+Karaj;Iran;admin;1592492
+Wenzhou;China;;1588700
+Indianapolis;United States;admin;1588961
+Leon de los Aldama;Mexico;minor;1579803
+Puebla;Mexico;admin;1576259
+Kalyan;India;;1576614
+Madurai;India;minor;1561129
+Mbuji-Mayi;Congo (Kinshasa);admin;1559073
+Hebi;China;;1569208
+Shiraz;Iran;admin;1565572
+Jamshedpur;India;;1558000
+Columbus;United States;admin;1562009
+Tabriz;Iran;admin;1558693
+Maracaibo;Venezuela;admin;1551539
+Kawasaki;Japan;;1539522
+Aba;Nigeria;minor;1530000
+Palembang;Indonesia;admin;1535952
+Zhangjiajie;China;minor;1537900
+Kobe;Japan;admin;1513193
+Charlotte;United States;;1512923
+Changshu;China;;1510100
+Lianjiang;China;;1509400
+Ximeicun;China;;1508000
+Jianguang;China;;1507402
+Yucheng;China;minor;1507258
+Belem;Brazil;admin;1499641
+Guiping;China;minor;1496904
+Leizhou;China;minor;1494700
+Gwangju;South Korea;admin;1490092
+Munich;Germany;admin;1488202
+Nasik;India;;1486053
+Porto Alegre;Brazil;admin;1484941
+Valencia;Venezuela;admin;1484430
+Onitsha;Nigeria;minor;1483000
+Abu Dhabi;United Arab Emirates;primary;1483000
+Virginia Beach;United States;;1478868
+Daejeon;South Korea;admin;1475221
+Zapopan;Mexico;minor;1476491
+Yekaterinburg;Russia;admin;1468833
+Huazhou;China;minor;1468061
+Kyoto;Japan;admin;1464890
+Shuangyashan;China;minor;1462626
+Pizhou;China;;1458038
+El Kelaa des Srarhna;Morocco;;1450021
+Kharkiv;Ukraine;admin;1446107
+Yangshe;China;minor;1432044
+Guyuan;China;;1426000
+Khulna;Bangladesh;admin;1400689
+Muscat;Oman;primary;1421409
+Bronx;United States;;1418207
+Gaozhou;China;;1414100
+Chizhou;China;minor;1402518
+Faridabad;India;;1394000
+Ulaanbaatar;Mongolia;primary;1396288
+Goiania;Brazil;admin;1393575
+Fuqing;China;minor;1390487
+Belgrade;Serbia;primary;1378682
+Pingdu;China;;1378900
+Milan;Italy;admin;1366180
+Aurangabad;India;;1371330
+Yutan;China;minor;1368117
+Milwaukee;United States;;1365787
+Huangshan;China;minor;1358980
+Auckland;New Zealand;admin;1346091
+Makassar;Indonesia;admin;1338663
+Santiago;Dominican Republic;admin;1343423
+Prague;Czechia;primary;1335084
+Rajkot;India;;1335397
+Liangshi;China;;1335900
+Cordoba;Argentina;admin;1329604
+Guarulhos;Brazil;;1324781
+Al Basrah;Iraq;admin;1326564
+Saitama;Japan;admin;1320571
+Juarez;Mexico;minor;1321004
+Montevideo;Uruguay;primary;1319108
+Xintai;China;;1315942
+Wusong;China;minor;1311726
+Meerut;India;;1305429
+Yushu;China;;1304436
+Rongcheng;China;;1302891
+Huazhou;China;;1302100
+Yangquan;China;minor;1300000
+Adelaide;Australia;admin;1295714
+Baishan;China;minor;1296127
+Dayan;China;;1296000
+Haicheng;China;minor;1293877
+Jiangyin;China;;1285785
+Huaiyin;China;;1264000
+Wuzhong;China;minor;1284000
+Cacuaco;Angola;;1279488
+Barranquilla;Colombia;admin;1274250
+Sofia;Bulgaria;primary;1277411
+Soweto;South Africa;;1271628
+Jabalpur;India;;1267564
+Rucheng;China;minor;1267066
+Nizhniy Novgorod;Russia;admin;1264075
+Shaoyang;China;minor;1253548
+Dhanbad;India;;1246000
+Comayaguela;Honduras;;1250000
+Laiwu;China;;1248636
+Sharjah;United Arab Emirates;admin;1247749
+Jingling;China;;1247400
+Kazan;Russia;admin;1243500
+Suwon;South Korea;admin;1234300
+Yongcheng;China;;1240382
+Calgary;Canada;;1239220
+Can Tho;Vietnam;admin;1237300
+Abuja;Nigeria;primary;1235880
+Mandalay;Myanmar;admin;1225546
+Beidao;China;minor;1225000
+Xiangshui;China;;1221000
+Dadukou;China;minor;1214121
+Vila Velha;Brazil;;1209091
+Chelyabinsk;Russia;admin;1202371
+Mombasa;Kenya;admin;1200000
+Providence;United States;admin;1203230
+Varanasi;India;;1198491
+Qom;Iran;admin;1201158
+Zhangye;China;minor;1199515
+Hiroshima;Japan;admin;1198021
+Maiduguri;Nigeria;admin;1197497
+Maputo;Mozambique;primary;1191613
+Doha;Qatar;primary;1186023
+Rosario;Argentina;minor;1193605
+Pikine;Senegal;;1170791
+Xinyu;China;minor;1186700
+Ahvaz;Iran;admin;1184788
+Jacksonville;United States;;1181496
+Medina;Saudi Arabia;admin;1180770
+Srinagar;India;admin;1180570
+Omsk;Russia;admin;1178391
+Liaoyuan;China;;1176239
+Cilacap;Indonesia;minor;1174964
+Yingtan;China;;1175000
+Bandar Lampung;Indonesia;admin;1166761
+Samara;Russia;admin;1169719
+Guankou;China;minor;1168056
+Ulsan;South Korea;admin;1166033
+Dingzhou;China;;1165182
+Campinas;Brazil;;1164098
+Lianyuan;China;minor;1162928
+Dakar;Senegal;primary;1146053
+Rongcheng;China;minor;1162770
+Kaiyuan;China;minor;1160000
+Nay Pyi Taw;Myanmar;primary;1160242
+Kigali;Rwanda;primary;1156663
+Leiyang;China;minor;1151554
+Yichun;China;minor;1148126
+Benin City;Nigeria;admin;1147188
+Birmingham;United Kingdom;;1137100
+Xiantao;China;;1140100
+Amritsar;India;;1132383
+Callao;Peru;admin;1129854
+Monterrey;Mexico;admin;1135512
+Aligarh;India;;1131160
+Yingchuan;China;minor;1131896
+Ciudad Nezahualcoyotl;Mexico;;1109363
+Tripoli;Libya;primary;1126000
+Nampo;North Korea;;1127000
+Rostov;Russia;admin;1125299
+Tegucigalpa;Honduras;primary;1126534
+Tbilisi;Georgia;primary;1118035
+Guwahati;India;;1116267
+Ufa;Russia;admin;1115560
+Fes;Morocco;admin;1112072
+Bien Hoa;Vietnam;admin;1104000
+N'Djamena;Chad;primary;1092066
+Ikare;Nigeria;minor;1099931
+Salt Lake City;United States;admin;1098526
+Bhilai;India;;1097000
+Haora;India;;1077075
+Tamale;Ghana;admin;1095808
+Xibeijie;China;minor;1095947
+Copenhagen;Denmark;primary;1085000
+Nezahualcoyotl;Mexico;minor;1077208
+Hanchuan;China;;1092700
+Gongzhuling;China;;1092692
+Krasnoyarsk;Russia;admin;1083865
+Cologne;Germany;;1083498
+Yicheng;China;minor;1082929
+Zhufeng;China;;1081960
+Sao Goncalo;Brazil;;1077687
+Nashville;United States;admin;1081903
+Yerevan;Armenia;primary;1075800
+Nur-Sultan;Kazakhstan;primary;1078362
+Nouakchott;Mauritania;primary;1077169
+Vereeniging;South Africa;;1074000
+Richmond;United States;admin;1075798
+Sao Luis;Brazil;admin;1073893
+Ranchi;India;admin;1073440
+San Pedro Sula;Honduras;admin;1073824
+Taixing;China;minor;1073921
+Gwalior;India;;1069276
+Memphis;United States;;1066967
+Goyang;South Korea;minor;1061929
+Bezwada;India;;1048240
+Edmonton;Canada;admin;1062643
+Bishkek;Kyrgyzstan;primary;1053900
+Mizhou;China;minor;1060000
+Tunis;Tunisia;primary;1056247
+Xishan;China;minor;1060000
+Ezhou;China;minor;1059700
+Barquisimeto;Venezuela;admin;1059092
+Sendai;Japan;admin;1058070
+Hegang;China;minor;1058665
+Kathmandu;Nepal;primary;975453
+Mexicali;Mexico;admin;1049792
+Voronezh;Russia;admin;1047549
+Perm;Russia;admin;1048005
+Changwon;South Korea;admin;1046054
+Zhongwei;China;minor;1046000
+Shouguang;China;;1039205
+Bogor;Indonesia;;1030720
+Raleigh;United States;admin;1038738
+Cartagena;Colombia;admin;1036412
+Chandigarh;India;admin;1026459
+Matola;Mozambique;;1032197
+Jodhpur;India;;1033918
+Ogbomoso;Nigeria;minor;1032000
+Shymkent;Kazakhstan;admin;1028673
+Niamey;Niger;primary;1026848
+Taizhou;China;minor;1030200
+Managua;Nicaragua;primary;1028808
+Bagam;Indonesia;;1029808
+Shubra al Khaymah;Egypt;;1025569
+Maceio;Brazil;admin;1025360
+Monrovia;Liberia;primary;1021762
+Wafangdian;China;;1024876
+Zhongxiang;China;;1022514
+Odesa;Ukraine;admin;1017699
+Port-au-Prince;Haiti;primary;987310
+New Orleans;United States;;1020886
+Villahermosa;Mexico;admin;1013484
+Thu Duc;Vietnam;minor;1013795
+Volgograd;Russia;admin;1015586
+Mysore;India;;1014227
+Islamabad;Pakistan;primary;1014825
+Xinyi;China;;1013900
+Raipur;India;admin;1010087
+Arequipa;Peru;admin;1008290
+Port Harcourt;Nigeria;admin;1005904
+Louisville;United States;;1005654
+Zaoyang;China;;1004741
+Shuizhai;China;;1003698
+Xingyi;China;;1004132
+Kota;India;;1001694
+Quetta;Pakistan;admin;1001205
+Ottawa;Canada;primary;989567
+Stockholm;Sweden;primary;975819
+Asmara;Eritrea;primary;963000
+Freetown;Sierra Leone;primary;951000
+Vientiane;Laos;primary;948487
+Jerusalem;Israel;primary;919438
+Bangui;Central African Republic;primary;889231
+Panama City;Panama;primary;880691
+Amsterdam;Netherlands;primary;862965
+Lome;Togo;primary;837437
+Libreville;Gabon;primary;797003
+Zagreb;Croatia;primary;790017
+Dushanbe;Tajikistan;primary;778500
+Lilongwe;Malawi;primary;781538
+Cotonou;Benin;primary;762000
+Colombo;Sri Lanka;primary;752993
+Pretoria;South Africa;primary;741651
+Winnipeg;Canada;admin;705244
+Quebec City;Canada;admin;705103
+Oslo;Norway;primary;693494
+Athens;Greece;primary;664046
+Bujumbura;Burundi;primary;658859
+Helsinki;Finland;primary;642045
+Skopje;Macedonia;primary;640000
+Chisinau;Moldova;primary;639000
+Riga;Latvia;primary;614618
+Kingston;Jamaica;primary;580000
+Rabat;Morocco;primary;572717
+Vilnius;Lithuania;primary;574147
+San Salvador;El Salvador;primary;567698
+Djibouti;Djibouti;primary;562000
+Dublin;Ireland;primary;553165
+The Hague;Netherlands;primary;537833
+Asuncion;Paraguay;primary;524190
+Lisbon;Portugal;primary;506654
+Bratislava;Slovakia;primary;475503
+Kitchener;Canada;;470015
+Tallinn;Estonia;primary;438341
+Beirut;Lebanon;primary;361366
+Cape Town;South Africa;primary;433688
+Tirana;Albania;primary;418495
+Wellington;New Zealand;primary;418500
+Dodoma;Tanzania;primary;410956
+Halifax;Canada;admin;403131
+Bissau;Guinea-Bissau;primary;395954
+Canberra;Australia;primary;381488
+Juba;South Sudan;primary;372410
+Yamoussoukro;Côte d'Ivoire;primary;355573
+Victoria;Canada;admin;335696
+Maseru;Lesotho;primary;330790
+Nicosia;Cyprus;primary;330000
+Windhoek;Namibia;primary;322500
+Port Moresby;Papua New Guinea;primary;317374
+Porto-Novo;Benin;primary;300000
+Sucre;Bolivia;primary;300000
+San Jose;Costa Rica;primary;288054
+Ljubljana;Slovenia;primary;286745
+Sarajevo;Bosnia And Herzegovina;primary;275524
+Nassau;The Bahamas;primary;274400
+Bloemfontein;South Africa;primary;256185
+Fort-de-France;Martinique;primary;253995
+New Delhi;India;primary;249998
+Gaborone;Botswana;primary;231626
+Paramaribo;Suriname;primary;223757
+Dili;Timor-Leste;primary;222323
+Male;Maldives;primary;133019
+Georgetown;Guyana;primary;200500
+Gibraltar;Gibraltar;primary;187083
+Saint-Denis;Reunion;primary;190047
+Malabo;Equatorial Guinea;primary;187302
+Podgorica;Montenegro;primary;174515
+Manama;Bahrain;primary;157474
+Port Louis;Mauritius;primary;149194
+Willemstad;Curaçao;primary;150000
+Bern;Switzerland;primary;133798
+Papeete;French Polynesia;primary;131695
+Luxembourg;Luxembourg;primary;128512
+Reykjavik;Iceland;primary;128793
+Praia;Cabo Verde;primary;127832
+Sri Jayewardenepura Kotte;Sri Lanka;primary;115826
+Bridgetown;Barbados;primary;110000
+Moroni;Comoros;primary;111329
+Thimphu;Bhutan;primary;104000
+Mbabane;Swaziland;primary;94874
+Noumea;New Caledonia;primary;93060
+Honiara;Solomon Islands;primary;84520
+Suva;Fiji;primary;88271
+Ankara;Turkey;primary;77168
+Castries;Saint Lucia;primary;70000
+Cayenne;French Guiana;primary;61550
+Sao Tome;Sao Tome And Principe;primary;56166
+Port-Vila;Vanuatu;primary;51437
+Hamilton;Bermuda;primary;52320
+Bandar Seri Begawan;Brunei;primary;50000
+Monaco;Monaco;primary;36371
+Gitega;Burundi;primary;41944
+Port of Spain;Trinidad And Tobago;primary;37074
+Apia;Samoa;primary;37708
+Tarawa;Kiribati;primary;28802
+Oranjestad;Aruba;primary;34980
+Saint Helier;Jersey;primary;33522
+Banjul;The Gambia;primary;31356
+Mamoudzou;Mayotte;primary;32057
+Majuro;Marshall Islands;primary;30000
+Douglas;Isle Of Man;primary;27938
+George Town;Cayman Islands;primary;27704
+Victoria;Seychelles;primary;26450
+Kingstown;Saint Vincent And The Grenadines;primary;25000
+Andorra la Vella;Andorra;primary;22615
+Saint John's;Antigua And Barbuda;primary;21926
+Nuku`alofa;Tonga;primary;23221
+Ashgabat;Turkmenistan;primary;19426
+Nuuk;Greenland;primary;18326
+Belmopan;Belize;primary;17222
+Roseau;Dominica;primary;16582
+Basseterre;Saint Kitts And Nevis;primary;13220
+Torshavn;Faroe Islands;primary;13326
+Pago Pago;American Samoa;primary;12576
+Valletta;Malta;primary;6444
+Gaza;Gaza Strip;primary;
+Grand Turk;Turks And Caicos Islands;primary;5801
+Palikir;Federated States of Micronesia;primary;6227
+Funafuti;Tuvalu;primary;6025
+Vaduz;Liechtenstein;primary;5668
+Lobamba;Swaziland;primary;5800
+Avarua;Cook Islands;primary;5445
+Saint George's;Grenada;primary;4315
+San Marino;San Marino;primary;4040
+Al Quds;West Bank;primary;
+Capitol Hill;Northern Mariana Islands;primary;2500
+Stanley;Falkland Islands (Islas Malvinas);primary;2213
+Vatican City;Vatican City;primary;825
+Alofi;Niue;primary;1611
+Basse-Terre;Guadeloupe;primary;307
+Hagta;Guam;primary;1051
+Marigot;Saint Martin;primary;
+Jamestown;Saint Helena, Ascension, And Tristan Da Cunha;primary;714
+Brades;Montserrat;primary;391
+Philipsburg;Sint Maarten;primary;
+Yaren;Nauru;primary;
+Pristina;Kosovo;primary;
+Gustavia;Saint Barthelemy;primary;
+Road Town;British Virgin Islands;primary;
+Ngerulmud;Palau;primary;271
+Saint-Pierre;Saint Pierre And Miquelon;primary;
+The Valley;Anguilla;primary;
+Mata-Utu;Wallis And Futuna;primary;
+Kingston;Norfolk Island;primary;
+Longyearbyen;Svalbard;primary;
+Tifariti;Morocco;primary;
+Adamstown;Pitcairn Islands;primary;
+Flying Fish Cove;Christmas Island;primary;
+King Edward Point;South Georgia And South Sandwich Islands;primary;
+Bareilly;India;;1000000
+Quang Ha;Vietnam;;1000000
+Xingcheng;China;minor;993000
+Dongtai;China;minor;990306
+Al Mansurah;Egypt;admin;960423
+Yingcheng;China;minor;986400
+Chiba;Japan;admin;981738
+Pekanbaru;Indonesia;admin;983356
+Luocheng;China;minor;984100
+Dnipro;Ukraine;admin;980948
+Danyang;China;;980662
+Natal;Brazil;;980588
+Nada;China;minor;977700
+Zamboanga City;Philippines;admin;977234
+Kirkuk;Iraq;admin;975000
+Naples;Italy;admin;966144
+Wuchuan;China;;972400
+Huilong;China;minor;972525
+Oklahoma City;United States;admin;972943
+Morelia;Mexico;;962555
+Cebu City;Philippines;admin;964169
+Shaoxing;China;minor;961200
+Coimbatore;India;;959823
+Santo Domingo Este;Dominican Republic;admin;948855
+Setagaya;Japan;;940509
+Songnam;South Korea;;948757
+Taishan;China;;953900
+Fangchenggang;China;minor;953300
+Solapur;India;;951558
+Tangier;Morocco;admin;947952
+Anqiu;China;;947723
+Feicheng;China;;946627
+Kermanshah;Iran;admin;945651
+Kitakyushu;Japan;;935084
+Meishan;China;minor;936000
+Khartoum North;Sudan;;936349
+Kisangani;Congo (Kinshasa);admin;935977
+Aguascalientes;Mexico;admin;934424
+Marrakech;Morocco;admin;928850
+Donetsk;Ukraine;admin;929063
+Trujillo;Peru;admin;919899
+Taihe;China;minor;924531
+Bridgeport;United States;;924449
+Trichinopoly;India;;916857
+Xin'an;China;;920628
+Taihecun;China;minor;920471
+Naucalpan de Juarez;Mexico;minor;913681
+Owerri;Nigeria;admin;908109
+Padang;Indonesia;admin;914970
+Qingzhou;China;;914047
+Buffalo;United States;;914341
+Lichuan;China;;913700
+Daye;China;;909724
+Fort Worth;United States;;909585
+Hengzhou;China;minor;908400
+Campo Grande;Brazil;admin;906092
+Zhuanghe;China;;905852
+Hartford;United States;admin;905152
+Bobo-Dioulasso;Burkina Faso;admin;903887
+Ad Dammam;Saudi Arabia;admin;903312
+Lhasa;China;admin;902500
+Jiaozhou;China;;900500
+Taguig City;Philippines;admin;886722
+Merida;Mexico;admin;892363
+Yangchun;China;;891800
+Bucheon;South Korea;minor;867678
+Dengtalu;China;minor;887000
+Antipolo;Philippines;admin;887399
+Hubli;India;;890000
+Abeokuta;Nigeria;admin;888924
+Cancun;Mexico;minor;888797
+Tucson;United States;;888486
+Krasnodar;Russia;admin;881476
+Natal;Brazil;admin;877662
+Chihuahua;Mexico;admin;878062
+Klang;Malaysia;;878000
+Turin;Italy;admin;870952
+Ar Ramadi;Iraq;admin;874543
+Laiyang;China;;874127
+Sale;Morocco;;850403
+Jalandhar;India;;873725
+Kaifeng Chengguanzhen;China;minor;872000
+Ikeja;Nigeria;admin;861300
+Malang;Indonesia;;866118
+Marseille;France;admin;868277
+Saltillo;Mexico;admin;864431
+Gaomi;China;;868715
+Ipoh;Malaysia;admin;866772
+Hai'an;China;minor;866337
+Oran;Algeria;admin;852000
+Hermosillo;Mexico;admin;855563
+Weichanglu;China;minor;859424
+Shache;China;;851374
+Leping;China;minor;852800
+Hailun;China;minor;850000
+Macheng;China;;849090
+Akure;Nigeria;admin;847903
+Ilorin;Nigeria;admin;847582
+Teresina;Brazil;admin;847430
+Yuci;China;;840000
+Omaha;United States;;847819
+Saratov;Russia;admin;845300
+Erbil;Iraq;admin;846000
+Iguacu;Brazil;;844583
+El Paso;United States;;843386
+Pasig City;Philippines;admin;803159
+Denpasar;Indonesia;admin;834881
+Dehui;China;;839786
+Bhubaneshwar;India;admin;837737
+Tongchuan;China;minor;834437
+Cheongju;South Korea;admin;833276
+Warri;Nigeria;minor;830106
+Pointe-Noire;Congo (Brazzaville);admin;829134
+Sakai;Japan;;823523
+Rongjiawan;China;minor;826000
+Butterworth;Malaysia;;821652
+Renqiu;China;;822455
+Honolulu;United States;admin;820987
+Xindi;China;;819446
+Wu'an;China;;819000
+Sao Bernardo do Campo;Brazil;;816925
+Gaoyou;China;minor;811800
+Culiacan;Mexico;admin;808416
+Hejian;China;;810306
+Yiyang;China;minor;810447
+Puxi;China;minor;809535
+Zijinglu;China;minor;807857
+Joao Pessoa;Brazil;admin;801718
+McAllen;United States;;804114
+Queretaro;Mexico;admin;801940
+Abaete;Brazil;;800000
+Palermo;Colombia;minor;800000
+Qingping;China;minor;797200
+Valencia;Spain;admin;789744
+Niigata;Japan;admin;790646
+Leeds;United Kingdom;;789194
+Moradabad;India;;787000
+Hamamatsu;Japan;;788211
+Xiangxiang;China;;787216
+Chaohucun;China;;782000
+Fuyang;China;minor;771000
+Homs;Syria;admin;775404
+Lubango;Angola;admin;776249
+San Luis Potosi;Mexico;admin;772828
+Cencheng;China;minor;772113
+Dali;China;;771128
+Hamhung;North Korea;admin;768551
+Krakow;Poland;admin;766739
+Hempstead;United States;;767417
+Frankfurt;Germany;minor;764104
+Al `Ayn;United Arab Emirates;;766936
+Songzi;China;;765911
+Laixi;China;;762900
+Bahawalpur;Pakistan;minor;762111
+Zhongba;China;minor;762140
+Kaduna;Nigeria;admin;760084
+Qingnian;China;minor;760781
