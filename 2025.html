@@ -1,0 +1,582 @@
+<html>
+    <!-- 2025 by Thomas Colthurst -->
+    <!-- Original at https://thomaswc.com/2025.html -->
+    <!-- Released under a Creative Commons Share Alike with Attribution License -->
+    <!-- See https://creativecommons.org/licenses/by-sa/4.0/ -->
+    <title>2025</title>
+    <style>
+        body {
+  background-color: white; /* Or #fff or #ffffff */
+}
+
+.bigbut {
+width:100%; height:100%; display:block;
+}
+
+.shake {
+  animation: shake 0.5s;
+  animation-iteration-count: 1;
+}
+
+.numCirc {
+    border-radius: 70%;
+    background: white; /* #fff; */
+    border: 2px solid red; /* #666; */
+    color: red; /* #666; */
+    text-align: center;
+}
+
+.red {
+  color: red;
+}
+
+.floating {
+    position: fixed;
+    z-index: 999;
+    background-color: lightblue;
+}
+
+#fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+@keyframes shake {
+  0% { transform: translateX(1px) rotate(0deg); }
+  10% { transform: translateX(-1px) rotate(-1deg); }
+  20% { transform: translateX(-3px) rotate(1deg); }
+  30% { transform: translateX(3px) rotate(0deg); }
+  40% { transform: translateX(1px) rotate(1deg); }
+  50% { transform: translateX(-1px) rotate(-1deg); }
+  60% { transform: translateX(-3px) rotate(0deg); }
+  70% { transform: translateX(3px) rotate(-1deg); }
+  80% { transform: translateX(-1px) rotate(1deg); }
+  90% { transform: translateX(1px) rotate(0deg); }
+  100% { transform: translateX(1px) rotate(-1deg); }
+}
+    </style>
+    <body>
+        <canvas id="fireworks"></canvas>
+<div class="floating">
+   Make 45 groups of 45!  (By combining two at a time.) &nbsp;
+   Score: <span id="score">0</span> &nbsp; Mistakes: <span id="mistakes">0</span> &nbsp;
+    <button type="button" id="deselect" style="" disabled onclick="deselect()">Deselect</button>
+</div>
+<div style="padding-top: 16px; position: absolute" id="board"></div>
+
+    </body>
+        <script>
+        // Bugs: 
+        // 1) Unicode not rendering properly inside buttons on Chrome.
+        // Feature requests:
+        // 1) Don't penalize already guessed.
+        
+        // Globals
+        const M = 45;  // Board size
+            
+        var score = 0;
+        var mistakes = 0;
+        
+        var selected = 0;  // The currently selected button, if any.
+        
+        var wordlist = [];  // Actually, a list of (word, category) pairs
+    
+
+        // The categories.
+        
+        var cats = {};
+            
+            // Gens 
+            cats["Acteurs"] = ["Jean Dujardin","Omar Sy","Vincent Cassel","Louis Garrel","Gaspard Ulliel","Romain Duris","François Civil","Tahar Rahim","Pierre Niney","Gilles Lellouche","Benoît Magimel","Lambert Wilson","Jean Reno","Daniel Auteuil","Dany Boon","Kad Merad","Fabrice Luchini","Mathieu Amalric","Alex Lutz","Pio Marmaï","Reda Kateb","Denis Podalydès","Bruno Podalydès","Melvil Poupaud","Vincent Lindon","Guillaume Canet","Laurent Lafitte","Clovis Cornillac","Patrick Bruel","Yvan Attal","Charles Berling","Roschdy Zem","Sami Bouajila","Nicolas Duvauchelle","Alban Lenoir","Jean-Paul Rouve","Michel Blanc","Gérard Depardieu","André Dussollier","Pascal Elbé","Raphaël Personnaz","Hugo Becker","Thibault de Montalembert","Swann Arlaud","Benjamin Lavernhe"];
+            
+            cats["Sportifs"] = ["Kylian Mbappé","Karim Benzema","Zinedine Zidane","Antoine Griezmann","Thierry Henry","Paul Pogba","Hugo Lloris","Raphaël Varane","Olivier Giroud","Franck Ribéry","Michel Platini","Raymond Kopa","Lilian Thuram","Marcel Desailly","N'Golo Kanté","Blaise Matuidi","Patrice Evra","Lucas Hernandez","Benjamin Pavard","Kingsley Coman","Ousmane Dembélé","Marcus Thuram","Teddy Riner","Tony Parker","Rudy Gobert","Joakim Noah","Boris Diaw","Evan Fournier","Nicolas Batum","Amélie Mauresmo","Yannick Noah","Gaël Monfils","Jo-Wilfried Tsonga","Richard Gasquet","Pauline Ferrand-Prévot","Julian Alaphilippe","Romain Bardet","Thibaut Pinot","Martin Fourcade","Alexis Pinturault","Jean-Claude Killy","Laure Manaudou","Florent Manaudou","Kevin Mayer","Renaud Lavillenie"]
+
+            cats["Politiciens"] = ["Charles de Gaulle","François Mitterrand","Jacques Chirac","Nicolas Sarkozy","François Hollande","Emmanuel Macron","Georges Pompidou","Valéry Giscard d'Estaing","Léon Blum","Jean Jaurès","Georges Clemenceau","Édouard Daladier","Pierre Mendès France","Michel Rocard","Lionel Jospin","Jean-Marie Le Pen","Marine Le Pen","Jean-Luc Mélenchon","François Fillon","Alain Juppé","Laurent Fabius","Bruno Le Maire","Édouard Philippe","Manuel Valls","Ségolène Royal","Martine Aubry","Valérie Pécresse","Christiane Taubira","Gérald Darmanin","Gabriel Attal","Jean Castex","Dominique de Villepin","Robert Badinter","Simone Veil","Nicolas Dupont-Aignan","Arnaud Montebourg","Benoît Hamon","Najat Vallaud-Belkacem","Jean-Pierre Raffarin","Michel Barnier","Georges Marchais","Philippe Séguin","Raymond Barre","Jacques Delors","Élisabeth Borne"]
+            
+            cats["Chanteurs"] = ["Édith Piaf","Charles Aznavour","Johnny Hallyday","Serge Gainsbourg","Michel Sardou","Jean-Jacques Goldman","Alain Bashung","Claude François","Georges Brassens","Jacques Dutronc","Barbara","France Gall","Mylène Farmer","Sagazan","Florent Pagny","Renaud","Daniel Balavoine","Véronique Sanson","Francis Cabrel","Julien Clerc","Laurent Voulzy","Calogero","Kendji Girac","Vianney","Zaz","Louane","Clara Luciani","Aya Nakamura","Soprano","Gims","Bigflo","Oli","MC Solaar","Booba","Oxmo Puccino","Christophe","Pascal Obispo","Benjamin Biolay","Christine and the Queens","Juliette Armanet","Hoshi","Camélia Jordana","Nolwenn Leroy","Vanessa Paradis","Jain"]
+
+            cats["Ecrivains"] = ["Victor Hugo","Émile Zola","Honoré de Balzac","Gustave Flaubert","Alexandre Dumas","Molière","Jean de La Fontaine","Voltaire","Jean-Jacques Rousseau","Albert Camus","Jean-Paul Sartre","Simone de Beauvoir","Marcel Proust","Guy de Maupassant","Stendhal","François Rabelais","Blaise Pascal","Charles Baudelaire","Arthur Rimbaud","Paul Verlaine","André Gide","Louis-Ferdinand Céline","Georges Perec","Raymond Queneau","Marguerite Duras","Annie Ernaux","Michel Houellebecq","Patrick Modiano","Amélie Nothomb","Jean Giono","Antoine de Saint-Exupéry","Boris Vian","Julien Green","Françoise Sagan","Colette","Henri Michaux","Jules Verne","Alphonse Daudet","Pierre Corneille","Jean Racine","Olivier Adam","David Foenkinos","Leïla Slimani","Mathias Énard","Éric-Emmanuel Schmitt"]
+
+            // 5
+            // Géographie
+            cats["Villes"] = ["Annecy","Chambéry","Blois","Albi","Brive-la-Gaillarde","Bayonne","Angoulême","Colmar","Belfort","Saint-Malo","La Roche-sur-Yon","Cholet","Vannes","Quimper","Lorient","Laval","Bourges","Nevers","Auxerre","Troyes","Chalon-sur-Saône","Mâcon","Bourg-en-Bresse","Montauban","Cahors","Rodez","Alès","Sète","Narbonne","Béziers","Carcassonne","Perpignan","Tarbes","Pau","Agen","Bergerac","Libourne","La Rochelle","Rochefort","Saumur","Choisy-le-Roi","Suresnes","Meudon","Amiens","Maisons-Alfort"]
+
+            cats["Fleuves"] = ["Seine","Loire","Rhône","Garonne","Dordogne","Lot","Tarn","Aude","Hérault","Vidourle","Durance","Isère","Drôme","Saône","Doubs","Ain","Allier","Cher","Indre","Vienne","Charente","Adour","Nive","Gave de Pau","Gave d'Oloron","Ariège","Aveyron","Cère","Vézère","Corrèze","Creuse","Gartempe","Mayenne","Sarthe","Huisne","Orne","Touques","Vilaine","Blavet","Odet","Ill","Elorn","Sélune","Rance","Somme"]
+
+            cats["Monuments"] = ["Tour Eiffel","Colisée","Grande Muraille de Chine","Taj Mahal","Pyramides de Gizeh","Machu Picchu","Stonehenge","Acropole d'Athènes","Château de Versailles","Statue de la Liberté","Sagrada Família","Petra","Mont-Saint-Michel","Big Ben","Cathédrale Notre-Dame de Paris","Palais de Buckingham","Angkor Wat","Pétra","Le Parthénon","Chichen Itza","Moai de l'Île de Pâques","Alhambra","Neuschwanstein","Potala","Hagia Sophia","Burj Khalifa","Louvre","Panthéon de Rome","Kremlin","Mont Rushmore","Golden Gate Bridge","Tower of London","Versailles","St. Peter's Basilica","Castel Sant'Angelo","Forbidden City","Mesa Verde","Pont du Gard","Dolmens de Bretagne","Monticello","Brandenburg Gate","Temple d'Abou Simbel","Palais des Doges","Catacombes de Paris","Temple de Karnak","Château de Prague"]
+
+
+            cats["Petits pays"] = ["Monaco","Liechtenstein","Saint-Marin","Malte","Andorre","Luxembourg","Îles Marshall","Saint-Kitts-et-Nevis","Palau","Nauru","Tuvalu","Saint-Vincent-et-les-Grenadines","Grenade","Seychelles","Antigua-et-Barbuda","Barbade","Belize","Comores","Sao Tomé-et-Principe","Îles Salomon","Micronésie","Vanuatu","Bhoutan","Lesotho","Djibouti","Brunei","Cap-Vert","Bahamas","Maldives","Maurice","Kiribati","Tonga","Samoa","Saint-Lucie","Dominique","Timor oriental","Fidji","Malawi","Eswatini","Suriname","Guinée-Bissau","Tchad","Burundi","Rwanda","Trinité-et-Tobago"]
+            cats["Forets et lacs"] = ["Fontainebleau","Compiègne","Vincennes","Chambord","Brocéliande","Orléans","Saint-Germain-en-Laye","Rambouillet","Berce","Tronçais","Halatte","Crau","De la Lande","Paimpont","Landes de Lanvaux","Haye","Joux","Chailluz","Grande Chartreuse","Montmorency","De Bouconne","De la Sainte-Baume","Vouillé","Mervent","Aigoual","De Boulogne","De la Coubre","De Buzet","De Saint-Pée-sur-Nivelle","Domaine de Villarceaux","De la Clarté","De la Truchère","De Saint-Jean","De Sainte-Hélène","De Madine","De Pareloup","De Serre-Ponçon","De Sainte-Croix","De Vouglans","De Gérardmer","De Chalain","De l’Eau d’Heure","De Belle-Croix","De Pontchartrain","De l’Annecy"]
+
+            // Gastronomie
+            // cats["Fromages français"] = ["Camembert","Brie de Meaux","Brie de Melun","Roquefort","Comté","Reblochon","Munster","Maroilles","Cantal","Salers","Laguiole","Saint-Nectaire","Bleu d'Auvergne","Fourme d'Ambert","Fourme de Montbrison","Beaufort","Abondance","Tomme de Savoie","Morbier","Mont d'Or","Époisses","Langres","Chaource","Coulommiers","Pont-l'Évêque","Livarot","Neufchâtel","Ossau-Iraty","Pélardon","Picodon","Banon","Crottin de Chavignol","Sainte-Maure-de-Touraine","Valençay","Rocamadour","Bleu des Causses","Bleu de Gex","Tomme de Corse","Brocciu","Mimolette","Emmental de Savoie","Brillat-Savarin","Boursin","Bleu du Vercors-Sassenage","Tomme des Pyrénées"]
+            
+            // 11
+            cats["Epices"] = ["Poivre","Cannelle","Clou de girofle","Cardamome","Gingembre","Curcuma","Paprika","Piment","Safran","Noix de muscade","Cumin","Coriandre","Fenouil","Anis","Moutarde","Sumac","Fenugrec","Graines de carvi","Graines de sésame","Piment de Cayenne","Piment d'Espelette","Baies de genièvre","Baies roses","Macis","Laurier","Origan","Thym","Romarin","Basilic","Estragon","Sauge","Menthe","Marjolaine","Aneth","Persil","Ciboulette","Curcuma sauvage","Galanga","Asafoetida","Poivre long","Poivre de Sichuan","Paprika fumé","Curry","Graines de nigelle","Chili","Sumac rouge","Zaatar"]
+
+            cats["Bieres"] = ["Kronenbourg 1664","Pelforth Blonde","Pelforth Brune","Pelforth Amber","Jenlain Ambrée","Jenlain Blonde","Fischer Amber","Fischer Tradition","Fischer Bière de Noël","Meteor Pils","Meteor Blanche","Fou’Folle","Bière des Amis","La Choulette Blonde","La Choulette Ambrée", "Duvel","Leffe Blonde","Leffe Brune","Chimay Bleue","Chimay Rouge","Chimay Blanche","Orval","Rochefort 6","Rochefort 8","Rochefort 10","Westmalle Trappist","Westmalle Dubbel","Westvleteren 12","St. Bernardus Abt 12","La Chouffe","Guinness","Fuller's London Pride","Boddingtons","Old Speckled Hen","Newcastle Brown Ale","Bombardier","Timothy Taylor’s Landlord","Adnams Broadside","Black Sheep Ale","Harvey’s Sussex Best Bitter","Young’s Bitter","Shepherd Neame Spitfire","Tetley’s","Wychwood Hobgoblin","London Porter"]
+
+            cats["Fromages"] = ["Cheddar","Parmesan","Gorgonzola","Mozzarella","Brie","Camembert","Roquefort","Emmental","Gruyère","Feta","Manchego","Gouda","Edam","Provolone","Monterey Jack","Havarti","Burrata","Pecorino Romano","Ricotta","Mascarpone","Blue Stilton","Danish Blue","Appenzeller","Reblochon","Taleggio","Saint-Nectaire","Comté","Mimolette","Pont-l'Évêque","Raclette","Tomme de Savoie","Halloumi","Paneer","Queso fresco","Cotija","Idiazabal","Chèvre","Oaxaca","Casu Marzu","Vacherin","Mahon","Jarlsberg","Bel Paese","Brillat-Savarin","Boursin","Fromage de chèvre espagnol"]
+
+            cats["Plats"] = ["Pizza","Pâtes carbonara","Lasagnes","Ratatouille","Bouillabaisse","Coq au vin","Cassoulet","Quiche Lorraine","Boeuf bourguignon","Beckehof","Sushi","Ramen","Tempura","Okonomiyaki","Takoyaki","Curry japonais","Pad Thaï","Tom Yum","Massaman Curry","Biryani","Butter Chicken","Tandoori","Naan","Chili con carne","Tacos","Burrito","Enchiladas","Arepas","Feijoada","Moqueca","Ceviche","Empanadas","Paella","Gazpacho","Tapas","Moussaka","Souvlaki","Dolma","Kebab","Shawarma","Falafel","Hummus","Taboulé","Kimchi","Bibimbap","Pho"]
+
+            cats["Desserts"] = ["Tarte Tatin","Crème brûlée","Éclair au chocolat","Macaron","Profiteroles","Mille-feuille","Clafoutis","Île flottante","Tarte aux pommes","Financier","Madeleine","Paris-Brest","Cannelé","Crêpes","Soufflé au chocolat","Gâteau au chocolat","Gâteau Basque","Opéra","Galette des Rois","Tarte aux fraises","Cheesecake","Brownie","Tiramisu","Panna Cotta","Cannoli","Baklava","Kardinalschnitten","Sachertorte","Apfelstrudel","Churros","Flan","Riz au lait","Kulfi","Gulab Jamun","Mochi","Dorayaki","Brigadeiro","Tres Leches","Pavlova","Lamington","Sticky Toffee Pudding","Banoffee Pie","Donuts","Cupcake","Beignets","Semifreddo"]
+
+            // Musique
+
+            // 16
+            cats["Opéras"] = ["La Traviata","Rigoletto","Aida","Il Trovatore","Don Giovanni","Le Nozze di Figaro","Carmen","La Bohème","Tosca","Madama Butterfly","Turandot","Die Zauberflöte","Fidelio","Der Rosenkavalier","Eugene Onegin","Boris Godounov","The Magic Flute","Pagliacci","Gianni Schicchi","L’Elisir d’Amore","Lucia di Lammermoor","Norma","Macbeth","Otello","La Fille du Régiment","Don Carlo","Falstaff","Manon","Werther","Roméo et Juliette","Thaïs","Les Contes d’Hoffmann","Lakmé","Hänsel und Gretel","Parsifal","Ariadne auf Naxos","Tristan und Isolde","Der Freischütz","Pelléas et Mélisande","Dialogues des Carmélites","Mignon","Orfeo ed Euridice","Alcina","Armide","Semiramide","Die Fledermaus","Nabucco"]
+
+            cats["Groupes de musique"] = ["Rage Against the Machine", "Daft Punk","Air","Indochine","Phoenix","M83","Justice","Les Rita Mitsouko","Noir Désir","Trust","IAM","Shaka Ponk","BB Brunes","Matmatah","Louise Attaque","Tryo","The Beatles","Queen","Led Zeppelin","Pink Floyd","The Rolling Stones","Nirvana","Metallica","U2","Coldplay","Radiohead","The Police","Linkin Park","Red Hot Chili Peppers","Green Day","Imagine Dragons","Maroon 5","Foo Fighters","Muse","Arctic Monkeys","The Killers","Gorillaz","The White Stripes","Kings of Leon","Eagles","The Doors","Oasis","The Strokes","Paramore","Twenty One Pilots"]
+
+            
+            cats["Chansons de Johnny"] = ["Pour ceux qui s'aiment", "Viens danser le twist", "J'ai pleuré sur ma guitare", "Fils de personne", "Retiens la nuit", "J'la croise tous les matins", "Laura", "Requiem pour un fou", "Le chanteur abandonné", "Drôle de métier", "Sang pour sang", "Ça ne change pas un homme", "Je veux te graver dans ma vie", "Hey Joe", "J'ai un problème", "Hey Lovely lady", "Les coups", "Cadillac", "Aimer vivre", "Ma gueule", "Aussi dur que du bois", "Derrière l'amour", "Allumer le feu", "Je te promets", "Que je t'aime", "Diego, libre dans sa tête", "La musique que j'aime", "Le bon temps du rock'n'roll", "Quand revient la nuit", "Ma religion dans son regard", "Elle m'oublie", "Marie", "La fille à qui je pense", "Quelque chose de Tennessee", "Ce que je sais", "Pour moi la vie va commencer", "Ne me quitte pas", "L'idole des jeunes", "Excuse-moi partenaire", "Gabrielle", "Le pénitencier", "Oh ! Ma jolie Sarah", "Elle est terrible", "Tes tendres années", "J'ai oublié de vivre"]
+            cats["Romans"] = ["Les Misérables","Le Comte de Monte-Cristo","Notre-Dame de Paris","Madame Bovary","Germinal","Le Rouge et le Noir","La Débâcle","Les Trois Mousquetaires","La Reine Margot","Bel-Ami","À la recherche du temps perdu","Du côté de chez Swann","Le Père Goriot","Les Liaisons dangereuses","Le Grand Meaulnes","La Condition humaine","La Peste","L'Étranger","L'Amant","Moderato Cantabile","La Nausée","Le Diable au corps","Bonjour tristesse","Le Blé en herbe","L'Assommoir","Thérèse Raquin","Les Rougon-Macquart","Au bonheur des dames","La Chartreuse de Parme","L'Œuvre","Huis clos","Le roi Lear","Les Chants de Maldoror","La Princesse de Clèves","Les Fleurs du mal","Voyage au bout de la nuit","L'Immoraliste","Le Hussard bleu","Rue des Boutiques Obscures","La Modification","L'Homme qui rit","L'étranger","La Délicatesse","Ensemble, c'est tout","L'Élégance du hérisson","L'Amie prodigieuse","Chanson douce","La Vie devant soi"]
+            
+            cats["Contines"] = ["Au clair de la lune","Frère Jacques","Sur le pont d’Avignon","Ah ! vous dirai-je, maman","Une souris verte","Gentil coquelicot","Savez-vous planter les choux","Alouette, gentille alouette","Il était un petit navire","Bateau sur l’eau","Meunier, tu dors","La mère Michel","Promenons-nous dans les bois","Mon âne","Les petits poissons","Tourne, tourne petit moulin","Dansons la capucine","Le bon roi Dagobert","La famille Tortue","Dans la forêt lointaine","Un éléphant qui se balançait","Pomme de reinette et pomme d’api","Compère Guilleri","Il court, il court, le furet","Vive le vent","Petit escargot","Tête, épaules, genoux et pieds","Coucou hibou","Dodo l’enfant do","Savez-vous planter les tomates","Petit papa Noël","La chanson de l’alphabet","Père Castor","Bingo","Le rock de la sorcière","L’araignée Gipsy","Les crocodiles","La fourmi","Ah ! les crocodiles","Petit poucet","La fourmi m’a piqué la main","La marmite","Trois petits chats","Jean de la lune","Une poule sur un mur"]
+
+            // Faune et flore
+
+            // 21
+            cats["Papillons"] = ["Monarque","Machaon","Papilio","Vulcain","Belle-Dame","Citron","Paon-du-jour","Robert-le-Diable","Mélitée du plantain","Azuré commun","Azuré du trèfle","Azuré de la sanguisorbe","Argus bleu","Azuré de la bugrane","Hespérie de la houque","Hespérie du chiendent","Soufré","Petit Soufré","Tircis","Mélitée orangée","Mélitée du mélampyre","Nacré de la ronce","Nacré de la pensée","Nacré de la menthe","Robert-le-Diable tropical","Charaxes","Morpho bleu","Morpho menelaus","Papillon écaille","Graphium","Papilio polyxène","Danaus chrysippus","Heliconius","Idea leuconoe","Aglais io","Cynthia cardui","Colias crocea","Gonepteryx rhamni","Pararge aegeria","Vanessa atalanta","Inachis io","Papilio machaon","Papilio demoleus","Papilio polytes","Papilio memnon"]
+
+            cats["Arbres"] = ["Chêne","Hêtre","Érable","Frêne","Bouleau","Peuplier","Tilleul","Orme","Sapin","Épicéa","Pin","Cèdre","Sequoia","Mélèze","Douglas","Platane","Ailante","Noix","Olivier","Palmier","Baobab","Acacia","Eucalyptus","Cacao","Coffea","Teck","Kauri","Cyprès","Dragonier","Ginkgo","Houppier","Noisetier","Bambou","Figuier","Mûrier","Sorbus","Aulne","Tamaris","Saule","Caryer","Acer negundo","Châtaignier","Iroko","Moringa","Quercus ilex","Carya ovata","Paulownia","Liquidambar","Catalpa"]
+
+            cats["Oiseaux"] = ["Merle","Rouge-gorge","Moineau","Faucon","Hirondelle","Colibri","Aigle","Pigeon","Corbeau","Geai","Grive","Mésange","Pic-vert","Buse","Hibou","Chouette","Canard","Oie","Cygne","Paon","Autruche","Pélican","Flamant rose","Toucan","Perroquet","Ara","Colombe","Pintade","Faisan","Caille","Martin-pêcheur","Albatros","Mouette","Goéland","Cormoran","Héron","Ibis","Vautour","Épervier","Pipit","Merle bleu","Serin","Sittelle","Tangara","Manchot","Émeu"]
+
+            cats["Poissons"] = ["Saumon","Truite","Thon","Morue","Cabillaud","Maquereau","Sardine","Anchois","Hareng","Bar","Loup de mer","Carpe","Brochet","Perche","Sandre","Dorade","Turbot","Flétan","Lieu jaune","Merlan","Raie","Roussette","Thazard","Sériole","Rouget","Mulet","Anguille","Épinoche","Poisson-chat","Gobie","Poisson-lune","Poisson-scie","Poisson-perroquet","Poisson-ange","Clownfish","Mérou","Requin","Vivaneau","Poisson-coffre","Poisson-flûte","Poisson-papillon","Poisson-clown","Poisson-chirurgien","Poisson-lion","Poisson-globe","Arowana"]
+
+            cats["Chats"] = ["Siamois","Persan","Maine Coon","Bengal","British Shorthair","Sphynx","Ragdoll","Norvégien","Siberien","Chartreux","Birman","Scottish Fold","Abyssin","Oriental","Exotic Shorthair","Ocicat","Turc de Van","Turc Angora","Devon Rex","Cornish Rex","Bombay","Balinais","Havana Brown","LaPerm","Manx","Egyptian Mau","Snowshoe","Tonkinese","Korat","Peterbald","Singapura","Ragamuffin","Selkirk Rex","Munchkin","Chausie","Toyger","Oriental Longhair","Serengeti","Cymric","Australian Mist","American Shorthair","American Bobtail","Burmese","Russian Blue","Savannah","Nebelung"]
+
+
+            // Objets et cinémas
+            // 26
+            cats["Objets électroniques"] = ["Smartphone","Tablette","Ordinateur portable","Ordinateur de bureau","Écran","Téléviseur","Enceinte Bluetooth","Casque audio","Écouteurs","Appareil photo","Caméra vidéo","Caméra de surveillance","Routeur","Modem","Imprimante","Scanner","Clavier","Souris","Disque dur externe","SSD","Clé USB","Lecteur DVD","Lecteur Blu-ray","Consoles de jeux","Manette","Montre connectée","Bracelet connecté","Drone","Projecteur","Radio","Radio réveil","Microphone","Amplificateur","Mixeur audio","Station d’accueil","Chargeur","Batterie externe","Lampes LED intelligentes","Thermostat connecté","Aspirateur robot","Réfrigérateur intelligent","Machine à café connectée","Four à micro-ondes","Cafetière électrique","Climatiseur connecté","Tondeuse robot"]
+
+            cats["Objets non électroniques"] = ["Chaise","Table","Lit","Armoire","Commode","Canapé","Fauteuil","Bibliothèque","Étagère","Coffre","Miroir","Tapis","Rideau","Coussin","Couverture","Plaid","Vaisselle","Assiette","Bol","Tasse","Verre","Casserole","Poêle","Plat","Cuillère","Fourchette","Couteau","Saladier","Planche à découper","Torchon","Panier","Sac","Boîte","Cartable","Cahier","Stylo","Crayon","Gomme","Livre","Vase","Bougie","Scie","Marteau","Parapluie","Sac à dos","Panier à linge","Brosse"]
+
+            cats["Films"] = ["Le Fabuleux Destin d’Amélie Poulain","La Haine","Intouchables","Les Choristes","Léon","Le Grand Bleu","La Vie est Belle","Les 400 Coups","Pierrot le Fou","La Dolce Vita","Cinema Paradiso","Forrest Gump","Titanic","Gladiator","Inception","The Dark Knight","Pulp Fiction","Fight Club","The Matrix","Interstellar","Avatar","Star Wars","Return of the Jedi","The Godfather","The Godfather Part II","Casablanca","Citizen Kane","Back to the Future","Jurassic Park","The Lord of the Rings","Harry Potter à l’école des sorciers","La La Land","Mad Max: Fury Road","Parasite","Joker","Once Upon a Time in Hollywood","Whiplash","Birdman","Moonlight","Her","The Social Network","Drive","The Shawshank Redemption","Schindler’s List","La Ligne Verte","Les Misérables","Amadeus","Apocalypse Now"]
+
+            cats["Séries"] = ["Friends","Breaking Bad","Game of Thrones","Stranger Things","The Walking Dead","The Big Bang Theory","How I Met Your Mother","Sherlock","The Crown","Westworld","House of Cards","Vikings","Peaky Blinders","Dexter","Lost","Grey’s Anatomy","Narcos","Money Heist","Dark","Mindhunter","Better Call Saul","The Mandalorian","WandaVision","Loki","Hawkeye","Fargo","True Detective","The Witcher","Umbrella Academy","Riverdale","Sex Education","Elite","Squid Game","Bojack Horseman","Rick and Morty","Avatar: The Last Airbender","Breaking Bad (franchise)","Kaamelott","Engrenages","Dix pour cent","Les Revenants","Un Village Français","Plus Belle la Vie","Baron Noir","Spiral","Les Bracelets Rouges"]
+
+
+            cats["Captaine Marleau et HPI"] = ["Philippe Muir","Le domaine des sœurs Meyer","Les mystères de la foi","Brouillard en thalasso","En trompe l'œil","La nuit de la lune rousse","À ciel ouvert","Chambre avec vue","La mémoire enfouie","Sang et lumière","Le jeune homme et la mort","Double jeu","Roseaux noirs","Ne plus mourir jamais","Une voix dans la nuit","Grand huit","Quelques maux d'amour","Pace e salute","Veuves mais pas trop","L'arbre aux esclaves","La reine des glaces","Au nom du fils","La cité des âmes en peine","Deux vies","Claire obscure","L'homme qui brûle","Morte saison","Le prix à payer","La der des der","Follie's","Héros malgré lui","Grand Hôtel","À contre-courant","L'Ami français","Le secret d'Alba","La septième danse","L'Amiral","Compagnon","Port d'attache","Vents d'ouest","Coutume malgache","Colin-maillard","Phyllobates terribilis","Tel maître, tel chien","Hep et Soja","Cocktail Molotov","Homme de peu de foi","2300 calories","Chelou/pas chelou","Made in France"]
+
+
+            // 31
+            cats["Sports"] = ["Football","Basketball","Tennis","Tennis de table","Handball","Rugby","Volley-ball","Golf","Baseball","Softball","Cricket","Hockey sur gazon","Hockey sur glace","Natation","Plongée","Water-polo","Surf","Ski alpin","Ski de fond","Snowboard","Patinage artistique","Patinage de vitesse","Athlétisme","Course à pied","Marathon","Triathlon","Cyclisme sur route","VTT","BMX","Escrime","Judo","Karate","Taekwondo","Boxe","Lutte","Gymnastique artistique","Gymnastique rythmique","Badminton","Squash","Tir à l’arc","Tir sportif","Voile","Aviron","Kayak","Escalade","Rugby à XIII"]
+
+            cats["Magasins vetements"] = ["H&M","Zara","Uniqlo","Gap","Mango","Bershka","Pull & Bear","Stradivarius","C&A","Promod","Etam","Sandro","Maje","The Kooples","Celio","Pimkie","Jennyfer","La Halle","Kiabi","Monoprix","Lacoste","Ralph Lauren","Tommy Hilfiger","Levi’s","Nike","Adidas","Puma","New Balance","Reebok","Converse","Superdry","Diesel","Armani Exchange","Calvin Klein","Burberry","Gucci","Prada","Louis Vuitton","Chanel","Hermès","Patagonia","North Face","Columbia","Jack & Jones","Massimo Dutti","Forever 21","Abercrombie & Fitch"]
+
+            cats["Vetements"] = ["T-shirt","Chemise","Blouse","Pantalon","Jean","Short","Jupe","Robe","Pull","Gilet","Sweat-shirt","Hoodie","Veste","Blouson","Manteau","Trench","Parka","Imperméable","Costume","Tailleur","Smoking","Tunique","Cardigan","Châle","Écharpe","Foulard","Cravate","Ceinture","Casquette","Chapeau","Bonnet","Gants","Moufles","Chaussettes","Collants","Legging","Pyjama","Peignoir","Combinaison","Salopette","Body","Débardeur","Bermuda","Veste en jean","Veste en cuir","Poncho","Cape"]
+
+            cats["Animaux jeunes"] = ["Lionceau","Tigreau","Éléphanteau","Rhinocérosceau","Girafeau","Zébreau","Hippopotameau","Oursin","Louveteau","Renardeau","Lynxon","Panthèreau","Jaguarceau","Pumon","Chiot","Chaton","Poulain","Ânon","Veau","Agneau","Chevreau","Porcelet","Bicheton","Élanon","Bisonneau","Gorilleau","Chimpanzéon","Orang-outan bébé","Babouinon","Capucinon","Paresseuxon","Tatouon","Kangourouau","Koala bébé","Hyénon","Suricateau","Raton laveau","Porc-épic bébé","Écureuilon","Hérissonon","Lapereau","Lièvreau","Chouetteau","Cygneau","Autruchon","Daillon"]
+
+            cats["Insectes"] = ["Névroptère", "Abeille","Guêpe","Mouche","Moustique","Fourmi","Coccinelle","Mite","Criquet","Sauterelle","Grillon","Termite","Libellule","Doryphore","Scarabée","Charançon","Phasme","Sphinx","Tipule","Cicadelle","Cigale","Perce-oreille","Mouche tsé-tsé","Ténébrion","Mouche à fruit","Syrphe","Bombyle","Frelon","Hanneton","Mante religieuse","Lucane","Galle","Chrysope","Scolopendre","Fourmilion","Cochylis","Zygène","Cercopis","Blatte","Mouche scie","Sauterelle des bois","Phyllie","Tipule géante","Staphylin","Carabe"]
+
+
+            // 36
+            cats["Jours feriés"] = ["Nouvel An","An Chinois","Diwali","Noël","Indépendance","Victoire","Rosh Hashanah","Yom Kippour","Hanukkah","Eid al-Fitr","Eid al-Adha","Golden Week","Boxing","Paques","Chuseok","Songkran","Republic","Constitution","Cinco de Mayo","An Éthiopien","Nowruz","Merdeka","ANZAC","Waitangi","Saint-Patrick","Guy Fawkes","Victoria","Australien","Pâques","Lent","Ascension","Pentecôte","Toussaint","Assomption","Holi","Vesak","Roi","Saint-Sylvestre","Lunar New Year","Mid-Autumn","Harvest","Carnaval","Jour des Morts","Imbolc","Mabon","Solstice d'hiver"]
+
+            cats["Argot"] = ["Meuf","Mec","Bagnole","Fringues","Thune","Pognon","Fric","Flouze","Taf","Bosser","Blé","Radin","Clopes","Mouiller","Se casser","Se barrer","Se fader","Se taper","Galérer","Kiffer","Chiant","Relou","Boulot","Foutre","Se planter","Flic","Gosse","Nana","Caisse","Daron","Daronne","Gueule","Bouffer","Se marrer","Clope","Pote","Zarbi","Truc","Bidon","Cagole","Pécho","Tocard","Choper","Se tirer","Foutoir","Barjo"]
+
+            cats["Os et organes"] = ["Cranium","Mandibule","Clavicule","Scapula","Sternum","Côtes","Humérus","Radius","Ulna","Pouce","Métacarpe","Phalanges main","Fémur","Tibia","Fibula","Tarse","Métatarse","Phalanges pied","Vertèbre cervicale","Vertèbre thoracique","Vertèbre lombaire","Sacrum","Coccyx","Os iliaque","Os pubien","Os ischion","Cerveau","Cœur","Poumons","Foie","Estomac","Intestin grêle","Gros intestin","Reins","Vessie","Pancréas","Rate","Thyroïde","Parathyroïde","Hypophyse","Hypothalamus","Œil","Oreille interne","Peau","Muscle squelettique","Muscle cardiaque"]
+            
+            cats["Lois et droits"] = ["Civil","Pénal","Travail","Route","Santé publique","Environnement","Fiscal","Commerce","Famille","Éducation","Protection des données","Liberté de la presse","Égalité homme-femme","Mariage","Divorce","Adoption","Asile","Sécurité sociale","Propriété intellectuelle","Brevets","Marques","Droit d’auteur","Internet","Cybersécurité","Anti-corruption","Protection des consommateurs","Sécurité routière","Défense nationale","Commerce international","Électorale","Liberté religieuse","Travail des enfants","Protection des animaux","Immigration","Santé mentale","Énergie","Logement","Mineurs","Eau","Air et pollution","Taxes","Vie privée","Logement social","Consommation","Drogues","Numérique"]
+            
+            cats["Betes mythologiques"] = ["Dragon","Phénix","Griffon","Licorne","Chimère","Hydre","Minotaure","Vampire","Cyclope","Sirène","Valkyrie","Cerbère","Gorgone","Loup-garou","Hippogriffe","Kelpie","Kraken","Yéti","Golem","Troll","Lutin","Fée","Nymphe","Satyr","Faune","Djinn","Ankou","Quetzalcoatl","Banshee","Wendigo","Kitsune","Tengu","Charybde","Scylla","Hippocampe","Selkie","Pégase","Manticore","Bunyip","Pontianak","Rakshasa","Jörmungandr","Ammit","Tarasque","Camazotz","Naga"]
+            
+            // 41
+            cats["Prépositions"] = ["À","Chez","Dans","Sur","Sous","Devant","Derrière","Entre","Par","Pour","Avec","Sans","Vers","En","Depuis","Pendant","Avant","Après","Contre","Malgré","Grâce à","Au-dessus de","Au-dessous de","Près de","Loin de","Autour de","Auprès de","Selon","D’après","Hors de","Au lieu de","À côté de","Envers","Outre","Quant à","Parmi","Excepté","Y compris","Au sujet de","Face à","Environ","Versus","Durant","Selon que","Suivant"]
+
+            cats["Objets géométriques"] = ["Cercle","Carré","Triangle","Rectangle","Losange","Trapèze","Parallélogramme","Pentagone","Hexagone","Heptagone","Octogone","Nonagone","Décagone","Ellipse","Oval","Cube","Pavé","Prisme","Cylindre","Cône","Sphère","Tore","Pyramide","Icosaèdre","Dodecaèdre","Tétraèdre","Octaèdre","Cercle inscrit","Cercle circonscrit","Segment","Rayon","Diamètre","Arc","Chord","Angle","Diagonale","Médiatrice","Bissectrice","Polygone régulier","Polygone irrégulier","Courbe","Surface","Plan","Point","Vecteur","Triangle équilatéral"]
+
+            cats["Fleurs"] = ["Rose","Tulipe","Lys","Marguerite","Orchidée","Violette","Pivoine","Camélia","Jonquille","Tournesol","Chrysanthème","Géranium","Hibiscus","Dahlia","Lavande","Iris","Freesia","Anémone","Mimosa","Fuchsia","Bleuet","Coquelicot","Jacinthe","Capucine","Pâquerette","Œillet","Bégonia","Magnolia","Clématite","Azalée","Lotus","Amaryllis","Camomille","Hortensia","Cyclamen","Muguet","Glycine","Passiflore","Jacaranda","Primula","Souci","Pensée","Véronique","Aubépine","Hellebore","Lilas"]
+            
+            cats["BD"] = ["Astérix","Obélix","Idéfix","Lucky Luke","Jolly Jumper","Tintin","Milou","Capitaine Haddock","Professeur Tournesol","Spirou","Fantasio","Gaston Lagaffe","Marsupilami","Blueberry","Corto Maltese","Rahan","Thorgal","Kriss de Valnor","Valérian","Laureline","Alix","Lara","Blake","Mortimer","Bob Morane","Yakari","Petit Spirou","Titeuf","Zig et Puce","Boule","Bill","Gaston","Oumpah-Pah","Barbe-Rouge","Achille Talon","Dalton","Bécassine","Les Schtroumpfs","Gargamel","Assurancetourix","Spiderman","Batman","Superman","Iron Man","Capitaine America"]
+
+            cats["Pierres"] = ["Diamant","Rubis","Émeraude","Saphir","Améthyste","Topaze","Citrine","Grenat","Perle","Onyx","Jade","Turquoise","Opale","Quartz","Agate","Aventurine","Lapis-lazuli","Corail","Ambre","Hématite","Pyrite","Malachite","Obsidienne","Pierre de lune","Pierre de soleil","Chrysocolle","Calcite","Fluorine","Sodalite","Tourmaline","Spinelle","Zircon","Kunzite","Béryl","Morganite","Andalousite","Iolite","Tanzanite","Chrysoprase","Serpentine","Cobaltite","Péridot","Spinelle noir","Pierre de lave","Onyx noir","Cornaline"]
+
+            // Functions
+            
+            function deselect() {
+              if (selected != 0) {
+                selected.style = "";
+                selected = 0;
+                document.getElementById("deselect").disabled = true;
+              }
+            }
+            
+            function stringToLightColor(str) {
+              let hash = 0;
+              for (let i = 0; i < str.length; i++) {
+                hash = str.charCodeAt(i) + ((hash << 5) - hash);
+              }
+
+              const h = Math.abs(hash) % 360;
+              const s = 70;
+              const l = 80 + (Math.abs(hash) % 10); 
+
+              const lDev = l / 100;
+              const a = (s * Math.min(lDev, 1 - lDev)) / 100;
+  
+              const f = (n) => {
+                const k = (n + h / 30) % 12;
+                const color = lDev - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+                return Math.round(255 * color).toString(16).padStart(2, "0");
+              };
+
+              return `#${f(0)}${f(8)}${f(4)}`;
+            }
+            
+            function getRandomHexColor() {
+              return '#' + Math.floor(Math.random() * 16777215).toString(16);
+            }
+            
+            function finishCategory(b) {
+              b.innerHTML  =  '<b>' + b.category + '</b>';
+              b.disabled = true;
+              b.style.background= stringToLightColor(b.category);
+            }
+            
+            function checkCategories() {
+              const wordDict = new Map();
+              // Check that each category has 45 entries.
+              for (const [key, value] of Object.entries(cats)) {
+                if (value.length < 45) {
+                  alert(`Entry for ${key} has length ${value.length}`);
+                }
+                for (let i = 0; i < 45; i++) {
+                  wordlist.push([value[i], key]);
+                  if (wordDict.has(value[i])) {
+                      alert(`Duplicate word ${value[i]}`);
+                  }
+                  else {
+                      wordDict.set(value[i], true);
+                  }
+                }
+              }
+            }
+            
+            function shuffleArray(array) {
+              for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+              }
+            }
+            
+            function saveState() {
+                localStorage.clear();
+                
+                localStorage.setItem('score', score + '');
+                localStorage.setItem('mistakes', mistakes + '');
+                
+                var t = document.getElementById('the_table');
+                for (let i = 0; i < t.rows.length; i++) {
+                  let row = t.rows[i];
+                  for (let j = 0; j < row.cells.length; j++) {
+                    let cell = row.cells[j];
+                    let button = cell.firstChild;
+                    localStorage.setItem(`${i}_${j}_category`, button.category);
+                    localStorage.setItem(`${i}_${j}_cluster`, JSON.stringify(button.cluster));
+                    localStorage.setItem(`${i}_${j}_innerHTML`, button.innerHTML);
+                    localStorage.setItem(`${i}_${j}_title`, button.title);
+                  }
+                }
+                
+            }
+            
+            function putWordsInBoard() {
+              shuffleArray(wordlist);
+              var currentWordIndex = 0;
+              var table = document.getElementById("the_table");
+              for (let i = 0, row; row = table.rows[i]; i++) {
+                for (let j = 0, col; col = row.cells[j]; j++) {
+                  var button = col.firstElementChild;
+                  // button.pos = currentWordIndex;
+                  button.textContent = wordlist[currentWordIndex][0];
+                  button.category = wordlist[currentWordIndex][1];
+                  button.cluster = [button.textContent];
+                  currentWordIndex += 1;
+                }
+              }
+            }
+            
+            function startFireworks() {
+              const canvas = document.getElementById('fireworks');
+              const ctx = canvas.getContext('2d');
+              let w, h;
+              let particles = [];
+              let fireworks = [];
+
+              function resize() {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+              }
+              window.addEventListener('resize', resize);
+              resize();
+
+              class Firework {
+                constructor() {
+                    this.x = Math.random() * w;
+                    this.y = h;
+                    this.tx = Math.random() * w;
+                    this.ty = Math.random() * (h / 2);
+                    this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    this.speed = 2 + Math.random() * 2;
+                    this.angle = Math.atan2(this.ty - this.y, this.tx - this.x);
+                    this.vx = Math.cos(this.angle) * this.speed;
+                    this.vy = Math.sin(this.angle) * this.speed;
+                    this.exploded = false;
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.vy < 0 && this.y < this.ty) {
+                        this.explode();
+                    } else if (this.vy > 0 && this.y > this.ty) { // Should technically not happen with simple upward movement
+                         this.explode();
+                    }
+                }
+
+                explode() {
+                    this.exploded = true;
+                    for (let i = 0; i < 50; i++) {
+                        particles.push(new Particle(this.x, this.y, this.color));
+                    }
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
+              }
+
+              class Particle {
+                constructor(x, y, color) {
+                    this.x = x;
+                    this.y = y;
+                    this.color = color;
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = Math.random() * 3;
+                    this.vx = Math.cos(angle) * speed;
+                    this.vy = Math.sin(angle) * speed;
+                    this.alpha = 1;
+                    this.decay = Math.random() * 0.015 + 0.005;
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.vy += 0.05; // gravity
+                    this.alpha -= this.decay;
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.alpha;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                    ctx.restore();
+                }
+              }
+
+              function loop() {
+                // Clear with a trail effect
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; 
+                ctx.fillRect(0, 0, w, h);
+                ctx.globalCompositeOperation = 'lighter';
+
+                // Launch new firework randomly
+                if (Math.random() < 0.05) {
+                    fireworks.push(new Firework());
+                }
+
+                // Update and draw fireworks
+                for (let i = fireworks.length - 1; i >= 0; i--) {
+                    fireworks[i].update();
+                    fireworks[i].draw();
+                    if (fireworks[i].exploded) {
+                        fireworks.splice(i, 1);
+                    }
+                }
+
+                // Update and draw particles
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    particles[i].update();
+                    particles[i].draw();
+                    if (particles[i].alpha <= 0) {
+                        particles.splice(i, 1);
+                    }
+                }
+
+                requestAnimationFrame(loop);
+              }
+
+              loop();
+            }
+            
+            function setUpBoard() {
+              // Just sets up the dom elements; does not put words in them.
+              var b = document.getElementById("board");   
+              const table = document.createElement('table');
+              table.id = 'the_table';
+              for (let i = 0; i < M; i++) {
+                const tr = document.createElement('tr');
+                tr.classList.add('.row');
+                for (let j = 0; j < M; j++) {
+                   const td = document.createElement('td');
+                   td.class = "bigbut";
+                   const button = document.createElement('button');
+                   button.class = "bigbut"
+                   button.onclick = function() {
+                       if (selected == button) {
+                         deselect();
+                         return;
+                       }
+                       button.style = "filter: invert(100%)";
+                       
+                       if (selected == 0) {
+                           selected = button;
+                           document.getElementById("deselect").disabled = false;
+                           return;
+                       }
+                       
+                       document.getElementById("deselect").disabled = true;
+
+                       if (button.category == selected.category) {
+                         
+                         firstbut = button;
+                         secondbut = selected;
+                         
+                         // Deselect
+                         selected.style = "";
+                         button.style = "";
+                         selected = 0;
+                         score = score + 1;
+                         
+                         // Merge
+                         firstbut.cluster = firstbut.cluster.concat(secondbut.cluster);
+                         // console.log(firstbut.cluster);
+                         if (firstbut.cluster.length == 2) {
+                           firstbut.innerHTML = '<b>' + firstbut.cluster.join('; ') + '</b>';
+                         } else {
+                           firstbut.innerHTML = '<b>' + firstbut.cluster.slice(0, 2).join(', ') + ', ... <span class="red">[' + firstbut.cluster.length + ']</span></b>';
+                           firstbut.title = firstbut.cluster.join('\n');
+                         }
+                         if (firstbut.cluster.length == 45) {
+                             finishCategory(firstbut);
+                         }
+                         
+                         document.getElementById("score").textContent = score;
+                         // Remove the button for the eliminated word.
+                         secondbut.title = '';
+                         // if (currentWordIndex < wordlist.length) {
+                         //  secondbut.textContent = wordlist[currentWordIndex][0];
+                         //  secondbut.category = wordlist[currentWordIndex][1];
+                         // secondbut.cluster = [secondbut.textContent];
+                         //  currentWordIndex += 1;
+                         // } else {
+                             secondbut.textContent = '';
+                             secondbut.disabled = true;
+                             
+                             // Remove not just the button but the entire <td>.
+                             secondbut.parentElement.remove();
+                        // }
+                         
+                       } else {
+                         mistakes = mistakes + 1;
+                         document.getElementById("mistakes").textContent = mistakes;
+                         // Shake it
+                         button.classList.add('shake');
+                         selected.classList.add('shake');
+                         
+                         button.addEventListener('animationend', () => {
+                           button.classList.remove('shake');
+                           button.style = "";
+                         }, { once: true });
+  
+                         old_selected = selected;
+                         old_selected.addEventListener('animationend', () => {
+                           old_selected.classList.remove('shake');
+                           old_selected.style = "";
+                         }, { once: true });
+  
+                         selected = 0;
+                       }
+                       saveState();
+                       if (score == 1980) {
+                           window.alert("You win!!");
+                           startFireworks();
+                       }
+                   };
+                   td.appendChild(button);
+                   tr.appendChild(td);
+                }
+                table.appendChild(tr);
+              }
+              
+              document.getElementById("board").appendChild(table);
+            }
+            
+            function loadState() {
+                s = localStorage.getItem('score');
+                if (s == null) {
+                    putWordsInBoard();
+                    return;
+                }
+                score = Number(s);
+                document.getElementById("score").textContent = score;
+                
+                s = localStorage.getItem('mistakes');
+                if (s == null) {
+                    putWordsInBoard();
+                    return;
+                }
+                mistakes = Number(s);
+                document.getElementById("mistakes").textContent = mistakes;
+                
+                var currentWordIndex = 0;
+                var table = document.getElementById("the_table");
+                var cells_to_remove = [];
+                for (let i = 0, row; row = table.rows[i]; i++) {
+                  for (let j = 0, col; col = row.cells[j]; j++) {
+                    var button = col.firstElementChild;
+                    // button.pos = currentWordIndex;
+                    button.category = localStorage.getItem(`${i}_${j}_category`);
+                    button.cluster = JSON.parse(localStorage.getItem(`${i}_${j}_cluster`));
+                    if (Array.isArray(button.cluster) && button.cluster.length == 45) {
+                        finishCategory(button);
+                    }
+                    button.innerHTML = localStorage.getItem(`${i}_${j}_innerHTML`);
+                    button.title = localStorage.getItem(`${i}_${j}_title`);
+                    currentWordIndex += 1;
+                    if (button.innerHTML == '') {
+                        // No word here, remove the whole <td>
+                        cells_to_remove.push(col);
+                    }
+                  }
+                }
+                for (let i = 0; i < cells_to_remove.length; i++) {
+                    cells_to_remove[i].remove();
+                }
+            }
+            
+            checkCategories();
+            setUpBoard();
+            loadState();
+        </script>
+
+</html>
