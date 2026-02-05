@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+
+    <!-- 2025 by Thomas Colthurst -->
+    <!-- Original at https://thomaswc.com/2025.html -->
+    <!-- Released under a Creative Commons Share Alike with Attribution License -->
+    <!-- See https://creativecommons.org/licenses/by-sa/4.0/ -->
+    <title>2026</title>
+    <style>
+        body {
+  background-color: white; /* Or #fff or #ffffff */
+}
+
+.bigbut {
+width:100%; height:100%; display:block;
+}
+
+.shake {
+  animation: shake 0.5s;
+  animation-iteration-count: 1;
+}
+
+.numCirc {
+    border-radius: 70%;
+    background: white; /* #fff; */
+    border: 2px solid red; /* #666; */
+    color: red; /* #666; */
+    text-align: center;
+}
+
+.red {
+  color: red;
+}
+
+.floating {
+    position: fixed;
+    z-index: 999;
+    background-color: lightblue;
+}
+
+#fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+@keyframes shake {
+  0% { transform: translateX(1px) rotate(0deg); }
+  10% { transform: translateX(-1px) rotate(-1deg); }
+  20% { transform: translateX(-3px) rotate(1deg); }
+  30% { transform: translateX(3px) rotate(0deg); }
+  40% { transform: translateX(1px) rotate(1deg); }
+  50% { transform: translateX(-1px) rotate(-1deg); }
+  60% { transform: translateX(-3px) rotate(0deg); }
+  70% { transform: translateX(3px) rotate(-1deg); }
+  80% { transform: translateX(-1px) rotate(1deg); }
+  90% { transform: translateX(1px) rotate(0deg); }
+  100% { transform: translateX(1px) rotate(-1deg); }
+}
+    </style>
+  </head>
+
+    <body>
+        <canvas id="fireworks"></canvas>
+<div class="floating">
+   Make 45 groups of 45!  (By combining two at a time.) &nbsp;
+   Score: <span id="score">0</span> &nbsp; Mistakes: <span id="mistakes">0</span> &nbsp;
+    <button type="button" id="deselect" style="" disabled onclick="deselect()">Deselect</button>
+</div>
+<div style="padding-top: 16px; position: absolute" id="board"></div>
+
+    </body>
+        <script>
+        // Bugs: 
+        // 1) Unicode not rendering properly inside buttons on Chrome.
+        // Feature requests:
+        // 1) Don't penalize already guessed.
+        
+        // Globals
+        const M = 45;  // Board size
+            
+        var score = 0;
+        var mistakes = 0;
+        
+        var selected = 0;  // The currently selected button, if any.
+        
+        var wordlist = [];  // Actually, a list of (word, category) pairs
+    
+
+        // The categories.
+        
+        var cats = {};
+            
+            
+            cats["Metro"] = ["Chatelet","Bastille","Republique","Nation","Gare du Nord","Gare de l'Est","Saint-Lazare","Opera","Madeleine","Concorde","Tuileries","Louvre-Rivoli","Hotel de Ville","Pont Neuf","Les Halles","Palais Royal","Pyramides","Franklin D. Roosevelt","Champs-Elysees Clemenceau","Invalides","Montparnasse","Denfert-Rochereau","Place d'Italie","Bercy","Cour Saint-Emilion","Bibliotheque Francois Mitterrand","Olympiades","Tolbiac","Gobelins","Jussieu","Cluny La Sorbonne","Odeon","Saint-Germain-des-Pres","Sevres Babylone","Vavin","Raspail","Alesia","Porte d'Orleans","Porte d'Italie","Porte de Choisy","Belleville","Menilmontant","Pere Lachaise","Gambetta","Porte de Bagnolet"]
+
+            cats["Outils"] = ["Marteau", "Tournevis", "Clé plate", "Clé à molette", "Perceuse", "Visseuse", "Scie", "Scie sauteuse", "Scie circulaire", "Pince", "Pince coupante", "Pince multiprise", "Niveau à bulle", "Mètre ruban", "Cutter", "Lime", "Rabot", "Burin", "Ciseau à bois", "Maillet", "Étau", "Serre-joint", "Clé Allen", "Clé à pipe", "Clé dynamométrique", "Tournevis plat", "Tournevis cruciforme", "Meuleuse", "Ponceuse", "Chalumeau", "Pistolet à colle", "Agrafeuse", "Compresseur", "Pistolet à peinture", "Multimètre", "Fer à souder", "Décapeur thermique", "Scie à métaux", "Massette", "Pioche", "Pelle", "Bêche", "Râteau", "Sécateur", "Tronçonneuse"]
+
+            cats["Couleurs"] = ["Rouge", "Bleu", "Vert", "Jaune", "Orange", "Violet", "Rose", "Noir", "Blanc", "Gris", "Marron", "Beige", "Turquoise", "Cyan", "Magenta", "Pourpre", "Bordeaux", "Fuchsia", "Lavande", "Indigo", "Ocre", "Kaki", "Corail", "Saumon", "Ivoire", "Crème", "Chocolat", "Cuivre", "Bronze", "Or", "Argent", "Émeraude", "Saphir", "Rubis", "Topaze", "Ambre", "Aubergine", "Menthe", "Pistache", "Citron", "Carmin", "Azur", "Ardoise", "Taupe", "Anis"]
+
+            cats["Instruments"] = ["Piano", "Basse", "Violon", "Alto", "Violoncelle", "Contrebasse", "Flûte", "Flûte traversière", "Clarinette", "Hautbois", "Basson", "Saxophone", "Trompette", "Trombone", "Guitare électrique", "Cor", "Accordéon", "Harmonica", "Harpe", "Mandoline", "Banjo", "Ukulélé", "Batterie", "Tambour", "Xylophone", "Marimba", "Vibraphone", "Triangle", "Cymbales", "Castagnettes", "Maracas", "Djembé", "Congas", "Bongos", "Timbales", "Synthétiseur", "Orgue", "Clavecin", "Oud", "Sitar", "Koto", "Shamisen", "Balalaïka", "Didgeridoo", "Cornemuse"]
+
+            cats["Inventions"] = ["Roue", "Écriture", "Imprimerie", "Boussole", "Poudre à canon", "Papier", "Horloge", "Machine à vapeur", "Électricité", "Ampoule", "Télégraphe", "Téléphone", "Sylex", "Télévision", "Moteur à combustion", "Automobile", "Avion", "Fusée", "Satellite", "Ordinateur", "Internet", "Microprocesseur", "Smartphone", "GPS", "Laser", "Radar", "Réfrigérateur", "Machine à laver", "Aspirateur", "Vaccin", "Pénicilline", "Anesthésie", "Moulin à eau", "IRM", "Plastique", "Batterie électrique", "Panneau solaire", "Énergie nucléaire", "Impression 3D", "Intelligence artificielle", "Robot", "Ascenseur", "Pont suspendu", "Gratte-ciel", "Sous-marin"]
+
+
+            cats["Météo"] = ["Pluie", "Neige", "Grêle", "Bruine", "Orage", "Foudre", "Tonnerre", "Vent", "Bourrasque", "Tempête", "Ouragan", "Cyclone", "Typhon", "Tornade", "Brouillard", "Brume", "Gel", "Givre", "Verglas", "Canicule", "Vague de froid", "Sécheresse", "Inondation", "Averse", "Nuage", "Cumulonimbus", "Arc-en-ciel", "Halo", "Éclair", "Neige fondue", "Pluie verglaçante", "Poussière saharienne", "Tempête de sable", "Tempête de neige", "Blizzard", "Mousson", "Éclair de chaleur", "Brouillard givrant", "Rosée", "Gelée blanche", "Chasse-neige", "Vents catabatiques", "Vents alizés", "Dépression", "Anticyclone"]
+
+            cats["Constellations"] = ["Andromède", "Orion", "Grande Ourse", "Petite Ourse", "Cassiopée", "Céphée", "Persée", "Pégase", "Bélier", "Taureau", "Gémeaux", "Cancer", "Lion", "Vierge", "Balance", "Scorpion", "Sagittaire", "Capricorne", "Verseau", "Poissons", "Serpentaire", "Aigle", "Cygne", "Lyre", "Bouvier", "Couronne boréale", "Hercule", "Cocher", "Dragon", "Dauphin", "Petit Cheval", "Autel", "Loup", "Centaure", "Croix du Sud", "Hydre", "Coupe", "Corbeau", "Sextant", "Compas", "Règle", "Phénix", "Toucan", "Paon", "Caméléon"]
+
+            cats["Anciens peuples"] = ["Sumériens", "Akkadiens", "Babyloniens", "Assyriens", "Allamans", "Élamites", "Mycéniens", "Minoens", "Phéniciens", "Carthaginois", "Suèves", "Gaulois", "Celtes", "Pictes", "Daces", "Goths", "Vandales", "Huns", "Ostrogoths", "Wisigoths", "Franks", "Sarmates", "Scythes", "Parthes", "Mèdes", "Perses achéménides", "Médes", "Nabataeans", "Araméens", "Étrusques", "Ioniens", "Lydiens", "Lyciens", "Kouros", "Burgondes", "Nubiens de Méroé", "Hittites", "Sassanides", "Maurya", "Gupta", "Tang", "Maya", "Aztèques", "Incas", "Toltèques", "Chimú", "Nazca", "Moche"]
+
+            cats["Anges et démons"] = ["Michel", "Gabriel", "Raphaël", "Uriel", "Raguel", "Samaël", "Azraël", "Jophiel", "Chamuel", "Zadkiel", "Barachiel", "Metatron", "Sandalphon", "Raziel", "Ariel", "Remiel", "Sariel", "Jeremiel", "Aniel", "Cassiel", "Baal", "Lucifer", "Asmodée", "Belzébuth", "Léviathan", "Mammon", "Astaroth", "Lilith", "Baphomet", "Méphistophélès", "Abaddon", "Beelzebub", "Satan", "Belial", "Pazuzu", "Dagon", "Azazel", "Nergal", "Orcus", "Buer", "Valak", "Vassago", "Aamon", "Furfur", "Andras", "Seere"]
+
+            cats["Capitales"] = ["Paris", "Londres", "Berlin", "Madrid", "Rome", "Lisbonne", "Bruxelles", "Amsterdam", "Vienne", "Athènes", "Oslo", "Stockholm", "Copenhague", "Helsinki", "Dublin", "Edimbourg", "Warsaw", "Prague", "Budapest", "Bucarest", "Sofia", "Belgrade", "Zagreb", "Ljubljana", "Vilnius", "Riga", "Tallinn", "Moscou", "Kiev", "Minsk", "Ankara", "Istanbul", "Téhéran", "Bagdad", "Damas", "Le Caire", "Riyad", "Abu Dhabi", "Dubaï", "Tel Aviv", "Amman", "Beirut", "Tunis", "Alger", "Rabat", "Tripoli", "Nouakchott"]
+
+
+            cats["Philosophie"] = ["Être", "Devenir", "Existence", "Essence", "Conscience", "Axiome", "Liberté", "Déterminisme", "Responsabilité", "Moralité", "Éthique", "Justice", "Vérité", "Savoir", "Opinion", "Raison", "Logique", "Dialectique", "Métaphysique", "Ontologie", "Épistémologie", "Esthétique", "Beauté", "Art", "Sublime", "Bonheur", "Sens de la vie", "Nihilisme", "Absurde", "Existentialisme", "Humanisme", "Rationalisme", "Empirisme", "Idéalisme", "Matérialisme", "Monisme", "Dualisme", "Âme", "Consilience", "Temps", "Espace", "Nature", "Culture", "Pouvoir", "Solipsisme", "État", "Contrat social"]
+
+            cats["Philosophes"] = ["Platon", "Aristote", "Socrate", "Descartes", "Spinoza", "Leibniz", "Kant", "Hegel", "Nietzsche", "Schopenhauer", "Sartre", "Camus", "Heidegger", "Husserl", "Wittgenstein", "Russell", "Bertrand Russell", "John Locke", "David Hume", "Thomas Hobbes", "Jean-Jacques Rousseau", "Montesquieu", "Voltaire", "Machiavel", "Saint-Thomas d'Aquin", "Augustin d'Hippone", "Plotin", "Épicure", "Démocrite", "Pythagore", "Anaximandre", "Héraclite", "Parménide", "Protagoras", "Sénèque", "Épictète", "Marc Aurèle", "Averroès", "Avicenne", "Confucius", "Lao Tseu", "Bouddha", "Zhuangzi", "Al-Farabi", "John Stuart Mill", "Karl Marx", "Foucault", "Deleuze"]
+
+            cats["Tennisman"] = ["Roger Federer", "Rafael Nadal", "Novak Djokovic", "Andy Murray", "Pete Sampras", "Andre Agassi", "Björn Borg", "Jimmy Connors", "John McEnroe", "Ivan Lendl", "Stefan Edberg", "Boris Becker", "Mats Wilander", "Guillermo Vilas", "Rod Laver", "Ken Rosewall", "Svitolina", "Serena Williams", "Venus Williams", "Martina Navratilova", "Chris Evert", "Steffi Graf", "Monica Seles", "Margaret Court", "Billie Jean King", "Maria Sharapova", "Justine Henin", "Kim Clijsters", "Simona Halep", "Naomi Osaka", "Ashleigh Barty", "Iga Świątek", "Caroline Wozniacki", "Sloane Stephens", "Garbiñe Muguruza", "Angelique Kerber", "Petra Kvitová", "Victoria Azarenka", "Dominic Thiem", "Alexander Zverev", "Daniil Medvedev", "Nick Kyrgios", "Carlos Alcaraz", "Jannik Sinner", "Taylor Fritz", "Stefanos Tsitsipas"]
+
+            cats["Peintres"] = ["Léonard de Vinci", "Michel-Ange", "Paul Klee", "Sandro Botticelli", "Titien", "Caravage", "Rembrandt", "Johannes Vermeer", "Diego Velázquez", "Francisco de Goya", "Eugène Delacroix", "Jean-Auguste-Dominique Ingres", "Édouard Manet", "Claude Monet", "Pierre-Auguste Renoir", "Edgar Degas", "Camille Pissarro", "Paul Cézanne", "Paul Gauguin", "Vincent van Gogh", "Georges Seurat", "Henri de Toulouse-Lautrec", "Henri Matisse", "Pablo Picasso", "Georges Braque", "Wassily Kandinsky", "Kazimir Malevitch", "Joan Miró", "Salvador Dalí", "René Magritte", "Frida Kahlo", "Diego Rivera", "Edward Hopper", "Jackson Pollock", "Mark Rothko", "Andy Warhol", "Roy Lichtenstein", "Jean-Michel Basquiat", "Gustav Klimt", "Egon Schiele", "Albrecht Dürer", "Jan van Eyck", "Pieter Bruegel l'Ancien", "Le Greco", "Francis Bacon"]
+
+            cats["Peintures"] = ["La Joconde", "La Cène", "La Création d’Adam", "La Naissance de Vénus", "Le Jugement dernier", "La Jeune Fille à la perle", "La Ronde de nuit", "Les Ménines", "Le 3 mai 1808", "La Liberté guidant le peuple", "Le Radeau de la Méduse", "Olympia", "Le Déjeuner sur l’herbe", "Impression, soleil levant", "Les Nymphéas", "Bal du moulin de la Galette", "La Classe de danse", "La Montagne Sainte-Victoire", "La Nuit étoilée", "Les Tournesols", "Guernica", "Les Demoiselles d’Avignon", "Le Baiser", "L’Origine du monde", "American Gothic", "Nighthawks", "Campbell’s Soup Cans", "Le Cri", "La Persistance de la mémoire", "Les Époux Arnolfini", "La Tour de Babel", "Le Jardin des délices", "La Chute d’Icare", "Le Fils de l’homme", "Le Sacre de Napoléon", "La Grande Vague de Kanagawa", "Les Raboteurs de parquet", "Composition VIII", "Broadway Boogie-Woogie", "Number 1A", "No. 5, 1948", "Les Coquelicots", "La Danse", "L’Atelier du peintre", "La Jeune Fille au chat"]
+
+
+            cats["Mots d'origine arabe"] = ["Alcool", "Algèbre", "Algorithme", "Alchimie", "Alambic", "Alizé", "Almanach", "Amiral", "Arsenal", "Sirop", "Bazar", "Café", "Calife", "Carafe", "Chiffre", "Coton", "Douane", "Émir", "Fakir", "Gazelle", "Guitare", "Harem", "Hasard", "Jasmin", "Luth", "Magasin", "Matelas", "Moka", "Momie", "Divan", "Abricot", "Estragon", "Safran", "Safir", "Nouba", "Sirocco", "Sofa", "Sorbet", "Souk", "Sultan", "Talisman", "Tasse", "Tarif", "Zénith", "Zéro"]
+
+            cats["Groupes de gens"] = ["Collectivité", "Communauté", "Population", "Peuple", "Société", "Peuplade", "Ethnie", "Tribu", "Clan", "Foule", "Masse", "Assemblée", "Congrégation", "Cohorte", "Groupe", "Ensemble", "Corps", "Association", "Organisation", "Parti", "Milieu", "Cercle", "Réseau", "Humanité", "Civilisation", "Colonie", "Diaspora", "Public", "Auditoire", "Clientèle", "Équipe", "Collectif", "Population civile", "Bande", "Attroupement", "Communion", "Fraternité", "Syndicat", "Ordre", "Caste", "Gens", "Habitants", "Résidents", "Citoyens", "Conglomérat"]
+
+            cats["Protéines"] = ["Insuline", "Hémoglobine", "Collagène", "Kératine", "Actine", "Myosine", "Albumine", "Globuline", "Fibrine", "Fibrinogène", "Caséine", "Ovalbumine", "Lactase", "Amylase", "Pepsine", "Trypsine", "Chymotrypsine", "Catalase", "Cytochrome c", "Ferritine", "Transferrine", "Immunoglobuline", "Interféron", "Élastine", "Tubuline", "Histone", "Protamine", "Ribonuclease", "ADN polymérase", "ARN polymérase", "Kinase", "Phosphatase", "Lectine", "Opsine", "Rhodopsine", "Myoglobine", "Ubiquitine", "Calmoduline", "Apolipoprotéine", "Lipase", "Protéase", "Glucokinase", "Hexokinase", "Aldolase", "Enolase"]
+
+            cats["Coupes de cheveux"] = ["Carré", "Carré plongeant", "Carré long", "Bob", "Pixie", "Buzz cut", "Au bol", "Dégradé", "Dégradé long", "Dégradé court", "Dégradé effilé", "Fondu", "Fondu américain", "Fondu bas", "Fondu moyen", "Fondu haut", "Undercut", "Side cut", "Mulet", "Shag", "Wolf cut", "Asymétrique", "Droite", "Effilée", "Texturée", "En V", "En U", "Garçonne", "Taper", "Pompadour", "Quiff", "Slick back", "Man bun", "Chignon", "Tresse", "Box braids", "Cornrows", "Afro", "César", "Ivy League", "Militaire", "Elvis", "Rétro", "Rock", "Bohème"]
+
+            cats["Théories"] = ["Relativité", "Évolution", "Big Bang", "Sélection naturelle", "Gravitation universelle", "Mécanique quantique", "Héliocentrisme", "Géocentrisme", "Cellule", "Germes", "Psychanalyse", "Inconscient", "Conditionnement", "Gestalt", "Utilitarisme", "Attachement", "Structuralisme", "Marxisme", "Libéralisme", "Contrat social", "Loi-écran", "Chaos", "Information", "Jeux", "Décision rationnelle", "Complexité", "Cordes", "Inflation cosmique", "Multivers", "Électromagnétisme", "Cinétique des gaz", "Plaques tectoniques", "Dérive des continents", "Catastrophisme", "Uniformitarisme", "Signalement coûteux", "Valeur Travail", "Apprentissage social", "Mémoire collective", "Rationalité limitée", "Équilibre général", "Avantage comparatif", "Diffusion des innovations", "Évolution culturelle", "Sélection de parentèle"]
+
+
+            // 20
+
+
+            cats["Scientifiques"] = ["Isaac Newton", "Albert Einstein", "Galilée", "Charles Darwin", "Louis Pasteur", "Marie Curie", "Pierre Curie", "Nikola Tesla", "Michael Faraday", "James Clerk Maxwell", "Niels Bohr", "Erwin Schrödinger", "Werner Heisenberg", "Richard Feynman", "Max Planck", "Alan Turing", "Ada Lovelace", "Antoine Lavoisier", "Blaise Pascal", "René Descartes", "Johannes Kepler", "Copernic", "André-Marie Ampère", "Enrico Fermi", "Stephen Hawking", "Carl Sagan", "Rosalind Franklin", "Gregor Mendel", "Alexander Fleming", "Edward Jenner", "Jean-Baptiste Lamarck", "Henri Poincaré", "Gaspard Monge", "Émilie du Châtelet", "Hippocrate", "Archimède", "Henri Becquerel", "Ibn al-Haytham", "Al-Khwarizmi", "James Watson", "Francis Crick", "Jane Goodall", "Barbara McClintock", "Katherine Johnson", "Lynn Margulis"]
+
+            cats["Jazzman"] = ["Louis Armstrong", "Duke Ellington", "Charlie Parker", "Miles Davis", "John Coltrane", "Thelonious Monk", "Dizzy Gillespie", "Billie Holiday", "Ella Fitzgerald", "Chet Baker", "Stan Getz", "Count Basie", "Art Blakey", "Herbie Hancock", "Wayne Shorter", "Ornette Coleman", "Sonny Rollins", "Charles Mingus", "Max Roach", "Fats Waller", "Benny Goodman", "Lester Young", "Coleman Hawkins", "Bix Beiderbecke", "Sarah Vaughan", "Nina Simone", "Cannonball Adderley", "Wes Montgomery", "Pat Metheny", "Chick Corea", "McCoy Tyner", "Keith Jarrett", "Wynton Marsalis", "Duke Pearson", "Horace Silver", "Joe Henderson", "Art Tatum", "Bud Powell", "Gerry Mulligan", "Django Reinhardt", "Stephane Grappelli", "Bill Evans", "Johnny Hodges", "Milt Jackson", "Jimmy Smith", "Roy Hargrove"]
+
+            cats["Panneaux Signalisation"] = ["Voie verte", "Stop", "Cédez le passage", "Priorité à droite", "Priorité ponctuelle", "Rond-point", "Intersection", "Voie sans issue", "Sens interdit", "Accès interdit", "Route barrée", "Travaux", "Déviation", "Chute de pierres", "Risque de verglas", "Passage piétons", "École", "Zone 30", "Limitation de vitesse", "Fin de limitation de vitesse", "Danger", "Virage à droite", "Virage à gauche", "Virages dangereux", "Chaussée glissante", "Traversée d’animaux", "Passage à niveau", "Pont mobile", "Hauteur limitée", "Largeur limitée", "Poids limité", "Zone de rencontre", "Stationnement interdit", "Stationnement payant", "Arrêt interdit", "Parking", "Aire de repos", "Hôpital", "Gare", "Aéroport", "Tourne à droite", "Tourne à gauche", "Sens unique", "Double sens", "Fin d’interdiction"]
+
+            cats["Sites naturels"] = ["Grand Canyon", "Parc national de Yellowstone", "Parc national de Banff", "Parc national de Torres del Paine", "Île de Santorin", "Côte amalfitaine", "Cap Vert", "Bora Bora", "Îles Maldives", "Machu Picchu", "Petra", "Taj Mahal", "Grande Muraille de Chine", "Angkor Wat", "Pyramides de Gizeh", "Serengeti", "Parc national de Yosemite", "Parc national de Fiordland", "Parc national de Zhangjiajie", "Île de la Réunion", "Bali", "Île de Pâques", "Plage de Navagio", "Baie d’Ha-Long", "Fjord de Geiranger", "Côte de Big Sur", "Îles Galápagos", "Parc national de Komodo", "Victoria Falls", "Chutes d’Iguazú", "Parc national de Kruger", "Salar d’Uyuni", "Désert du Sahara", "Antelope Canyon", "Parc national de Cinque Terre", "Gorges du Verdon", "Mont Fuji", "Île de Skye", "Glacier Perito Moreno", "Lac Louise", "Parc national de Plitvice", "Lac Baïkal", "Parc national de Sossusvlei", "Moraine Lake", "Îles Lofoten", "Côte de l’Atlantique"]
+
+
+            cats["Origamis"] = ["Voilier", "Grue", "Sauterelle", "Fleur", "Tulipe", "Lys", "Pagode", "Papillon", "Grenouille", "Poisson", "Carpe", "Crabe", "Étoile", "Moulin à vent", "Cocotte en papier", "Boîte", "Bateau", "Chapeau", "Chien", "Chat", "Renard", "Ours", "Éléphant", "Tortue", "Hibou", "Kabuto", "Serpent", "Singe grimpant", "Fleur de Lotus", "Lune", "Yukata", "Tête de mort", "FLeur de Lys", "Panda", "Koala", "Licorne", "Dinosaure", "Tête de lapin", "Chouette", "Cactus", "Lampe", "Montagne", "Cône", "Éventail", "Cigale"]
+            cats["Personnages historiques"] = ["Alexandre le Grand", "Jules César", "Napoléon Bonaparte", "Cléopâtre", "Louis XIV", "Charlemagne", "Gengis Khan", "Hammurabi", "Ramsès II", "Périclès", "Marco Polo", "Brutus", "Georges Clémenceau", "Auguste", "Néron", "Attila", "Saladin", "Richard Cœur de Lion", "Jeanne d’Arc", "Jean Moulin", "Nefertiti", "Christophe Colomb", "Ferdinand Magellan", "Élisabeth Ire", "Marie-Antoinette", "George Washington", "Abraham Lincoln", "Thomas Jefferson", "Simón Bolívar", "José de San Martín", "Catherine II de Russie", "Pierre le Grand", "Otto von Bismarck", "Victoria", "Gandhi", "Jawaharlal Nehru", "Sun Tzu", "Sappho", "Qin Shi Huang", "Mao Zedong", "Winston Churchill", "Paul de Tarse", "Mustafa Kemal Atatürk", "Nelson Mandela", "Hirohito"]
+
+            cats["Designers"] = ["Charles Eames", "Ray Eames", "Philippe Starck", "Le Corbusier", "Eileen Gray", "Arne Jacobsen", "Marcel Breuer", "Mies van der Rohe", "Gerrit Rietveld", "Alvar Aalto", "Isamu Noguchi", "Frank Lloyd Wright", "Zaha Hadid", "Norman Foster", "Jonathan Ive", "Dieter Rams", "Jasper Morrison", "Patricia Urquiola", "Hella Jongerius", "Tadao Ando", "Yves Béhar", "Karim Rashid", "Jony Ive", "Massimo Vignelli", "Paul Rand", "Milton Glaser", "Saul Bass", "Stefan Sagmeister", "Paula Scher", "David Carson", "Neville Brody", "Herb Lubalin", "Seymour Chwast", "Alexander McQueen", "Coco Chanel", "Giorgio Armani", "Yves Saint Laurent", "Karl Lagerfeld", "Miuccia Prada", "Vivienne Westwood", "Donatella Versace", "Tom Ford", "Christian Dior", "Hedi Slimane", "Rei Kawakubo", "Issey Miyake"]
+
+            cats["Ondes"] = ["Mécanique", "Radio", "Micro", "Infrarouge", "Visible", "Ultraviolet", "Rayons X", "Rayons gamma", "Gravitationnelles", "Sismiques", "Primaires", "Secondaires", "Surface", "Acoustiques", "Sonores", "Choc", "Stationnaires", "Progressives", "Transversales", "Longitudinales", "Torsion", "Flexion", "Rayleigh", "Love", "Capillaires", "Gravité", "Rossby", "Kelvin", "Océaniques", "Marée", "Tsunami", "Chaleur", "Pression", "Densité", "Polarisation", "Matière (de Broglie)", "Électrostatiques", "Plasma", "Courants", "Turbulence", "Radioastronomiques", "Lumière", "Terrestre", "Ultrasonores", "Infrasons"]
+
+            cats["Informatique"] = ["Apple", "Microsoft", "Google", "Amazon", "Facebook", "IBM", "Intel", "AMD", "NVIDIA", "Dell", "HP", "Lenovo", "Asus", "Acer", "Samsung", "Sony", "LG", "Huawei", "Xiaomi", "Toshiba", "Panasonic", "Oracle", "SAP", "Salesforce", "Adobe", "Cisco", "NetApp", "VMware", "Red Hat", "Canonical", "MongoDB", "Dropbox", "Slack", "Zoom", "Shopify", "Twitter", "TikTok", "ByteDance", "Spotify", "Tencent", "Alibaba", "Baidu", "Siemens", "Philips", "Fujitsu"]
+
+            cats["Surnom amoureux"] = ["Amour", "Chéri", "Chérie", "Trésor", "Cœur", "Ange", "Belle", "Beau", "Puce", "Poussin", "Lapin", "Chaton", "Princesse", "Prince", "Reine", "Roi", "Soleil", "Douce", "Choupinou", "Bijou", "Chouchou", "Perle", "Diamant", "Douceur", "Câlin", "Nounours", "Doudou", "Moitié", "Âme sœur", "Tendre", "Jolie", "Joli", "Petit cœur", "Petit ange", "Bébé", "Biche", "Dulcinée", "Chou", "Coccinelle", "Cœur de beurre", "Caramel", "Muffin", "Cerise", "Soleil levant", "Muse"]
+
+// 30
+
+cats ["Bredele"] = ["Schwowebredle", "Bredle", "Anisbredele", "Butterbredle", "Mandelbredle", "Hätzle", "Zimtsterne", "Vanillekipferle", "Kipferle", "Spritzgebäck", "Bretzele", "Spitzbuebe", "Spitzbuebele", "Kräbbele", "Kichelcher", "Lebkuchen", "Pfeffernüsse", "Nussbredle", "Haselnussbredle", "Mürbteigbredle", "Zitronensterne", "Schneeflöckle", "Schneebällle", "Schneemännle", "Schokokipferle", "Schokoherzele", "Schokobredle", "Marzipanbredle", "Biberle", "Biberbredele", "Kletzenbrot", "Stolle", "Wibele", "Nussecke", "Mandelhörnle", "Orangenbrotle", "Honiglebkuchen", "Himbeersternle", "Zimtkringel", "Breschtele", "Schneckle", "Grittibänz", "Punschgebäck", "Kandiszuckerbredle", "Weihnachtsbredle"]
+cats ["Village Haut Rhin "] = ["Eguisheim", "Riquewihr", "Kaysersberg", "Hunawihr", "Herrlisheim", "Beblenheim", "Turckheim", "Battenheim", "Wettolsheim", "Mittelwihr", "Zellenberg", "Bergheim", "Ingersheim", "Niederhergeim", "Gueberschwihr", "Niedermorschwihr", "Ribeauvillé", "Zimmerbach", "Soultzmatt", "Lapoutroie", "Stosswihr", "Metzeral", "Thann", "Soultzeren", "Orbey", "Luttenbach", "Kaysersberg-Vignoble", "Sainte-Croix-aux-Mines", "Oberdorf", "Wintzenheim", "Colmar", "Munster", "Wangen", "Kientzheim", "Ruelisheim", "Sundgau", "Ferrette", "Altkirch", "Bartenheim", "Hagenthal-le-Bas", "Habsheim", "Morschwiller-le-Bas", "Berrwiller", "Rimbach-près-Masevaux", "Sierentz", "Huningue", "Kembs"]
+cats ["Village Bas Rhin"]=["Breitenbach", "Gambsheim", "Scherwiller", "Saverne", "Wissembourg", "Haguenau", "Molsheim", "Sélestat", "Rothau", "Schirmeck", "La Petite-Pierre", "Lembach", "Bitche", "Hatten", "Soultz-les-Bains", "Niederbronn-les-Bains", "Bouxwiller", "Bischwiller", "Bergbieten", "Dorlisheim", "Obernai", "Rosheim", "Barr", "Eckbolsheim", "Oberhoffen-sur-Moder", "Hochfelden", "Wasselonne", "Sessenheim", "Drusenheim", "Hoerdt", "Kilstett", "Roppenheim", "Seltz", "Sarre-Union", "Kintzheim", "Dieffenthal", "Hohengoeft", "Niedermodern", "Marmoutier", "Gundolsheim", "Andlau", "Dambach-la-Ville", "Riedseltz", "Ringendorf", "Wingen-sur-Moder"]
+cats ["Cris animaux et humains"]=["Aboyer", "Miauler", "Rugir", "Mugir", "Bêler", "Meugler", "Hennir", "Caqueter", "Chanter", "Gazouiller", "Siffler", "Hurler", "Grognonner", "Ronronner", "Bourdonner", "Striduler", "Vrombir", "Glousser", "Hululer", "Ronfler", "Piailler", "Jouir", "Craquer", "Crier", "Grogner", "Cacarder", "Japper", "Barrer", "Claqueter", "Raler", "Piauler", "Bégueter", "Géminer", "Gémir", "S’exclamer", "Sangloter", "Rire", "Pleurer", "Siffloter", "Soupirer", "Marmonner", "Bafouiller", "Râler", "S’écrier", "Chuchoter", "Murmurer"]
+ cats ["Emission TV"] = ["Le Journal télévisé", "Envoyé spécial", "Complément d’enquête", "Capital", "Zone interdite", "C dans l’air", "Télématin", "Quotidien", "C à vous", "TPMP", "Koh-Lanta", "Fort Boyard", "The Voice", "Star Academy", "Danse avec les stars", "Pékin Express", "Top Chef", "MasterChef", "Un dîner presque parfait", "L’amour est dans le pré", "Secrets d’histoire", "Des racines et des ailes", "Thalassa", "Échappées belles", "Ushuaïa Nature", "Questions pour un champion", "Motus", "Tout le monde veut prendre sa place", "N’oubliez pas les paroles", "Qui veut gagner des millions ?", "Burger Quiz", "La Carte aux trésors", "Strip-Tease", "Groland", "Reportages", "Enquête exclusive", "Faites entrer l’accusé", "Ça se discute", "Le Meilleur Pâtissier", "Rendez-vous en terre inconnue", "Taratata", "Tracks", "Le Cercle", "On n’est pas couché", "Vivement dimanche"]         
+
+
+ cats ["Aikido"] = ["Ikkyo", "Nikkyo", "Sankyo", "Yonkyo", "Gokyo", "Iriminage", "Shihonage", "Kotegaeshi", "Aikigoshi", "Koshinage", "Ushironage", "Tenchinage", "Kaitennage", "Hijikimeosae", "Hijishime", "Juujigarami", "Sumiotoshi", "Kokyunage", "Kokyuho", "Udekimenage", "Ushirokaitennage", "Ryokatadori ikkyo", "Katatedori ikkyo", "Morotedori kokyunage", "Shomenuchi ikkyo", "Yokomenuchi shihonage", "Tsuki kotegaeshi", "Ushirotekubidori sankyo", "Ushiroeri dori", "Udegarami", "Tekubigaeshi", "Aikiotoshi", "Kubinage", "Sokumeniriminage", "Kaitenosae", "Ura nage", "Omote nage", "Kiriotoshi", "Oshitaoshi", "Gyaku hanmi katatedori", "Ai hanmi katatedori", "Ryotedori tenchinage", "Ryokatadori sankyo", "Katadori menuchi ikkyo", "Shomenuchi iriminage"]
+cats ["Dinosaures"] = ["Tyrannosaurus", "Triceratops", "Velociraptor", "Stegosaurus", "Brachiosaurus", "Diplodocus", "Allosaurus", "Spinosaurus", "Ankylosaurus", "Iguanodon", "Parasaurolophus", "Apatosaurus", "Carnotaurus", "Giganotosaurus", "Utahraptor", "Deinonychus", "Therizinosaurus", "Compsognathus", "Pachycephalosaurus", "Gallimimus", "Oviraptor", "Archaeopteryx", "Microraptor", "Dilophosaurus", "Megalosaurus", "Ceratosaurus", "Coelophysis", "Plateosaurus", "Euoplocephalus", "Edmontosaurus", "Maiasaura", "Corythosaurus", "Styracosaurus", "Albertosaurus", "Troodon", "Baryonyx", "Suchomimus", "Sauropelta", "Kentrosaurus", "Amargasaurus", "Monolophosaurus", "Psittacosaurus", "Huayangosaurus", "Eoraptor", "Herrerasaurus"]
+cats ["Emotions"] = ["Joie", "Tristesse", "Colère", "Peur", "Surprise", "Dégoût", "Amoureux", "Haine", "Espoir", "Désespoir", "Fierté", "Honte", "Culpabilité", "Jalousie", "Envie", "Admiration", "Respect", "Mépris", "Tendresse", "Affection", "Solitude", "Sérénité", "Anxiété", "Stress", "Émerveillement", "Nostalgie", "Melancolie", "Frustration", "Satisfaction", "Gratitude", "Déception", "Excitation", "Calme", "Inquiétude", "Confusion", "Détermination", "Courage", "Doute", "Énervement", "Ressentiment", "Plaisir", "Désir", "Répulsion", "Compassion", "Sympathie", "Indifférence"]
+cats ["Outils sport"] = ["Ballon", "Raquette", "Batte", "Club", "Skateboard", "Trottinette", "Vélo", "Tapis", "Haltères", "Barre", "Corde à sauter", "Kettlebell", "Rameur", "Elliptique", "Tapis de course", "Banc", "Sac de frappe", "Gants", "Protège-dents", "Casque", "Genouillères", "Coudières", "Protège-tibias", "Chaussures", "Corde d’escalade", "Piolet", "Crampons", "Gilet de sauvetage", "Palmes", "Masque", "Tuba", "Planche", "Pagaie", "Skis", "Bâtons", "Snowboard", "Raquettes", "Harnais", "Filet", "Poteaux", "Bâton de hockey", "Crosse", "Anneaux", "Barre de traction", "Sangle de suspension", "Poids"]
+cats ["Contes"]= ["Le Petit Chaperon rouge", "Cendrillon", "Blanche-Neige", "La Belle au bois dormant", "Le Petit Poucet", "Hansel et Gretel", "Raiponce", "Barbe Bleue", "La Belle et la Bête", "La Princesse et la Grenouille", "Jack et le haricot magique", "Les Trois Petits Cochons", "Le Vilain Petit Canard", "La Reine des neiges", "Aladdin", "Ali Baba et les 40 voleurs", "Sinbad le marin", "Les Mille et Une Nuits", "La Petite Sirène", "Le Roi Grenouille", "Le Soldat de plomb", "Le Loup et les sept chevreaux", "Le Lièvre et la tortue", "La Cigale et la fourmi", "Le Corbeau et le renard", "Le Rossignol et l’empereur", "Le Prince grenouille", "Charlie et la chocolaterie", "Peter Pan", "Alice au pays des merveilles", "Le Magicien d’Oz", "Les Aventures de Pinocchio", "Le Petit Prince", "La Légende de Saint Georges", "Le Géant egoïste", "Le Bonhomme de pain d’épice", "La Vache qui voulait être reine", "La Moufle", "La Souris et le Lion", "Matilda", "La Pomme d’or", "La Princesse au petit pois", "Le Prince et le pauvre", "La Fée Carabosse", "La Fille du roi et la souris", "La Reine des abeilles"]
+
+cats ["Periodes Historiques"] = ["Préhistoire", "Paléolithique", "Mésolithique", "Néolithique", "Âge du bronze", "Âge du fer", "Antiquité", "Moyen Âge", "Haut Moyen Âge", "Bas Moyen Âge", "Renaissance", "Réforme", "Âge classique", "Époque moderne", "Époque contemporaine", "Révolution industrielle", "Révolution française", "Époque napoléonienne", "Restauration", "Révolution de 1848", "Second Empire", "Troisième République", "Belle Époque", "Première Guerre mondiale", "Entre-deux-guerres", "Seconde Guerre mondiale", "Guerre froide", "Décolonisation", "Chute du mur de Berlin", "Mondialisation", "Antiquité égyptienne", "Antiquité grecque", "Antiquité romaine", "Dynasties chinoises", "Période Edo", "Période Heian", "Période Meiji", "Empire ottoman", "Période viking", "Période médiévale", "Période moderne", "Période postmoderne", "Âge atomique", "Âge numérique", "Âge de l’information", "Période des Lumières"]
+cats ["Journaux"]= ["Le Monde", "Le Figaro", "Libération", "L'Équipe", "Les Échos", "La Croix", "Le Parisien", "Le Point", "Le Nouvel Observateur", "La Tribune", "Le Temps", "Le Soir", "La Libre Belgique", "De Standaard", "Het Nieuwsblad", "Die Zeit", "Frankfurter Allgemeine", "Süddeutsche Zeitung", "The Guardian", "The Times", "The New York Times", "The Washington Post", "The Wall Street Journal", "USA Today", "The Independent", "The Daily Telegraph", "El País", "El Mundo", "La Repubblica", "Corriere della Sera", "La Stampa", "Aftonbladet", "Dagens Nyheter", "Helsingin Sanomat", "The Hindu", "The Japan Times", "South China Morning Post", "The Sydney Morning Herald", "The Globe and Mail", "Toronto Star", "O Estado de S. Paulo", "Folha de S.Paulo", "Clarín", "La Nación", "Al Jazeera", "The Times of India"]
+cats ["Coiffeurs"]= ["Coupe de Folie", "Tifs & Délires", "Le Salon qui Démêle", "Ciseaux en Fête", "Chic & Choc", "Les Cheveux au Vent", "La Coupe du Roi", "Chez Mèche", "Tête à Tifs", "La Tignasse Heureuse", "Coup de Peigne", "Le Bouclette Bar", "Le Salon des Tifs", "Mèche à Mèche", "Le Cheveu qui Rit", "Coiff’Attitude", "Coup’ de Chance", "La Coupe qui Décoiffe", "Les Tifs en Folie", "Ciseaux & Compagnie", "La Tête dans les Nuages", "Le Peigne Magique", "Le Salon du Rire", "Tifs & Co", "Le Bar à Boucles", "Coup’ de Génie", "Mèche à Gogo", "La Crinière d’Or", "Le Salon du Chat", "La Coupe des Stars", "Ciseaux d’Argent", "Le Peigne Enchanté", "La Tête à Toto", "Apéri'tifs", "La Coupe à Papa", "Le Salon des Super Tifs", "La Mèche Rebelle", "Le Coiffeur du Coin", "Le Coup de Peigne", "La Tignasse d’Art", "Le Salon des Boucles", "Le Peigne Fou", "La Coupe en Folie", "Ciseaux & Sourires", "La Crinière Sauvage", "Le Salon des Tifs d’Or"]
+cats ["Mythologie grecque"] = ["Zeus", "Héra", "Poséidon", "Déméter", "Athéna", "Apollon", "Artémis", "Arès", "Aphrodite", "Héphaïstos", "Hermès", "Dionysos", "Hestia", "Hadès", "Perséphone", "Herakles", "Thésée", "Jason", "Achille", "Ulysse", "Orphée", "Pâris", "Ménélas", "Hélène", "Médée", "Énée", "Prométhée", "Pandore", "Atlas", "Morpheus", "Nyx", "Éros", "Thanatos", "Némésis", "Éris", "Hébé", "Hélios", "Séléné", "Eos", "Cerbère", "Tartare", "Minotaure", "Méduse", "Chimère", "Sphinx", "Cyclope", "Sirènes", "Les Muses", "Les Grâces"]
+cats["Vins"] = ["Médoc", "Saint-Émilion", "Pomerol", "Graves", "Sauternes", "Chablis", "Morgon", "Fleurie", "Moulin-À-Vent", "Côte-Rôtie", "Condrieu", "Châteauneuf-Du-Pape", "Crozes-Hermitage", "Sancerre", "Pouilly-Fumé", "Chinon", "Vouvray", "Riesling", "Gewurztraminer", "Pinot Gris", "Crémant", "Bandol Rosé", "Minervois", "Pic-Saint-Loup", "Fitou", "Cahors", "Gaillac", "Fronton", "Champagne Brut", "Champagne Blanc-De-Blancs", "Vin Jaune", "Savagnin", "Banyuls", "Rivesaltes", "Patrimonio", "Ajaccio", "Tavel", "Vacqueyras", "Gigondas", "Lirac", "Faugères", "Corbières", "Madiran", "Jurançon", "Monbazillac"]
+
+
+function deselect() {
+              if (selected != 0) {
+                selected.style = "";
+                selected = 0;
+                document.getElementById("deselect").disabled = true;
+              }
+            }
+            
+            function stringToLightColor(str) {
+              let hash = 0;
+              for (let i = 0; i < str.length; i++) {
+                hash = str.charCodeAt(i) + ((hash << 5) - hash);
+              }
+
+              const h = Math.abs(hash) % 360;
+              const s = 70;
+              const l = 80 + (Math.abs(hash) % 10); 
+
+              const lDev = l / 100;
+              const a = (s * Math.min(lDev, 1 - lDev)) / 100;
+  
+              const f = (n) => {
+                const k = (n + h / 30) % 12;
+                const color = lDev - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+                return Math.round(255 * color).toString(16).padStart(2, "0");
+              };
+
+              return `#${f(0)}${f(8)}${f(4)}`;
+            }
+            
+            function getRandomHexColor() {
+              return '#' + Math.floor(Math.random() * 16777215).toString(16);
+            }
+            
+            function finishCategory(b) {
+              b.innerHTML  =  '<b>' + b.category + '</b>';
+              b.disabled = true;
+              b.style.background= stringToLightColor(b.category);
+            }
+            
+            function checkCategories() {
+              const wordDict = new Map();
+              // Check that each category has 45 entries.
+              for (const [key, value] of Object.entries(cats)) {
+                if (value.length < 45) {
+                  alert(`Entry for ${key} has length ${value.length}`);
+                }
+                for (let i = 0; i < 45; i++) {
+                  wordlist.push([value[i], key]);
+                  if (wordDict.has(value[i])) {
+                      alert(`Duplicate word ${value[i]}`);
+                  }
+                  else {
+                      wordDict.set(value[i], true);
+                  }
+                }
+              }
+            }
+            
+            function shuffleArray(array) {
+              for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+              }
+            }
+            
+            function saveState() {
+                localStorage.clear();
+                
+                localStorage.setItem('score', score + '');
+                localStorage.setItem('mistakes', mistakes + '');
+                
+                var t = document.getElementById('the_table');
+                for (let i = 0; i < t.rows.length; i++) {
+                  let row = t.rows[i];
+                  for (let j = 0; j < row.cells.length; j++) {
+                    let cell = row.cells[j];
+                    let button = cell.firstChild;
+                    localStorage.setItem(`${i}_${j}_category`, button.category);
+                    localStorage.setItem(`${i}_${j}_cluster`, JSON.stringify(button.cluster));
+                    localStorage.setItem(`${i}_${j}_innerHTML`, button.innerHTML);
+                    localStorage.setItem(`${i}_${j}_title`, button.title);
+                  }
+                }
+                
+            }
+            
+            function putWordsInBoard() {
+              shuffleArray(wordlist);
+              var currentWordIndex = 0;
+              var table = document.getElementById("the_table");
+              for (let i = 0, row; row = table.rows[i]; i++) {
+                for (let j = 0, col; col = row.cells[j]; j++) {
+                  var button = col.firstElementChild;
+                  // button.pos = currentWordIndex;
+                  button.textContent = wordlist[currentWordIndex][0];
+                  button.category = wordlist[currentWordIndex][1];
+                  button.cluster = [button.textContent];
+                  currentWordIndex += 1;
+                }
+              }
+            }
+            
+            function startFireworks() {
+              const canvas = document.getElementById('fireworks');
+              const ctx = canvas.getContext('2d');
+              let w, h;
+              let particles = [];
+              let fireworks = [];
+
+              function resize() {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+              }
+              window.addEventListener('resize', resize);
+              resize();
+
+              class Firework {
+                constructor() {
+                    this.x = Math.random() * w;
+                    this.y = h;
+                    this.tx = Math.random() * w;
+                    this.ty = Math.random() * (h / 2);
+                    this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    this.speed = 2 + Math.random() * 2;
+                    this.angle = Math.atan2(this.ty - this.y, this.tx - this.x);
+                    this.vx = Math.cos(this.angle) * this.speed;
+                    this.vy = Math.sin(this.angle) * this.speed;
+                    this.exploded = false;
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.vy < 0 && this.y < this.ty) {
+                        this.explode();
+                    } else if (this.vy > 0 && this.y > this.ty) { // Should technically not happen with simple upward movement
+                         this.explode();
+                    }
+                }
+
+                explode() {
+                    this.exploded = true;
+                    for (let i = 0; i < 50; i++) {
+                        particles.push(new Particle(this.x, this.y, this.color));
+                    }
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
+              }
+
+              class Particle {
+                constructor(x, y, color) {
+                    this.x = x;
+                    this.y = y;
+                    this.color = color;
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = Math.random() * 3;
+                    this.vx = Math.cos(angle) * speed;
+                    this.vy = Math.sin(angle) * speed;
+                    this.alpha = 1;
+                    this.decay = Math.random() * 0.015 + 0.005;
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.vy += 0.05; // gravity
+                    this.alpha -= this.decay;
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.alpha;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                    ctx.restore();
+                }
+              }
+
+              function loop() {
+                // Clear with a trail effect
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; 
+                ctx.fillRect(0, 0, w, h);
+                ctx.globalCompositeOperation = 'lighter';
+
+                // Launch new firework randomly
+                if (Math.random() < 0.05) {
+                    fireworks.push(new Firework());
+                }
+
+                // Update and draw fireworks
+                for (let i = fireworks.length - 1; i >= 0; i--) {
+                    fireworks[i].update();
+                    fireworks[i].draw();
+                    if (fireworks[i].exploded) {
+                        fireworks.splice(i, 1);
+                    }
+                }
+
+                // Update and draw particles
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    particles[i].update();
+                    particles[i].draw();
+                    if (particles[i].alpha <= 0) {
+                        particles.splice(i, 1);
+                    }
+                }
+
+                requestAnimationFrame(loop);
+              }
+
+              loop();
+            }
+            
+            function setUpBoard() {
+              // Just sets up the dom elements; does not put words in them.
+              var b = document.getElementById("board");   
+              const table = document.createElement('table');
+              table.id = 'the_table';
+              for (let i = 0; i < M; i++) {
+                const tr = document.createElement('tr');
+                tr.classList.add('.row');
+                for (let j = 0; j < M; j++) {
+                   const td = document.createElement('td');
+                   td.class = "bigbut";
+                   const button = document.createElement('button');
+                   button.class = "bigbut"
+                   button.onclick = function() {
+                       if (selected == button) {
+                         deselect();
+                         return;
+                       }
+                       button.style = "filter: invert(100%)";
+                       
+                       if (selected == 0) {
+                           selected = button;
+                           document.getElementById("deselect").disabled = false;
+                           return;
+                       }
+                       
+                       document.getElementById("deselect").disabled = true;
+
+                       if (button.category == selected.category) {
+                         
+                         firstbut = button;
+                         secondbut = selected;
+                         
+                         // Deselect
+                         selected.style = "";
+                         button.style = "";
+                         selected = 0;
+                         score = score + 1;
+                         
+                         // Merge
+                         firstbut.cluster = firstbut.cluster.concat(secondbut.cluster);
+                         // console.log(firstbut.cluster);
+                         if (firstbut.cluster.length == 2) {
+                           firstbut.innerHTML = '<b>' + firstbut.cluster.join('; ') + '</b>';
+                         } else {
+                           firstbut.innerHTML = '<b>' + firstbut.cluster.slice(0, 2).join(', ') + ', ... <span class="red">[' + firstbut.cluster.length + ']</span></b>';
+                           firstbut.title = firstbut.cluster.join('\n');
+                         }
+                         if (firstbut.cluster.length == 45) {
+                             finishCategory(firstbut);
+                         }
+                         
+                         document.getElementById("score").textContent = score;
+                         // Remove the button for the eliminated word.
+                         secondbut.title = '';
+                         // if (currentWordIndex < wordlist.length) {
+                         //  secondbut.textContent = wordlist[currentWordIndex][0];
+                         //  secondbut.category = wordlist[currentWordIndex][1];
+                         // secondbut.cluster = [secondbut.textContent];
+                         //  currentWordIndex += 1;
+                         // } else {
+                             secondbut.textContent = '';
+                             secondbut.disabled = true;
+                             
+                             // Remove not just the button but the entire <td>.
+                             secondbut.parentElement.remove();
+                        // }
+                         
+                       } else {
+                         mistakes = mistakes + 1;
+                         document.getElementById("mistakes").textContent = mistakes;
+                         // Shake it
+                         button.classList.add('shake');
+                         selected.classList.add('shake');
+                         
+                         button.addEventListener('animationend', () => {
+                           button.classList.remove('shake');
+                           button.style = "";
+                         }, { once: true });
+  
+                         old_selected = selected;
+                         old_selected.addEventListener('animationend', () => {
+                           old_selected.classList.remove('shake');
+                           old_selected.style = "";
+                         }, { once: true });
+  
+                         selected = 0;
+                       }
+                       saveState();
+                       if (score == 1980) {
+                           window.alert("You win!!");
+                           startFireworks();
+                       }
+                   };
+                   td.appendChild(button);
+                   tr.appendChild(td);
+                }
+                table.appendChild(tr);
+              }
+              
+              document.getElementById("board").appendChild(table);
+            }
+            
+            function loadState() {
+                s = localStorage.getItem('score');
+                if (s == null) {
+                    putWordsInBoard();
+                    return;
+                }
+                score = Number(s);
+                document.getElementById("score").textContent = score;
+                
+                s = localStorage.getItem('mistakes');
+                if (s == null) {
+                    putWordsInBoard();
+                    return;
+                }
+                mistakes = Number(s);
+                document.getElementById("mistakes").textContent = mistakes;
+                
+                var currentWordIndex = 0;
+                var table = document.getElementById("the_table");
+                var cells_to_remove = [];
+                for (let i = 0, row; row = table.rows[i]; i++) {
+                  for (let j = 0, col; col = row.cells[j]; j++) {
+                    var button = col.firstElementChild;
+                    // button.pos = currentWordIndex;
+                    button.category = localStorage.getItem(`${i}_${j}_category`);
+                    button.cluster = JSON.parse(localStorage.getItem(`${i}_${j}_cluster`));
+                    if (Array.isArray(button.cluster) && button.cluster.length == 45) {
+                        finishCategory(button);
+                    }
+                    button.innerHTML = localStorage.getItem(`${i}_${j}_innerHTML`);
+                    button.title = localStorage.getItem(`${i}_${j}_title`);
+                    currentWordIndex += 1;
+                    if (button.innerHTML == '') {
+                        // No word here, remove the whole <td>
+                        cells_to_remove.push(col);
+                    }
+                  }
+                }
+                for (let i = 0; i < cells_to_remove.length; i++) {
+                    cells_to_remove[i].remove();
+                }
+            }
+            
+            checkCategories();
+            setUpBoard();
+            loadState();
+        </script>
+
+</html>
