@@ -14,7 +14,15 @@
 }
 
 .bigbut {
-width:100%; height:100%; display:block;
+  /* width:100%;  */
+  /* height:100%; */
+  /* display:block; */
+}
+
+.bigbutton {
+  /* width:100px; 
+  height:100px; */
+  /* display:block; */
 }
 
 .shake {
@@ -256,7 +264,7 @@ function deselect() {
             function saveState() {
                 localStorage.clear();
                 
-                localStorage.setItem('score', score + '');
+                localStorage.setItem('score_2026', score + '');
                 localStorage.setItem('mistakes_2026', mistakes + '');
                 
                 var t = document.getElementById('the_table');
@@ -420,9 +428,9 @@ function deselect() {
                 tr.classList.add('.row');
                 for (let j = 0; j < M; j++) {
                    const td = document.createElement('td');
-                   td.class = "bigbut";
+                   td.classList.add("bigbut");
                    const button = document.createElement('button');
-                   button.class = "bigbut"
+                   button.classList.add("bigbutton")
                    button.onclick = function() {
                        if (selected == button) {
                          deselect();
@@ -514,7 +522,7 @@ function deselect() {
             }
             
             function loadState() {
-                s = localStorage.getItem('score_2026');
+                s = localStorage.getItem('score_2026');               
                 if (s == null) {
                     putWordsInBoard();
                     return;
@@ -542,7 +550,7 @@ function deselect() {
                     if (Array.isArray(button.cluster) && button.cluster.length == 45) {
                         finishCategory(button);
                     }
-                    button.innerHTML = localStorage.getItem(`${i}_${j}_innerHTM_2026`);
+                    button.innerHTML = localStorage.getItem(`${i}_${j}_innerHTML_2026`);
                     button.title = localStorage.getItem(`${i}_${j}_title_2026`);
                     currentWordIndex += 1;
                     if (button.innerHTML == '') {
