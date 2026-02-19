@@ -257,7 +257,7 @@ function deselect() {
                 localStorage.clear();
                 
                 localStorage.setItem('score', score + '');
-                localStorage.setItem('mistakes', mistakes + '');
+                localStorage.setItem('mistakes_2026', mistakes + '');
                 
                 var t = document.getElementById('the_table');
                 for (let i = 0; i < t.rows.length; i++) {
@@ -265,10 +265,10 @@ function deselect() {
                   for (let j = 0; j < row.cells.length; j++) {
                     let cell = row.cells[j];
                     let button = cell.firstChild;
-                    localStorage.setItem(`${i}_${j}_category`, button.category);
-                    localStorage.setItem(`${i}_${j}_cluster`, JSON.stringify(button.cluster));
-                    localStorage.setItem(`${i}_${j}_innerHTML`, button.innerHTML);
-                    localStorage.setItem(`${i}_${j}_title`, button.title);
+                    localStorage.setItem(`${i}_${j}_category_2026`, button.category);
+                    localStorage.setItem(`${i}_${j}_cluster_2026`, JSON.stringify(button.cluster));
+                    localStorage.setItem(`${i}_${j}_innerHTML_2026`, button.innerHTML);
+                    localStorage.setItem(`${i}_${j}_title_2026`, button.title);
                   }
                 }
                 
@@ -514,7 +514,7 @@ function deselect() {
             }
             
             function loadState() {
-                s = localStorage.getItem('score');
+                s = localStorage.getItem('score_2026');
                 if (s == null) {
                     putWordsInBoard();
                     return;
@@ -522,7 +522,7 @@ function deselect() {
                 score = Number(s);
                 document.getElementById("score").textContent = score;
                 
-                s = localStorage.getItem('mistakes');
+                s = localStorage.getItem('mistakes_2026');
                 if (s == null) {
                     putWordsInBoard();
                     return;
@@ -537,13 +537,13 @@ function deselect() {
                   for (let j = 0, col; col = row.cells[j]; j++) {
                     var button = col.firstElementChild;
                     // button.pos = currentWordIndex;
-                    button.category = localStorage.getItem(`${i}_${j}_category`);
-                    button.cluster = JSON.parse(localStorage.getItem(`${i}_${j}_cluster`));
+                    button.category = localStorage.getItem(`${i}_${j}_category_2026`);
+                    button.cluster = JSON.parse(localStorage.getItem(`${i}_${j}_cluster_2026`));
                     if (Array.isArray(button.cluster) && button.cluster.length == 45) {
                         finishCategory(button);
                     }
-                    button.innerHTML = localStorage.getItem(`${i}_${j}_innerHTML`);
-                    button.title = localStorage.getItem(`${i}_${j}_title`);
+                    button.innerHTML = localStorage.getItem(`${i}_${j}_innerHTM_2026`);
+                    button.title = localStorage.getItem(`${i}_${j}_title_2026`);
                     currentWordIndex += 1;
                     if (button.innerHTML == '') {
                         // No word here, remove the whole <td>
