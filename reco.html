@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lettres de recommandation</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .file-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .file-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .file-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+
+        .file-name {
+            font-weight: 500;
+        }
+
+        .download-btn {
+            text-decoration: none;
+            background: #2c7be5;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .download-btn:hover {
+            background: #1a5fc1;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.85rem;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lettres de recommandation</h1>
+        
+        <br>
+      
+
+        <div class="file-list">
+            <div class="file-card">
+                <span class="file-name">Faisal Abu Kzham, directeur de postdoctorat</span>
+                <a href="reco_abu_khzam.pdf" class="download-btn" download>Download</a>
+            </div>
+
+            <div class="file-card">
+                <span class="file-name">Baptiste Lafabregue, responsable de l'UE Kit de Survie en L1</span>
+                <a href="reco_lafabregue.pdf" class="download-btn" download>Download</a>
+            </div>
+
+            <div class="file-card">
+                <span class="file-name">Arash Habibi, co-responsable de l'UE Architecture des ordinateurs en L2</span>
+                <a href="reco_habibi.pdf" class="download-btn" download>Download</a>
+            </div>
+
+            <div class="file-card">
+                <span class="file-name">Eric Christoffel, responsable de l'UE Programmation Web en L1</span>
+                <a href="reco_christoffel" class="download-btn" download>Download</a>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
